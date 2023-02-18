@@ -1,0 +1,37 @@
+@use 'src/style/colors';
+
+.iconBtn {
+  all: unset;
+  --iconSize: 38px;
+  --iconColor: colors.$primary--dark;
+
+  width: var(--iconSize);
+  height: var(--iconSize);
+
+  display: flex;
+  place-items: center;
+  justify-content: center;
+
+  color: var(--iconColor);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+
+  &[disabled] {
+    opacity: 0.4;
+    cursor: auto;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .iconBtn {
+    --iconColor: #{colors.$primary};
+  }
+}

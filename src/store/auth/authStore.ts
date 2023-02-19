@@ -1,12 +1,6 @@
 import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
-
-import {
-  onAuthStateChanged,
-  onIdTokenChanged,
-  getIdToken,
-  User,
-} from 'firebase/auth';
+import { devtools } from 'zustand/middleware';
+import { User } from 'firebase/auth';
 
 export const AUTH_STATE = {
   loggedOut: 'loggedOut',

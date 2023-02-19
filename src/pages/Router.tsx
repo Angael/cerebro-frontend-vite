@@ -2,10 +2,14 @@ import React from 'react';
 import { useRoutes } from 'react-router-dom';
 import Home from './home/Home';
 import Browse from './browse/Browse';
+import { useAnalytics } from '../utils/useAnalytics';
+import ItemPage from './browse/items/ItemPage';
 
 type Props = {};
 
 const Router = (props: Props) => {
+  useAnalytics();
+
   return useRoutes([
     {
       path: '/',
@@ -18,10 +22,16 @@ const Router = (props: Props) => {
     {
       path: '/browse',
       element: <Browse />,
+      children: [
+        {
+          path: 'item/:id',
+          element: <ItemPage />,
+        },
+      ],
     },
     // {
-    //   path: '/item/:id',
-    //   element: <ViewItem />,
+    //   path: '/browse/itemitem/:id',
+    //   element: <ItemPage />,
     // },
     // {
     //   path: '/login',

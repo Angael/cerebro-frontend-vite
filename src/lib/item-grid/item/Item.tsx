@@ -1,0 +1,70 @@
+import React, { useState } from 'react';
+import ProgressiveImage from 'react-progressive-graceful-image';
+
+import css from './Item.module.scss';
+import { getGridSpan } from './getGridSpan';
+import { mdiAlertCircleOutline, mdiClockOutline } from '@mdi/js';
+import Icon from '@mdi/react';
+import { FrontItem } from '@vanih/cerebro-contracts';
+import clsx from 'clsx';
+
+interface IProps {
+  item: FrontItem;
+  onClick: () => void;
+}
+
+const Item = ({ item, onClick }: IProps) => {
+  const [err1, setErr] = useState(false);
+
+  const iconSrc = item.icon || '';
+  const thumbnailSrc = item.thumbnail ?? '';
+
+  const gridSpanClass = getGridSpan(item);
+
+  const onError = () => {
+    setErr(true);
+  };
+
+  return (
+    <button onClick={onClick} className={clsx(css.itemBtn, gridSpanClass)}>
+      <div className={css.thumbnailContainer}>
+        {!thumbnailSrc && !iconSrc ? (
+          <div
+            className={css.centerContainer}
+            style={{ backgroundColor: 'grey' }}
+          >
+            <Icon path={mdiClockOutline} size={2} color={'white'} />
+            <p>Thumbnail not ready...</p>
+          </div>
+        ) : (
+          <ProgressiveImage
+            src={thumbnailSrc}
+            placeholder={iconSrc}
+            rootMargin='0%'
+            threshold={[0.3]}
+            onError={onError}
+          >
+            {(src: string, loading?: boolean) =>
+              err1 ? (
+                <div className={css.centerContainer}>
+                  <Icon path={mdiAlertCircleOutline} size={2} color={'white'} />
+                  <p>Thumbnail Error</p>
+                </div>
+              ) : (
+                <img
+                  src={src}
+                  className={clsx(css.thumbnail, loading && 'loading')}
+                />
+              )
+            }
+          </ProgressiveImage>
+        )}
+      </div>
+      <div className={css.titleContainer}>
+        <p>filename{/*item.fileData?.filename*/}</p>
+      </div>
+    </button>
+  );
+};
+
+export default Item;

@@ -1,0 +1,14 @@
+$layer-1: 10;
+$layer-2: 20;
+$layer-3: 30;
+$layer-4: 40;
+$layer-5: 50;
+$layer-6: 60;
+$layer-navbar: 1000;
+$layer-modal: 1010;
+
+$containerWidth: 1000px;
+@mixin container($width: $containerWidth) {
+  max-width: $width;
+  margin: auto;
+}

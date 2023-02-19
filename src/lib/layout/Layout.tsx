@@ -8,6 +8,7 @@ type Props = {
 const Layout = ({ children }: Props) => {
   return (
     <>
+      <h1 className='h2'>Here show limits</h1>
       <Navbar />
       {children}
     </>

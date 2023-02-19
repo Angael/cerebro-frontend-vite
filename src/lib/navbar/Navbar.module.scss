@@ -1,5 +1,27 @@
+@use 'src/style/util';
+@use 'src/style/colors';
+@use 'src/style/shadow';
+@use 'sass:color';
+
 .navbar {
-  display: flex;
-  padding: 8px;
   gap: 4px;
+  position: sticky;
+  top: 0;
+
+  background-color: color.adjust(black, $alpha: -0.5);
+  backdrop-filter: blur(12px);
+  @include shadow.small();
+
+  z-index: util.$layer-navbar;
+
+  @media (prefers-color-scheme: light) {
+    background-color: color.adjust(white, $alpha: -0.5);
+  }
+
+  .navbarFlex {
+    display: flex;
+    padding: 8px;
+
+    @include util.container;
+  }
 }

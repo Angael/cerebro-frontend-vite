@@ -21,8 +21,6 @@ const ImageView = ({ item }: Props) => {
         <img
           style={{
             objectFit: 'contain',
-            width: `min(${width}px, 100vw)`,
-            height: `min(${height}px, 100vh)`,
           }}
           src={src}
         />

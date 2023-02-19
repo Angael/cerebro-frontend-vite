@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
+import css from './ItemDialog.module.scss';
+type Props = {
+  children: ReactNode;
+  open: boolean;
+  onClose: () => void;
+};
 
-type Props = {};
-
-const ItemDialog = (props: Props) => {
+const ItemDialog = ({ children, open, onClose }: Props) => {
   return (
-    <Dialog.Root open={true}>
-      <Dialog.Trigger />
+    <Dialog.Root open={open}>
+      {/*<Dialog.Trigger>Otworz item</Dialog.Trigger>*/}
       <Dialog.Portal>
-        <Dialog.Overlay />
-        <Dialog.Content>
-          <Dialog.Title />
-          <Dialog.Description />
-          <Dialog.Close />
+        <Dialog.Overlay className={css.DialogOverlay} onClick={onClose} />
+        <Dialog.Content className={css.DialogContent}>
+          <Dialog.Title>Tytuł itemu</Dialog.Title>
+          {children}
+          <Dialog.Close onClick={onClose}>Zamknij modala</Dialog.Close>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

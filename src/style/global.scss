@@ -5,11 +5,11 @@
   font-family: 'Open Sans', sans-serif;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: colors.$text--dark;
+  background-color: colors.$bg--dark;
 
   @media (prefers-color-scheme: light) {
-    color: #213547;
+    color: colors.$text;
     background-color: #ffffff;
   }
 
@@ -23,7 +23,6 @@
 
 body {
   margin: 0;
-  overflow-y: scroll;
 }
 
 img {

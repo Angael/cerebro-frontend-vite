@@ -3,7 +3,7 @@ import { useRoutes } from 'react-router-dom';
 import Home from './home/Home';
 import Browse from './browse/Browse';
 import { useAnalytics } from '../utils/useAnalytics';
-import ItemPage from './browse/items/ItemPage';
+import ItemPage from './browse/item/ItemPage';
 
 type Props = {};
 

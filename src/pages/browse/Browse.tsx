@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router';
+import { useNavigate, useOutlet, useLocation } from 'react-router';
 import { FrontItem } from '@vanih/cerebro-contracts';
 import { API } from '../../api/api';
 import Layout from '../../lib/layout/Layout';
@@ -14,20 +14,25 @@ const fetchItems = async () => {
 };
 
 const Browse = () => {
+  const routeState = useLocation();
   const navigate = useNavigate();
+  const outlet = useOutlet();
+  console.log(routeState.state);
 
   const items = useQuery({
+    enabled: !outlet,
     queryKey: ['items'],
     queryFn: fetchItems,
     refetchInterval: 5 * 60 * 1000,
   });
 
   const onSelectItem = (id: number) => {
-    navigate(`/browse/item/${id}`);
+    navigate(`/browse/item/${id}`, { state: 'testState' });
   };
 
   return (
     <Layout>
+      {outlet}
       <div className={css.browsePage}>
         <h1 className='h1'>Browse</h1>
         <p className='body1'>

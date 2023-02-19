@@ -5,6 +5,8 @@ import { queryClient } from '../../../App';
 import { FrontItem } from '@vanih/cerebro-contracts';
 import { AxiosError } from 'axios';
 import { API } from '../../../api/api';
+import Item from '../../../lib/items/Item';
+import ItemDialog from './ItemDialog';
 
 type Props = {};
 
@@ -40,7 +42,12 @@ const ItemPage = (props: Props) => {
   //   }
   // }
 
-  return <div>Test {JSON.stringify(item.data)}</div>;
+  return (
+    <div>
+      <ItemDialog />
+      {item.data && <Item item={item.data} />}
+    </div>
+  );
 };
 
 export default ItemPage;

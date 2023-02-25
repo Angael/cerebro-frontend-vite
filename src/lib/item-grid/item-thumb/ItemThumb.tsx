@@ -63,9 +63,6 @@ const ItemThumb = ({ item }: IProps) => {
           </ProgressiveImage>
         )}
       </div>
-      <div className={css.titleContainer}>
-        <p>filename{/*item.fileData?.filename*/}</p>
-      </div>
     </Link>
   );
 };

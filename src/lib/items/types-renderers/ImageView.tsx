@@ -13,18 +13,17 @@ const ImageView = ({ item }: Props) => {
   }
 
   const { width, height } = item.image;
+  const style = {
+    '--width': `${width}px`,
+    '--height': `${height}px`,
+  } as React.CSSProperties;
 
   const placeholder = item.thumbnail;
 
   return (
     <ProgressiveImage src={item.image.src} placeholder={placeholder ?? ''}>
-      {(src: string, loading?: boolean) => (
-        <img
-          style={{
-            objectFit: 'contain',
-          }}
-          src={src}
-        />
+      {(src: string) => (
+        <img className={css.modalImage} style={style} src={src} />
       )}
     </ProgressiveImage>
   );

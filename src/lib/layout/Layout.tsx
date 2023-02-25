@@ -3,15 +3,16 @@ import Navbar from '../navbar/Navbar';
 
 type Props = {
   children: React.ReactNode;
+  className?: string;
 };
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children, className }: Props) => {
   return (
-    <>
+    <div>
       {/*<h1 className='h2'>Here show limits</h1>*/}
       <Navbar />
-      {children}
-    </>
+      <div className={className}>{children}</div>
+    </div>
   );
 };
 

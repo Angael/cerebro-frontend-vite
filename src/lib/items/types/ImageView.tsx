@@ -1,6 +1,7 @@
 import React from 'react';
 import { ImageItem } from '@vanih/cerebro-contracts';
 import ProgressiveImage from 'react-progressive-graceful-image';
+import css from './ImageView.module.scss';
 
 type Props = {
   item: ImageItem;

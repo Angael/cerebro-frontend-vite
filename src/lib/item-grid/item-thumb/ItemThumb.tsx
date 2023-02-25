@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProgressiveImage from 'react-progressive-graceful-image';
 
-import css from './Item.module.scss';
+import css from './ItemThumb.module.scss';
 import { getGridSpan } from './getGridSpan';
 import { mdiAlertCircleOutline, mdiClockOutline } from '@mdi/js';
 import Icon from '@mdi/react';
@@ -13,7 +13,7 @@ interface IProps {
   onClick: () => void;
 }
 
-const Item = ({ item, onClick }: IProps) => {
+const ItemThumb = ({ item, onClick }: IProps) => {
   const [err1, setErr] = useState(false);
 
   const iconSrc = item.icon || '';
@@ -67,4 +67,4 @@ const Item = ({ item, onClick }: IProps) => {
   );
 };
 
-export default Item;
+export default ItemThumb;

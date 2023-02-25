@@ -2,4 +2,6 @@
 
 .browsePage {
   @include util.container;
+
+  container: itemGrid / inline-size;
 }

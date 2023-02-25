@@ -6,20 +6,12 @@ import ItemThumb from './item-thumb/ItemThumb';
 
 type Props = {
   items: FrontItem[];
-  onSelectItem: (id: number) => void;
 };
 
-const ItemGrid: React.FunctionComponent<Props> = ({ items, onSelectItem }) => {
+const ItemGrid: React.FunctionComponent<Props> = ({ items }) => {
   return (
     <section className={css.ItemGrid}>
-      {items &&
-        items.map((item, i) => (
-          <ItemThumb
-            key={item.id}
-            item={item}
-            onClick={() => onSelectItem(item.id)}
-          />
-        ))}
+      {items && items.map((item, i) => <ItemThumb key={item.id} item={item} />)}
     </section>
   );
 };

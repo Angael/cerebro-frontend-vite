@@ -7,13 +7,13 @@ import { mdiAlertCircleOutline, mdiClockOutline } from '@mdi/js';
 import Icon from '@mdi/react';
 import { FrontItem } from '@vanih/cerebro-contracts';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   item: FrontItem;
-  onClick: () => void;
 }
 
-const ItemThumb = ({ item, onClick }: IProps) => {
+const ItemThumb = ({ item }: IProps) => {
   const [err1, setErr] = useState(false);
 
   const iconSrc = item.icon || '';
@@ -26,7 +26,10 @@ const ItemThumb = ({ item, onClick }: IProps) => {
   };
 
   return (
-    <button onClick={onClick} className={clsx(css.itemBtn, gridSpanClass)}>
+    <Link
+      to={`/browse/item/${item.id}`}
+      className={clsx(css.itemBtn, gridSpanClass)}
+    >
       <div className={css.thumbnailContainer}>
         {!thumbnailSrc && !iconSrc ? (
           <div
@@ -63,7 +66,7 @@ const ItemThumb = ({ item, onClick }: IProps) => {
       <div className={css.titleContainer}>
         <p>filename{/*item.fileData?.filename*/}</p>
       </div>
-    </button>
+    </Link>
   );
 };
 

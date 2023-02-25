@@ -1,30 +1,17 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { useNavigate, useOutlet, useLocation } from 'react-router';
-import { FrontItem } from '@vanih/cerebro-contracts';
-import { API } from '../../api/api';
+import { useLocation, useNavigate, useOutlet } from 'react-router';
 import Layout from '../../lib/layout/Layout';
 import ItemGrid from '../../lib/item-grid/ItemGrid';
 
 import css from './Browse.module.scss';
-
-const fetchItems = async () => {
-  const response = await API.get('/items');
-  return response.data as FrontItem[];
-};
+import { useQueryItems } from '../../api/itemsApi';
 
 const Browse = () => {
   const routeState = useLocation();
   const navigate = useNavigate();
   const outlet = useOutlet();
-  console.log(routeState.state);
 
-  const items = useQuery({
-    enabled: !outlet,
-    queryKey: ['items'],
-    queryFn: fetchItems,
-    refetchInterval: 5 * 60 * 1000,
-  });
+  const items = useQueryItems(!outlet);
 
   const onSelectItem = (id: number) => {
     navigate(`/browse/item/${id}`, { state: 'testState' });
@@ -41,9 +28,11 @@ const Browse = () => {
         <p className='body2'>
           The abstruse fear of anger is to grasp with acceptance.
         </p>
-        {items.data && (
-          <ItemGrid items={items.data} onSelectItem={onSelectItem} />
-        )}
+        <div>
+          {items.data && (
+            <ItemGrid items={items.data} onSelectItem={onSelectItem} />
+          )}
+        </div>
       </div>
     </Layout>
   );

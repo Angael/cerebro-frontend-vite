@@ -12,7 +12,13 @@ type Props = {
 
 const Btn = ({ component, className, ...props }: Props) => {
   const Component = component ?? 'button';
-  return <Component className={clsx(css.btnStyle, className)} {...props} />;
+  return (
+    <Component
+      tabIndex={0}
+      className={clsx(css.btnStyle, className)}
+      {...props}
+    />
+  );
 };
 
 export default Btn;

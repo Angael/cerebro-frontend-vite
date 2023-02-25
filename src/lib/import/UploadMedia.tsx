@@ -40,11 +40,8 @@ const UploadMedia = (props: Props) => {
           style={{ display: 'none' }}
           onChange={handleChangeFileImage}
         />
-        <div>
-          <Btn tabIndex={0} component='div'>
-            Add files...
-          </Btn>
-        </div>
+        <br />
+        <Btn component='div'>Add files...</Btn>
       </label>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
-import { FrontItem, ImageItem } from '@vanih/cerebro-contracts';
-import ImageView from './types/ImageView';
+import { FrontItem, ImageItem, VideoItem } from '@vanih/cerebro-contracts';
+import ImageView from './types-renderers/ImageView';
+import VideoView from './types-renderers/VideoView';
 
 type Props = {
   item: FrontItem;
@@ -8,9 +9,10 @@ type Props = {
 
 const Item = ({ item }: Props) => {
   return (
-    <div>
+    <>
       {item?.type === 'IMAGE' && <ImageView item={item as ImageItem} />}
-    </div>
+      {item?.type === 'VIDEO' && <VideoView item={item as VideoItem} />}
+    </>
   );
 };
 

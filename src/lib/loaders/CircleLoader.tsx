@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '@mdi/react';
+import { Icon } from '@mdi/react';
 import { mdiLoading } from '@mdi/js';
 import css from './CircleLoader.module.scss';
 import clsx from 'clsx';

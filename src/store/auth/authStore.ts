@@ -13,13 +13,11 @@ interface AuthStore {
   state: keyof typeof AUTH_STATE;
 }
 
-export const useAuthStore = create<AuthStore>()(
-  devtools((set) => ({
-    user: null,
-    token: null,
-    state: AUTH_STATE.loggedOut,
-  })),
-);
+export const useAuthStore = create<AuthStore>((set) => ({
+  user: null,
+  token: null,
+  state: AUTH_STATE.loggedOut,
+}));
 
 // API
 

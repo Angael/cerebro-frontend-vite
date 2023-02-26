@@ -1,7 +1,7 @@
 import React, { ComponentProps } from 'react';
 import clsx from 'clsx';
 
-import css from './IconBtn.module.scss';
+import css from './Btn.module.scss';
 
 type Props = {
   component?:
@@ -10,15 +10,15 @@ type Props = {
   [key: string]: any;
 } & ComponentProps<'button'>;
 
-const IconBtn = ({ component, className, ...props }: Props) => {
+const Btn = ({ component, className, ...props }: Props) => {
   const Component = component ?? 'button';
   return (
     <Component
       tabIndex={0}
-      className={clsx(css.iconBtn, className)}
+      className={clsx(css.btnStyle, className)}
       {...props}
     />
   );
 };
 
-export default IconBtn;
+export default Btn;

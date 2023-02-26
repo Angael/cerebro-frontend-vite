@@ -1,0 +1,9 @@
+.MyGrid {
+  display: grid;
+  width: 100%;
+  gap: 16px;
+  padding: 16px 0;
+  justify-content: center;
+  grid-auto-rows: 300px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}

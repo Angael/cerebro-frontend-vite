@@ -1,29 +1,24 @@
 @use 'src/style/colors';
 
-.iconBtn {
+.btnStyle {
   all: unset;
-  --iconSize: 38px;
-  --iconColor: #{colors.$primary--dark};
+  --color: #{colors.$primary--dark};
 
-  width: var(--iconSize);
-  height: var(--iconSize);
-
-  display: flex;
+  display: inline-block;
+  width: auto;
   place-items: center;
   justify-content: center;
 
-  color: var(--iconColor);
+  color: var(--color);
+  border: var(--color) 2px solid;
+  border-radius: 999px;
+  padding: 4px 8px;
   cursor: pointer;
 
   transition: opacity 0.1s;
   &:hover,
   &:focus-visible {
     opacity: 0.7;
-  }
-
-  &:focus-visible {
-    outline: 1px solid var(--iconColor);
-    border-radius: 8px;
   }
 
   &:active {
@@ -36,6 +31,6 @@
   }
 
   @media (prefers-color-scheme: light) {
-    --iconColor: #{colors.$primary};
+    --color: #{colors.$primary};
   }
 }

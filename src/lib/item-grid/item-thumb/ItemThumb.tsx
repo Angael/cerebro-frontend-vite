@@ -4,7 +4,7 @@ import ProgressiveImage from 'react-progressive-graceful-image';
 import css from './ItemThumb.module.scss';
 import { getGridSpan } from './getGridSpan';
 import { mdiAlertCircleOutline, mdiClockOutline } from '@mdi/js';
-import Icon from '@mdi/react';
+import { Icon } from '@mdi/react';
 import { FrontItem } from '@vanih/cerebro-contracts';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
@@ -62,9 +62,6 @@ const ItemThumb = ({ item }: IProps) => {
             }
           </ProgressiveImage>
         )}
-      </div>
-      <div className={css.titleContainer}>
-        <p>filename{/*item.fileData?.filename*/}</p>
       </div>
     </Link>
   );

@@ -1,0 +1,36 @@
+@use 'src/style/animation';
+@use 'src/style/colors';
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.circleLoader {
+  width: 60px;
+  height: 60px;
+  color: colors.$bg--dark;
+  @media (prefers-color-scheme: light) {
+    color: colors.$bg;
+  }
+
+  &.centered {
+    position: absolute;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    z-index: 1;
+  }
+
+  .loaderIcon {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    animation: animation.$ease-in-out-quad spin 1s infinite;
+  }
+}

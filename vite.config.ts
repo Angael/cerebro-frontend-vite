@@ -8,4 +8,10 @@ export default defineConfig({
   server: {
     port: 4000,
   },
+  css: {
+    modules: {
+      scopeBehaviour: 'local',
+      localsConvention: 'camelCase',
+    },
+  },
 });

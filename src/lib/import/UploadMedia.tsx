@@ -2,9 +2,8 @@ import React from 'react';
 import { ExtendedFile, UploadStatusEnum } from '../../store/upload/uploadTypes';
 import { nanoid } from 'nanoid';
 import {
-  addUploadFiles,
-  removeUploadFile,
   useUploadStore,
+  uploadStoreActions,
 } from '../../store/upload/uploadStore';
 import Btn from '../btn/Btn';
 import FilesPreview from './files-preview/FilesPreview';
@@ -31,7 +30,7 @@ const UploadMedia = () => {
       }),
     );
 
-    addUploadFiles(files);
+    uploadStoreActions.add(files);
   };
 
   return (
@@ -51,10 +50,12 @@ const UploadMedia = () => {
           <Btn component='div'>Add files...</Btn>
         </label>
 
-        <Btn disabled={files.length <= 0}>Remove all</Btn>
+        <Btn disabled={files.length <= 0} onClick={uploadStoreActions.clear}>
+          Remove all
+        </Btn>
       </div>
 
-      <FilesPreview files={files} onDelete={removeUploadFile} />
+      <FilesPreview files={files} onDelete={uploadStoreActions.removeOne} />
 
       <FilesStats files={files} />
     </>

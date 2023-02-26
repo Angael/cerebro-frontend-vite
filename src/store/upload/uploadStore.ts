@@ -12,14 +12,20 @@ export const useUploadStore = create<UploadStore>()(
   })),
 );
 
-export function addUploadFiles(files: ExtendedFile[]) {
-  useUploadStore.setState((s) => ({
-    files: [...s.files, ...files],
-  }));
-}
+export const uploadStoreActions = {
+  add(files: ExtendedFile[]) {
+    useUploadStore.setState((s) => ({
+      files: [...s.files, ...files],
+    }));
+  },
 
-export function removeUploadFile(id: string) {
-  useUploadStore.setState((s) => ({
-    files: s.files.filter((f) => f.id !== id),
-  }));
-}
+  removeOne(id: string) {
+    useUploadStore.setState((s) => ({
+      files: s.files.filter((f) => f.id !== id),
+    }));
+  },
+
+  clear() {
+    useUploadStore.setState({ files: [] });
+  },
+};

@@ -5,8 +5,8 @@ import {
   ExtendedFile,
   UploadStatusEnum,
 } from '../../../store/upload/uploadTypes';
-import CircleLoader from '../../loaders/CircleLoader';
 import Btn from '../../btn/Btn';
+import ProgressOverlay from './ProgressOverlay';
 
 interface IProps {
   file: ExtendedFile;
@@ -33,15 +33,13 @@ const FilePreview = ({ file, onDelete }: IProps) => {
     UploadStatusEnum.failed,
   ].includes(file.uploadStatus);
 
-  const color = loadingColors[file.uploadStatus] as
-    | 'primary'
-    | 'success'
-    | 'error';
+  const { uploadStatus, uploadProgress } = file;
 
   return (
     <article className={css.filePreview}>
-      {showLoader && <CircleLoader centered />}
-
+      {showLoader && (
+        <ProgressOverlay status={uploadStatus} progress={uploadProgress} />
+      )}
       {isImage && !tooBig && (
         <img alt={file.file.name} className={css.BgImg} src={file.previewSrc} />
       )}
@@ -50,13 +48,11 @@ const FilePreview = ({ file, onDelete }: IProps) => {
           <source src={file.previewSrc} type='video/mp4' />
         </video>
       )}
-
       <div className={css.Content}>
         <header className={css.FileHeader}>
           <p title={file.file.name}>{file.file.name}</p>
           <p>{sizeStr}</p>
         </header>
-
         <div className={css.uploadFileActions}>
           <Btn
             variant='contained'

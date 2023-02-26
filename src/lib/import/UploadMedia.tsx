@@ -1,13 +1,17 @@
 import React from 'react';
 import { ExtendedFile, UploadStatusEnum } from '../../store/upload/uploadTypes';
 import { nanoid } from 'nanoid';
-import { addUploadFiles, useUploadStore } from '../../store/upload/uploadStore';
+import {
+  addUploadFiles,
+  removeUploadFile,
+  useUploadStore,
+} from '../../store/upload/uploadStore';
 import Btn from '../btn/Btn';
 import FilesPreview from './files-preview/FilesPreview';
+import css from './UploadMedia.module.scss';
+import FilesStats from './files-preview/FilesStats';
 
-type Props = {};
-
-const UploadMedia = (props: Props) => {
+const UploadMedia = () => {
   const { files } = useUploadStore();
 
   const handleChangeFileImage = (
@@ -31,23 +35,29 @@ const UploadMedia = (props: Props) => {
   };
 
   return (
-    <div>
-      {files.length}
-      <label htmlFor='contained-button-file' style={{ marginLeft: 8 }}>
-        <input
-          key={files.length}
-          type='file'
-          multiple
-          id='contained-button-file'
-          style={{ display: 'none' }}
-          onChange={handleChangeFileImage}
-        />
-        <br />
-        <Btn component='div'>Add files...</Btn>
-      </label>
+    <>
+      <div className={css.importPageActions}>
+        <Btn disabled={files.length <= 0}>Upload</Btn>
 
-      <FilesPreview files={files} onDelete={console.log} />
-    </div>
+        <label htmlFor='contained-button-file'>
+          <input
+            key={files.length}
+            type='file'
+            multiple
+            id='contained-button-file'
+            style={{ display: 'none' }}
+            onChange={handleChangeFileImage}
+          />
+          <Btn component='div'>Add files...</Btn>
+        </label>
+
+        <Btn disabled={files.length <= 0}>Remove all</Btn>
+      </div>
+
+      <FilesPreview files={files} onDelete={removeUploadFile} />
+
+      <FilesStats files={files} />
+    </>
   );
 };
 

@@ -17,3 +17,9 @@ export function addUploadFiles(files: ExtendedFile[]) {
     files: [...s.files, ...files],
   }));
 }
+
+export function removeUploadFile(id: string) {
+  useUploadStore.setState((s) => ({
+    files: s.files.filter((f) => f.id !== id),
+  }));
+}

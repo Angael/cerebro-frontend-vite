@@ -57,7 +57,7 @@ const FilePreview = ({ file, onDelete }: IProps) => {
           <p>{sizeStr}</p>
         </header>
 
-        <div>
+        <div className={css.uploadFileActions}>
           <Btn
             variant='contained'
             component='a'

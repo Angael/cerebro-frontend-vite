@@ -19,7 +19,7 @@ export const uploadStoreActions = {
     }));
   },
 
-  removeOne(id: string) {
+  removeOne(id: ExtendedFile['id']) {
     useUploadStore.setState((s) => ({
       files: s.files.filter((f) => f.id !== id),
     }));
@@ -27,5 +27,13 @@ export const uploadStoreActions = {
 
   clear() {
     useUploadStore.setState({ files: [] });
+  },
+
+  updateFile(id: ExtendedFile['id'], fileParams: Partial<ExtendedFile>) {
+    useUploadStore.setState((s) => ({
+      files: s.files.map((file) =>
+        file.id === id ? { ...file, ...fileParams } : file,
+      ),
+    }));
   },
 };

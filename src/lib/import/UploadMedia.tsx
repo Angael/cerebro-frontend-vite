@@ -9,13 +9,17 @@ import Btn from '../btn/Btn';
 import FilesPreview from './files-preview/FilesPreview';
 import css from './UploadMedia.module.scss';
 import FilesStats from './files-preview/FilesStats';
+import {
+  uploadFileToBackend,
+  uploadQueue,
+} from '../../store/upload/uploadQueue';
+import { queryClient } from '../../App';
+import { ITEMS_KEY } from '../../api/itemsApi';
 
 const UploadMedia = () => {
   const { files } = useUploadStore();
 
-  const handleChangeFileImage = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const addFiles = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) {
       return;
     }
@@ -33,10 +37,25 @@ const UploadMedia = () => {
     uploadStoreActions.add(files);
   };
 
+  const upload = () => {
+    files.forEach((file) => {
+      uploadQueue.add(() =>
+        uploadFileToBackend({ file, dir: '', private: false }),
+      );
+    });
+
+    uploadQueue.onIdle().then(() => {
+      alert('queue stopped');
+      queryClient.invalidateQueries([ITEMS_KEY]);
+    });
+  };
+
   return (
     <>
       <div className={css.importPageActions}>
-        <Btn disabled={files.length <= 0}>Upload</Btn>
+        <Btn disabled={files.length <= 0} onClick={upload}>
+          Upload
+        </Btn>
 
         <label htmlFor='contained-button-file'>
           <input
@@ -45,7 +64,7 @@ const UploadMedia = () => {
             multiple
             id='contained-button-file'
             style={{ display: 'none' }}
-            onChange={handleChangeFileImage}
+            onChange={addFiles}
           />
           <Btn component='div'>Add files...</Btn>
         </label>

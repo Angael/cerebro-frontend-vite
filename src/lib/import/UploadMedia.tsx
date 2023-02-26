@@ -3,6 +3,7 @@ import { ExtendedFile, UploadStatusEnum } from '../../store/upload/uploadTypes';
 import { nanoid } from 'nanoid';
 import { addUploadFiles, useUploadStore } from '../../store/upload/uploadStore';
 import Btn from '../btn/Btn';
+import FilesPreview from './files-preview/FilesPreview';
 
 type Props = {};
 
@@ -31,6 +32,7 @@ const UploadMedia = (props: Props) => {
 
   return (
     <div>
+      {files.length}
       <label htmlFor='contained-button-file' style={{ marginLeft: 8 }}>
         <input
           key={files.length}
@@ -43,6 +45,8 @@ const UploadMedia = (props: Props) => {
         <br />
         <Btn component='div'>Add files...</Btn>
       </label>
+
+      <FilesPreview files={files} onDelete={console.log} />
     </div>
   );
 };

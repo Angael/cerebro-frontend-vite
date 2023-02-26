@@ -11,4 +11,5 @@ $containerWidth: 1000px;
 @mixin container($width: $containerWidth) {
   max-width: $width;
   margin: auto;
+  padding: 0 8px;
 }

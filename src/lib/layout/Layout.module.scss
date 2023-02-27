@@ -3,4 +3,5 @@
 .Layout {
   @include util.container();
   margin-top: 24px;
+  container: pageContainer / inline-size;
 }

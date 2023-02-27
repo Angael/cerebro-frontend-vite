@@ -3,7 +3,6 @@ import { useOutlet } from 'react-router';
 import Layout from '../../lib/layout/Layout';
 import ItemGrid from '../../lib/item-grid/ItemGrid';
 
-import css from './Browse.module.scss';
 import { useQueryItems } from '../../api/itemsApi';
 
 const Browse = () => {
@@ -12,7 +11,7 @@ const Browse = () => {
   const items = useQueryItems(!outlet);
 
   return (
-    <Layout isMaxWidth className={css.browsePage}>
+    <Layout isMaxWidth>
       {outlet}
 
       <h1 className='h1'>Browse</h1>

@@ -6,7 +6,7 @@ import UploadMedia from '../../lib/import/UploadMedia';
 
 const ImportPage = () => {
   return (
-    <Layout className={css.importPage}>
+    <Layout isMaxWidth>
       <div className={css.titleAndLimit}>
         <h1 className='h1'>Import files</h1>
         <UsedSpace />

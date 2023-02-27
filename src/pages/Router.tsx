@@ -5,6 +5,7 @@ import Browse from './browse/Browse';
 import { useAnalytics } from '../utils/useAnalytics';
 import ItemPage from './browse/item/ItemPage';
 import ImportPage from './import/ImportPage';
+import Login from './login/Login';
 
 type Props = {};
 
@@ -34,10 +35,10 @@ const Router = (props: Props) => {
     //   path: '/browse/itemitem/:id',
     //   element: <ItemPage />,
     // },
-    // {
-    //   path: '/login',
-    //   element: <Login />,
-    // },
+    {
+      path: '/login',
+      element: <Login />,
+    },
     {
       path: '/import',
       element: <ImportPage />,

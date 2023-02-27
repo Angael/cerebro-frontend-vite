@@ -2,7 +2,7 @@
 
 .iconBtn {
   all: unset;
-  --iconSize: 38px;
+  --iconSize: 32px;
   --iconColor: #{colors.$primary--dark};
 
   width: var(--iconSize);
@@ -33,6 +33,7 @@
   &[disabled] {
     opacity: 0.4;
     cursor: auto;
+    pointer-events: none;
   }
 
   @media (prefers-color-scheme: light) {

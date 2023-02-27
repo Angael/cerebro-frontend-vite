@@ -21,6 +21,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
 
 // API
 
+// TODO: this has the same name as authActions FIX THIS WITH ONE EXPORT
 export function logIn(user: AuthStore['user'], token: AuthStore['token']) {
   useAuthStore.setState({
     user,

@@ -12,7 +12,7 @@ const Browse = () => {
   const items = useQueryItems(!outlet);
 
   return (
-    <Layout className={css.browsePage}>
+    <Layout isMaxWidth className={css.browsePage}>
       {outlet}
 
       <h1 className='h1'>Browse</h1>

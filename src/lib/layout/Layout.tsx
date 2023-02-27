@@ -1,17 +1,21 @@
 import React from 'react';
 import Navbar from '../navbar/Navbar';
+import clsx from 'clsx';
+import css from './Layout.module.scss';
 
 type Props = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
+  isMaxWidth?: boolean;
 };
 
-const Layout = ({ children, className }: Props) => {
+const Layout = ({ children, isMaxWidth, className }: Props) => {
   return (
     <div>
-      {/*<h1 className='h2'>Here show limits</h1>*/}
       <Navbar />
-      <div className={className}>{children}</div>
+      <div className={clsx(isMaxWidth && css.Layout, className)}>
+        {children}
+      </div>
     </div>
   );
 };

@@ -1,7 +1,3 @@
-@use 'src/style/util';
-
 .browsePage {
-  @include util.container;
-
   container: itemGrid / inline-size;
 }

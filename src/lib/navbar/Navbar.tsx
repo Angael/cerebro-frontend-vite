@@ -1,16 +1,6 @@
 import React from 'react';
 import { Icon } from '@mdi/react';
-import {
-  mdiAccount,
-  mdiBookmarkMultiple,
-  mdiCompass,
-  mdiMenu,
-  mdiLogin,
-  // mdiMenu,
-  mdiPlus,
-  mdiStar,
-  mdiViewGrid,
-} from '@mdi/js';
+import { mdiCompass, mdiLogin, mdiMenu, mdiPlus, mdiViewGrid } from '@mdi/js';
 import { NavLink } from 'react-router-dom';
 import css from './Navbar.module.scss';
 import IconBtn from '../icon-btn/IconBtn';
@@ -34,15 +24,17 @@ const Navbar = () => {
             <IconBtn component={NavLink} to='/import'>
               <Icon path={mdiPlus} />
             </IconBtn>
-            <IconBtn component={NavLink} to='/favs' disabled tabIndex={-1}>
-              <Icon path={mdiStar} />
-            </IconBtn>
-            <IconBtn component={NavLink} to='/library' disabled tabIndex={-1}>
-              <Icon path={mdiBookmarkMultiple} />
-            </IconBtn>
-            <IconBtn component={NavLink} to='/account' disabled tabIndex={-1}>
-              <Icon path={mdiAccount} />
-            </IconBtn>
+
+            {/*<IconBtn component={NavLink} to='/favs' disabled tabIndex={-1}>*/}
+            {/*  <Icon path={mdiStar} />*/}
+            {/*</IconBtn>*/}
+            {/*<IconBtn component={NavLink} to='/library' disabled tabIndex={-1}>*/}
+            {/*  <Icon path={mdiBookmarkMultiple} />*/}
+            {/*</IconBtn>*/}
+            {/*<IconBtn component={NavLink} to='/account' disabled tabIndex={-1}>*/}
+            {/*  <Icon path={mdiAccount} />*/}
+            {/*</IconBtn>*/}
+
             <IconBtn component={NavLink} to='/explore'>
               <Icon path={mdiCompass} />
             </IconBtn>

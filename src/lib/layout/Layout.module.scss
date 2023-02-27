@@ -1,0 +1,6 @@
+@use 'src/style/util';
+
+.Layout {
+  @include util.container();
+  margin-top: 24px;
+}

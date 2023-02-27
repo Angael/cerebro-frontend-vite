@@ -4,9 +4,9 @@
 @use 'sass:color';
 
 .navbar {
-  gap: 4px;
   position: sticky;
   top: 0;
+  height: 55px;
 
   background-color: color.adjust(black, $alpha: -0.5);
   backdrop-filter: blur(12px);
@@ -19,9 +19,12 @@
   }
 
   .navbarFlex {
-    display: flex;
-    padding: 8px;
-
     @include util.container;
+
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 8px;
+    padding: 8px;
   }
 }

@@ -32,22 +32,22 @@ const Navbar = () => {
         {isLoggedIn && (
           <>
             <IconBtn component={NavLink} to='/import'>
-              <Icon path={mdiPlus} size={1} />
+              <Icon path={mdiPlus} />
             </IconBtn>
             <IconBtn component={NavLink} to='/favs' disabled tabIndex={-1}>
-              <Icon path={mdiStar} size={1} />
+              <Icon path={mdiStar} />
             </IconBtn>
             <IconBtn component={NavLink} to='/library' disabled tabIndex={-1}>
-              <Icon path={mdiBookmarkMultiple} size={1} />
+              <Icon path={mdiBookmarkMultiple} />
             </IconBtn>
             <IconBtn component={NavLink} to='/account' disabled tabIndex={-1}>
-              <Icon path={mdiAccount} size={1} />
+              <Icon path={mdiAccount} />
             </IconBtn>
             <IconBtn component={NavLink} to='/explore'>
-              <Icon path={mdiCompass} size={1} />
+              <Icon path={mdiCompass} />
             </IconBtn>
             <IconBtn component={NavLink} to='/browse'>
-              <Icon path={mdiViewGrid} size={1} />
+              <Icon path={mdiViewGrid} />
             </IconBtn>
           </>
         )}

@@ -12,12 +12,17 @@
 
 .DialogContent {
   border: colors.$bg--dark solid 1px;
+
   position: fixed;
-  inset: 24px;
+  inset: 8px 10%;
   z-index: util.$layer-modal;
   animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 10px;
-  overflow: hidden;
+  overflow-y: auto;
+
+  .ScrollArea {
+    position: relative;
+  }
 }
 .DialogContent:focus {
   outline: none;

@@ -3,11 +3,14 @@ import { useNavigate, useParams } from 'react-router';
 import Item from '../../../lib/items/Item';
 import ItemDialog from './ItemDialog';
 import { useQueryItem } from '../../../api/itemsApi';
+import { useWsadNav } from './useWsadNav';
 
 const ItemPage = () => {
   const navigate = useNavigate();
   const { id = '' } = useParams();
   const item = useQueryItem(id);
+
+  useWsadNav(id);
 
   const is404 = item.error?.response?.status === 404;
 

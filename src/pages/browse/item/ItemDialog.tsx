@@ -13,9 +13,9 @@ const ItemDialog = ({ children, open, onClose }: Props) => {
     <Dialog.Root open={open}>
       <Dialog.Portal>
         <Dialog.Overlay className={css.DialogOverlay} onClick={onClose} />
-        <Dialog.Content className={css.DialogContent} onClick={onClose}>
+        <Dialog.Content className={css.DialogContent}>
+          <div className={css.ScrollArea}>{children}</div>
           {/*<Dialog.Title>Tytuł itemu</Dialog.Title>*/}
-          {children}
           {/*<Dialog.Close onClick={onClose}>Zamknij modala</Dialog.Close>*/}
         </Dialog.Content>
       </Dialog.Portal>

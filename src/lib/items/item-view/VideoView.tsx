@@ -17,10 +17,9 @@ const ImageView = ({ item }: Props) => {
     '--height': `${height}px`,
   } as React.CSSProperties;
 
-  const placeholder = item.thumbnail;
-
   return (
     <video
+      key={src}
       controls
       poster={item.thumbnail || ''}
       autoPlay

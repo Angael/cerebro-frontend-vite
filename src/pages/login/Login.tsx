@@ -22,14 +22,17 @@ const Login = () => {
   return (
     <Layout isMaxWidth>
       <h1 className='h1'>Login</h1>
-      {authState.state === 'loggedIn' && (
+      {authState.state === 'loggedIn' ? (
         <button type='button' onClick={logout}>
           Log out
         </button>
+      ) : (
+        <LoginInputs
+          fetching={fetching}
+          onOk={onLogin}
+          isRegistration={false}
+        />
       )}
-
-      <LoginInputs fetching={fetching} onOk={onLogin} isRegistration={false} />
-      <pre>{JSON.stringify(authState, null, 2)}</pre>
     </Layout>
   );
 };

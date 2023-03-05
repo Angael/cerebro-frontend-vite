@@ -15,7 +15,7 @@ const Navbar = () => {
       <div className={css.navbarFlex}>
         <div style={{ flex: 1 }}>
           <IconBtn>
-            <Icon path={mdiMenu} size={1} />
+            <Icon path={mdiMenu} />
           </IconBtn>
         </div>
 

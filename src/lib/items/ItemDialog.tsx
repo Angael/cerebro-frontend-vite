@@ -9,15 +9,21 @@ type Props = {
 };
 
 const ItemDialog = ({ children, open, onClose }: Props) => {
+  const onCancelBubble = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   return (
     <Dialog.Root open={open}>
       <Dialog.Portal>
-        <Dialog.Overlay className={css.DialogOverlay} onClick={onClose} />
-        <Dialog.Content className={css.DialogContent}>
-          <div className={css.ScrollArea}>{children}</div>
-          {/*<Dialog.Title>Tytuł itemu</Dialog.Title>*/}
-          {/*<Dialog.Close onClick={onClose}>Zamknij modala</Dialog.Close>*/}
-        </Dialog.Content>
+        <Dialog.Overlay className={css.DialogOverlay} onClick={onClose}>
+          <Dialog.Content
+            className={css.DialogContent}
+            onClick={onCancelBubble}
+          >
+            {children}
+          </Dialog.Content>
+        </Dialog.Overlay>
       </Dialog.Portal>
     </Dialog.Root>
   );

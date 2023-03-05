@@ -1,0 +1,36 @@
+@use 'src/style/breakpoints';
+@use 'src/style/util';
+
+.ItemPageGrid {
+  display: grid;
+  gap: 16px;
+
+  grid-template:
+    'itemContent'
+    'menu';
+  grid-template-columns: 1fr;
+  @include breakpoints.desktop(1200px) {
+    grid-template: 'itemContent menu';
+    grid-template-columns: 1fr 400px;
+  }
+
+  .ItemContent {
+    grid-area: itemContent;
+    position: relative;
+    height: 100%;
+    max-height: calc(100vh - 48px);
+
+    background-color: rgba(0, 0, 0, 50%);
+  }
+
+  .ItemMenu {
+    grid-area: menu;
+  }
+}
+
+.CloseItemBtn {
+  z-index: #{util.$layer-modal + 1};
+  position: fixed;
+  top: 24px;
+  right: 24px;
+}

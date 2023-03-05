@@ -1,5 +1,7 @@
-@use 'src/style/colors';
-@use 'src/style/util';
+@use '../../style/colors';
+@use '../../style/util';
+
+$padding: 24px;
 
 .DialogOverlay {
   background-color: rgba(0, 0, 0, 50%);
@@ -8,21 +10,23 @@
   animation: overlayShow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: util.$layer-modal;
   backdrop-filter: blur(20px);
+
+  display: grid;
+  align-items: start;
+  justify-content: center;
+  overflow-y: auto;
 }
 
 .DialogContent {
-  border: colors.$bg--dark solid 1px;
+  //border: colors.$bg--dark solid 1px;
 
-  position: fixed;
-  inset: 8px 10%;
+  width: min(#{util.$modalWidth}, calc(100vw - #{$padding * 2}));
+  margin-top: $padding;
+
   z-index: util.$layer-modal;
   animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 10px;
   overflow-y: auto;
-
-  .ScrollArea {
-    position: relative;
-  }
 }
 .DialogContent:focus {
   outline: none;

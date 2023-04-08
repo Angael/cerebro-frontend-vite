@@ -1,13 +1,13 @@
 import React from 'react';
 import { FrontItem, ImageItem, VideoItem } from '@vanih/cerebro-contracts';
-import ImageView from './types-renderers/ImageView';
-import VideoView from './types-renderers/VideoView';
+import ImageView from './item-view/ImageView';
+import VideoView from './item-view/VideoView';
 
 type Props = {
   item: FrontItem;
 };
 
-const Item = ({ item }: Props) => {
+const ItemView = ({ item }: Props) => {
   return (
     <>
       {item?.type === 'IMAGE' && <ImageView item={item as ImageItem} />}
@@ -16,4 +16,4 @@ const Item = ({ item }: Props) => {
   );
 };
 
-export default Item;
+export default ItemView;

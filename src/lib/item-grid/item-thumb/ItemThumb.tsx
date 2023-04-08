@@ -8,6 +8,7 @@ import { Icon } from '@mdi/react';
 import { FrontItem } from '@vanih/cerebro-contracts';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
+import { itemUrl } from '../../../utils/routing/itemUrl';
 
 interface IProps {
   item: FrontItem;
@@ -26,10 +27,7 @@ const ItemThumb = ({ item }: IProps) => {
   };
 
   return (
-    <Link
-      to={`/browse/item/${item.id}`}
-      className={clsx(css.itemBtn, gridSpanClass)}
-    >
+    <Link to={itemUrl(item.id)} className={clsx(css.itemBtn, gridSpanClass)}>
       <div className={css.thumbnailContainer}>
         {!thumbnailSrc && !iconSrc ? (
           <div

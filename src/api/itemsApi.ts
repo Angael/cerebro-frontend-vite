@@ -24,7 +24,7 @@ export const useQueryItem = (id: string | number) =>
     retry: 0,
     initialData: () =>
       queryClient
-        .getQueryData<FrontItem[]>(['items'])
+        .getQueryData<FrontItem[]>([ITEMS_KEY])
         ?.find((item: FrontItem) => Number(item.id) === Number(id)),
   });
 
@@ -35,3 +35,6 @@ export const useQueryItems = (enabled: boolean) =>
     refetchInterval: 5 * 60 * 1000,
     enabled,
   });
+
+export const getItemsArray = () =>
+  queryClient.getQueryData<FrontItem[]>([ITEMS_KEY]);

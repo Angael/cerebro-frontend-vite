@@ -88,6 +88,7 @@ jobs:
         remote_path: ${{ secrets.FTP_DIST_DIR }}
         sftp_only: true
         password: ${{ secrets.FTP_PASSWORD }}
+        delete_remote_files: true
 
 
       

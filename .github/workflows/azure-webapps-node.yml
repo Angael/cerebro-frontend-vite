@@ -86,7 +86,7 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         port: 22
         # Remove all files inside of it, silence errors like "no files found to delete"
-        script: rm -r ${{ secrets.FTP_DIST_DIR }}/* 2> /dev/null
+        script: rm -r ${{ secrets.FTP_DIST_DIR }}/* | exit 0
 
         
     - name: SFTP - Deploy website

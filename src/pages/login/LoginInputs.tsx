@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Btn from '../../lib/btn/Btn';
 import css from './LoginInputs.module.scss';
+import CircleLoader from '../../lib/loaders/CircleLoader';
 
 interface IProps {
   fetching: boolean;
@@ -24,7 +25,7 @@ const LoginInputs = ({ fetching, onOk, isRegistration }: IProps) => {
   };
 
   return (
-    <div className={css.loginStack}>
+    <>
       <h1 className='h1' style={{ textAlign: 'center', marginBottom: 16 }}>
         Login
       </h1>
@@ -73,11 +74,12 @@ const LoginInputs = ({ fetching, onOk, isRegistration }: IProps) => {
         className={css.loginButton}
         type='button'
         onClick={onSubmit}
-        disabled={isRegistration && !passwordsMatch}
+        disabled={(isRegistration && !passwordsMatch) || fetching}
       >
         {isRegistration ? 'Create account' : 'Log in'}
       </Btn>
-    </div>
+      {fetching && <CircleLoader centered />}
+    </>
   );
 };
 

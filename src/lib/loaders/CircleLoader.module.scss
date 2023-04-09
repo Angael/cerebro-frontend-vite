@@ -12,7 +12,8 @@
 .circleLoader {
   width: 60px;
   height: 60px;
-  color: var(--c-bg);
+  color: var(--c-primary);
+  pointer-events: none;
 
   &.centered {
     position: absolute;

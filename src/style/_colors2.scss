@@ -1,0 +1,32 @@
+// https://tailwindcss.com/docs/customizing-colors
+:root {
+  --c-primary: #bae6fd;
+  --c-primary-hover: #7dd3fc;
+  --c-primary-active: #38bdf8;
+  --c-primary-contrast: #0f172acc;
+
+  --c-text: #f8fafc;
+  --c-textSecondary: #94a3b8;
+
+  --c-disabled-bg: #1f2937;
+  --c-disabled-text: #374151;
+
+  --c-bg: #0f172acc;
+  --c-bg-paper: #334155cc;
+
+  @media (prefers-color-scheme: light) {
+    --c-primary: #0ea5e9;
+    --c-primary-hover: #0284c7;
+    --c-primary-active: #0369a1;
+    --c-primary-contrast: #f8fafc;
+
+    --c-text: #020617;
+    --c-textSecondary: #475569;
+
+    --c-disabled-bg: #e5e7eb;
+    --c-disabled-text: #d1d5db;
+
+    --c-bg: #f8fafccc;
+    --c-bg-paper: #cbd5e1cc;
+  }
+}

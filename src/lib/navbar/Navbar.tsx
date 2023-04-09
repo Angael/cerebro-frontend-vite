@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from '@mdi/react';
-import { mdiCompass, mdiLogin, mdiMenu, mdiPlus, mdiViewGrid } from '@mdi/js';
+import { mdiAccount, mdiCompass, mdiMenu, mdiPlus, mdiViewGrid } from '@mdi/js';
 import { NavLink } from 'react-router-dom';
 import css from './Navbar.module.scss';
 import IconBtn from '../icon-btn/IconBtn';
@@ -45,7 +45,7 @@ const Navbar = () => {
         )}
 
         <IconBtn component={NavLink} to='/login' tabIndex={-1}>
-          <Icon path={mdiLogin} size={1} />
+          <Icon path={mdiAccount} size={1} />
         </IconBtn>
       </div>
     </div>

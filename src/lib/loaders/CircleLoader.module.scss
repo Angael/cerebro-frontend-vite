@@ -1,5 +1,4 @@
 @use 'src/style/animation';
-@use 'src/style/colors';
 
 @keyframes spin {
   from {
@@ -13,10 +12,8 @@
 .circleLoader {
   width: 60px;
   height: 60px;
-  color: colors.$bg--dark;
-  @media (prefers-color-scheme: light) {
-    color: colors.$bg;
-  }
+  color: var(--c-primary);
+  pointer-events: none;
 
   &.centered {
     position: absolute;

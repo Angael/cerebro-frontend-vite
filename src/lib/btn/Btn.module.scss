@@ -29,8 +29,8 @@
   &[disabled] {
     cursor: auto;
     pointer-events: none;
-    color: var(--c-textSecondary);
-    background-color: var(--c-primary-disabled);
-    border-color: var(--c-primary-disabled);
+    color: var(--c-disabled-text);
+    background-color: var(--c-disabled-bg);
+    border-color: var(--c-disabled-bg);
   }
 }

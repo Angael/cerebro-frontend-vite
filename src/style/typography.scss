@@ -1,21 +1,13 @@
-@use 'src/style/colors';
-
 .body1 {
   font-size: 1rem; /* 16px */
   line-height: 1.5rem; /* 24px */
-  color: colors.$text--dark;
-  @media (prefers-color-scheme: light) {
-    color: colors.$text;
-  }
+  color: var(--c-text);
 }
 
 .body2 {
   font-size: 0.875rem; /* 14px */
   line-height: 1.25rem; /* 20px */
-  color: colors.$textSecondary--dark;
-  @media (prefers-color-scheme: light) {
-    color: colors.$textSecondary;
-  }
+  color: var(--c-textSecondary);
 }
 
 .h1 {

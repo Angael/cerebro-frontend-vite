@@ -1,4 +1,3 @@
-@use 'src/style/colors';
 @use 'src/style/colors2';
 @use 'src/style/typography';
 @use 'src/style/inputs';
@@ -7,13 +6,8 @@
   font-family: 'Open Sans', sans-serif;
 
   color-scheme: light dark;
-  color: var(--c-primary-contrast);
+  color: var(--c-text);
   background-color: var(--c-bg);
-
-  @media (prefers-color-scheme: light) {
-    color: colors.$text;
-    background-color: #ffffff;
-  }
 
   // Idk what those do
   font-synthesis: none;
@@ -46,8 +40,5 @@ h6 {
   all: unset;
   display: block;
 
-  color: colors.$text--dark;
-  @media (prefers-color-scheme: light) {
-    color: colors.$text;
-  }
+  color: var(--c-text);
 }

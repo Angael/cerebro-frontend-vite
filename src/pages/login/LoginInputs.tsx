@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Btn from '../../lib/btn/Btn';
+import css from './LoginInputs.module.scss';
 
 interface IProps {
   fetching: boolean;
@@ -22,44 +24,59 @@ const LoginInputs = ({ fetching, onOk, isRegistration }: IProps) => {
   };
 
   return (
-    <div>
+    <div className={css.loginStack}>
+      <h1 className='h1' style={{ textAlign: 'center', marginBottom: 16 }}>
+        Login
+      </h1>
+
       <label htmlFor='email'>
         <p>Email: </p>
         <input
+          className='textfield'
           id='email'
           type='email'
           name='email'
+          placeholder='enter@email.com'
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         />
       </label>
+
       <label htmlFor='pass1'>
         <p>Password: </p>
         <input
+          className='textfield'
           id='pass1'
           type='password'
+          placeholder='********'
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
       </label>
+
       {isRegistration && (
-        <label htmlFor='pass1'>
+        <label htmlFor='pass2'>
           <p>Repeat password: </p>
           <input
+            className='textfield'
+            id='pass2'
             type='password'
+            placeholder='********'
             onChange={(e) => setPassword2(e.target.value)}
             value={password2}
           />
           {!passwordsMatch && <p>Passwords don't match </p>}
         </label>
       )}
-      <button
+
+      <Btn
+        className={css.loginButton}
         type='button'
         onClick={onSubmit}
         disabled={isRegistration && !passwordsMatch}
       >
         {isRegistration ? 'Create account' : 'Log in'}
-      </button>
+      </Btn>
     </div>
   );
 };

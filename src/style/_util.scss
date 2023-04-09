@@ -13,5 +13,5 @@ $modalWidth: 1600px;
 @mixin container($width: $containerWidth) {
   max-width: $width;
   margin: auto;
-  padding: 0 8px;
+  padding: 16px;
 }

@@ -6,16 +6,16 @@
 .navbar {
   position: sticky;
   top: 0;
-  height: 55px;
 
-  background-color: color.adjust(black, $alpha: -0.5);
   backdrop-filter: blur(12px);
-  @include shadow.small();
+  background-color: color.adjust(colors.$componentBg--dark, $alpha: -0.3);
+  border-bottom: solid 1px color.adjust(colors.$componentBg--dark, $alpha: -0.3);
 
   z-index: util.$layer-navbar;
 
   @media (prefers-color-scheme: light) {
-    background-color: color.adjust(white, $alpha: -0.5);
+    background-color: color.adjust(colors.$componentBg, $alpha: -0.2);
+    border-bottom: solid 1px color.adjust(colors.$componentBg, $alpha: -0.2);
   }
 
   .navbarFlex {
@@ -25,6 +25,6 @@
     align-items: center;
     height: 100%;
     gap: 12px;
-    padding: 8px;
+    padding: 16px;
   }
 }

@@ -21,7 +21,6 @@ const Login = () => {
 
   return (
     <Layout isMaxWidth>
-      <h1 className='h1'>Login</h1>
       {authState.state === 'loggedIn' ? (
         <button type='button' onClick={logout}>
           Log out

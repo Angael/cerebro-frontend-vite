@@ -1,0 +1,22 @@
+@use 'src/style/colors';
+
+.loginStack {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 16px;
+  align-items: stretch;
+
+  margin: 32px auto;
+  max-width: 350px;
+  padding: 16px;
+
+  border-radius: 12px;
+  background-color: colors.$componentBg--dark;
+  @media (prefers-color-scheme: light) {
+    background-color: colors.$componentBg;
+  }
+}
+
+.loginButton {
+  align-self: flex-end;
+}

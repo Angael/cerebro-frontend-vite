@@ -1,0 +1,33 @@
+@use 'src/style/colors';
+/* Dark theme for textfield input */
+
+input.textfield {
+  display: block;
+  width: 100%;
+  background-color: colors.$componentBg--dark;
+  color: colors.$text--dark;
+  border: solid 2px colors.$componentBg;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 16px;
+
+  @media (prefers-color-scheme: light) {
+    background-color: colors.$componentBg;
+    color: colors.$text;
+    border: solid 1px colors.$componentBg--dark;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: colors.$primary--dark;
+
+    @media (prefers-color-scheme: light) {
+      border-color: colors.$primary;
+    }
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    -webkit-text-fill-color: black !important;
+  }
+}

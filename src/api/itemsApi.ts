@@ -44,6 +44,7 @@ export const useQueryItems = (enabled: boolean, limit: number, page: number) =>
     refetchInterval: 5 * 60 * 1000,
     enabled,
     keepPreviousData: true,
+    initialData: [],
   });
 
 // TODO: Change to fetch with rest of query. Later on each wall will have different item count, which could update after each fetch

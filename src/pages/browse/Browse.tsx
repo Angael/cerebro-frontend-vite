@@ -10,15 +10,15 @@ import { PAGINATION_LIMIT } from '../../utils/consts';
 const Browse = () => {
   const outlet = useOutlet();
 
-  const [page, setPage] = useState<number>(0);
+  const [page, setPage] = useState(0);
   const items = useQueryItems(!outlet, PAGINATION_LIMIT, page);
 
   return (
     <Layout isMaxWidth>
       {outlet}
-      <Pagination items={items.data ?? []} page={page} setCursor={setPage} />
+      <Pagination items={items.data} page={page} setCursor={setPage} />
       <div>{items.data && <ItemGrid items={items.data} />}</div>
-      <Pagination items={items.data ?? []} page={page} setCursor={setPage} />
+      <Pagination items={items.data} page={page} setCursor={setPage} />
     </Layout>
   );
 };

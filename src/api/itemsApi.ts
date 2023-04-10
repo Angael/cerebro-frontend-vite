@@ -46,6 +46,7 @@ export const useQueryItems = (enabled: boolean, limit: number, page: number) =>
     keepPreviousData: true,
   });
 
+// TODO: Change to fetch with rest of query. Later on each wall will have different item count, which could update after each fetch
 export const useQueryItemCount = () =>
   useQuery({
     queryKey: [ITEM_COUNT_KEY],

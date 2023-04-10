@@ -4,18 +4,27 @@ import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { queryClient } from '../App';
 
-export const fetchItems = async (): Promise<FrontItem[]> => {
-  const response = await API.get('/items');
+const fetchItems = async (
+  limit: number,
+  page: number,
+): Promise<FrontItem[]> => {
+  const response = await API.get('/items', { params: { limit, page } });
   return response.data;
 };
 
-export const fetchItem = async (id: string | number): Promise<FrontItem> => {
+const fetchItem = async (id: string | number): Promise<FrontItem> => {
   const response = await API.get(`/items/item/${id}`);
+  return response.data;
+};
+
+export const fetchItemCount = async (): Promise<number> => {
+  const response = await API.get(`/items/count`);
   return response.data;
 };
 
 export const ITEM_KEY = 'item';
 export const ITEMS_KEY = 'items';
+export const ITEM_COUNT_KEY = 'itemCount';
 
 export const useQueryItem = (id: string | number) =>
   useQuery<FrontItem, AxiosError>({
@@ -28,12 +37,22 @@ export const useQueryItem = (id: string | number) =>
         ?.find((item: FrontItem) => Number(item.id) === Number(id)),
   });
 
-export const useQueryItems = (enabled: boolean) =>
+export const useQueryItems = (enabled: boolean, limit: number, page: number) =>
   useQuery({
-    queryKey: [ITEMS_KEY],
-    queryFn: fetchItems,
+    queryKey: [ITEMS_KEY, page],
+    queryFn: () => fetchItems(limit, page),
     refetchInterval: 5 * 60 * 1000,
     enabled,
+    keepPreviousData: true,
+    initialData: [],
+  });
+
+// TODO: Change to fetch with rest of query. Later on each wall will have different item count, which could update after each fetch
+export const useQueryItemCount = () =>
+  useQuery({
+    queryKey: [ITEM_COUNT_KEY],
+    queryFn: fetchItemCount,
+    refetchInterval: 5 * 60 * 1000,
   });
 
 export const getItemsArray = () =>

@@ -14,9 +14,9 @@ const Navbar = () => {
     <div className={css.navbar}>
       <div className={css.navbarFlex}>
         <div style={{ flex: 1 }}>
-          <IconBtn>
-            <Icon path={mdiMenu} />
-          </IconBtn>
+          {/*<IconBtn>*/}
+          {/*  <Icon path={mdiMenu} />*/}
+          {/*</IconBtn>*/}
         </div>
 
         {isLoggedIn && (
@@ -38,11 +38,12 @@ const Navbar = () => {
             <IconBtn component={NavLink} to='/explore'>
               <Icon path={mdiCompass} />
             </IconBtn>
-            <IconBtn component={NavLink} to='/browse'>
-              <Icon path={mdiViewGrid} />
-            </IconBtn>
           </>
         )}
+
+        <IconBtn component={NavLink} to='/browse'>
+          <Icon path={mdiViewGrid} />
+        </IconBtn>
 
         <IconBtn component={NavLink} to='/login' tabIndex={-1}>
           <Icon path={mdiAccount} size={1} />

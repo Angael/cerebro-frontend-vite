@@ -30,7 +30,5 @@
 
 .CloseItemBtn {
   z-index: #{util.$layer-modal + 1};
-  position: fixed;
-  top: 24px;
-  right: 24px;
+  margin-left: auto;
 }

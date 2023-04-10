@@ -3,7 +3,7 @@
 $padding: 24px;
 
 .DialogOverlay {
-  background-color: rgba(0, 0, 0, 50%);
+  background-color: rgba(0 0 0 / 50%);
   position: fixed;
   inset: 0;
   animation: overlayShow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -17,8 +17,6 @@ $padding: 24px;
 }
 
 .DialogContent {
-  //border: colors.$bg--dark solid 1px;
-
   width: min(#{util.$modalWidth}, calc(100vw - #{$padding * 2}));
   margin-top: $padding;
 

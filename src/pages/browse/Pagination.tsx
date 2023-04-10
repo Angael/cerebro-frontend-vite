@@ -40,7 +40,7 @@ const Pagination = (props: Props) => {
         Back
       </Btn>
 
-      <p>Page {pageNr}</p>
+      <p style={{ whiteSpace: 'nowrap' }}>Page {pageNr}</p>
 
       {Array(pageCount)
         .fill(null)

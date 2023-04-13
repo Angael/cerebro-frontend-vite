@@ -5,12 +5,12 @@ import css from './CircleLoader.module.scss';
 import clsx from 'clsx';
 
 type Props = {
-  centered?: boolean;
+  isOverlay?: boolean;
 };
 
-const CircleLoader = ({ centered }: Props) => {
+const CircleLoader = ({ isOverlay }: Props) => {
   return (
-    <div className={clsx(css.circleLoader, centered && css.centered)}>
+    <div className={clsx(css.circleLoader, isOverlay && css.isOverlay)}>
       <Icon path={mdiLoading} className={css.loaderIcon} />
     </div>
   );

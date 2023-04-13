@@ -78,7 +78,7 @@ const LoginInputs = ({ fetching, onOk, isRegistration }: IProps) => {
       >
         {isRegistration ? 'Create account' : 'Log in'}
       </Btn>
-      {fetching && <CircleLoader centered />}
+      {fetching && <CircleLoader isOverlay />}
     </>
   );
 };

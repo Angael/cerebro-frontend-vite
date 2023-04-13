@@ -6,6 +6,8 @@ import ItemGrid from '../../lib/item-grid/ItemGrid';
 import { useQueryItems } from '../../api/itemsApi';
 import Pagination from './Pagination';
 import { PAGINATION_LIMIT } from '../../utils/consts';
+import CircleLoader from '../../lib/loaders/CircleLoader';
+import IconWithText from '../../lib/icon-with-text/IconWithText';
 
 const Browse = () => {
   const outlet = useOutlet();
@@ -18,6 +20,10 @@ const Browse = () => {
       {outlet}
       <Pagination items={items.data} page={page} setCursor={setPage} />
       <div>{items.data && <ItemGrid items={items.data} />}</div>
+      {items.isError && items.data.length === 0 && (
+        <IconWithText text='Failed to load items' />
+      )}
+      {items.isFetching && items.data.length === 0 && <CircleLoader />}
       <Pagination items={items.data} page={page} setCursor={setPage} />
     </Layout>
   );

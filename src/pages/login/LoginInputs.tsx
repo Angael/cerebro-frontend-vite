@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Btn from '../../lib/btn/Btn';
+import Btn from '../../styled/btn/Btn';
 import css from './LoginInputs.module.scss';
-import CircleLoader from '../../lib/loaders/CircleLoader';
+import CircleLoader from '../../styled/loaders/CircleLoader';
 
 interface IProps {
   fetching: boolean;

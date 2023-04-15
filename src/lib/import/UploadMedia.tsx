@@ -5,7 +5,7 @@ import {
   useUploadStore,
   uploadStoreActions,
 } from '../../store/upload/uploadStore';
-import Btn from '../btn/Btn';
+import Btn from '../../styled/btn/Btn';
 import FilesPreview from './files-preview/FilesPreview';
 import css from './UploadMedia.module.scss';
 import FilesStats from './files-preview/FilesStats';
@@ -16,7 +16,11 @@ import {
 import { queryClient } from '../../App';
 import { ITEMS_KEY } from '../../api/itemsApi';
 
-const UploadMedia = () => {
+type Props = {
+  tags: string[];
+};
+
+const UploadMedia = ({ tags }: Props) => {
   const { files } = useUploadStore();
 
   const addFiles = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +44,7 @@ const UploadMedia = () => {
   const upload = () => {
     files.forEach((file) => {
       uploadQueue.add(() =>
-        uploadFileToBackend({ file, dir: '', private: false }),
+        uploadFileToBackend({ file, dir: '', private: false, tags }),
       );
     });
 

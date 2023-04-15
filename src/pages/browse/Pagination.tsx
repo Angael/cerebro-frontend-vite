@@ -1,5 +1,5 @@
 import React from 'react';
-import Btn from '../../lib/btn/Btn';
+import Btn from '../../styled/btn/Btn';
 import { FrontItem } from '@vanih/cerebro-contracts';
 import css from './Pagination.module.scss';
 import { useQueryItemCount } from '../../api/itemsApi';

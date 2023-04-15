@@ -3,7 +3,7 @@ import { Icon } from '@mdi/react';
 import { mdiAccount, mdiCompass, mdiMenu, mdiPlus, mdiViewGrid } from '@mdi/js';
 import { NavLink } from 'react-router-dom';
 import css from './Navbar.module.scss';
-import IconBtn from '../icon-btn/IconBtn';
+import IconBtn from '../../styled/icon-btn/IconBtn';
 import { useAuthStore } from '../../store/auth/authStore';
 
 const Navbar = () => {

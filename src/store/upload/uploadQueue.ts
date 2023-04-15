@@ -25,13 +25,17 @@ const onUploadProgress = (file: ExtendedFile) => (e: AxiosProgressEvent) => {
 
 interface IOptions {
   file: ExtendedFile;
+  tags: string[];
   dir?: string;
   private?: boolean;
 }
 
-export const uploadFileToBackend = ({ file }: IOptions) => {
+export const uploadFileToBackend = ({ file, tags }: IOptions) => {
   const formData = new FormData();
   formData.append('file', file.file);
+  tags.forEach((tag) => {
+    formData.append('tags', tag);
+  });
 
   return API.post('/items/upload/file', formData, {
     onUploadProgress: onUploadProgress(file),

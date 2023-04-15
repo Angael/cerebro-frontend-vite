@@ -70,7 +70,7 @@ const UploadMedia = ({ tags }: Props) => {
             style={{ display: 'none' }}
             onChange={addFiles}
           />
-          <Btn component='div'>Add files...</Btn>
+          <Btn as='div'>Add files...</Btn>
         </label>
 
         <Btn disabled={files.length <= 0} onClick={uploadStoreActions.clear}>

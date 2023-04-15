@@ -6,7 +6,7 @@ import { useQueryItem } from '../../../api/itemsApi';
 import { useWsadNav } from './useWsadNav';
 import ItemDetails from '../../../lib/items/item-details/ItemDetails';
 import css from './ItemPage.module.scss';
-import IconBtn from '../../../lib/icon-btn/IconBtn';
+import IconBtn from '../../../styled/icon-btn/IconBtn';
 import { Icon } from '@mdi/react';
 import { mdiClose } from '@mdi/js';
 import ItemTags from '../../../lib/items/item-details/ItemTags';

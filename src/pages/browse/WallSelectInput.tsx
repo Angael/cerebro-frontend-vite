@@ -1,5 +1,5 @@
 import React from 'react';
-import Btn from '../../lib/btn/Btn';
+import Btn from '../../styled/btn/Btn';
 
 type Props = {
   wall: string;

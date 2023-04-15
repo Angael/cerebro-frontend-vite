@@ -1,21 +1,18 @@
 import React, { memo } from 'react';
 import { FrontItem } from '@vanih/cerebro-contracts';
-// import Btn from '../../btn/Btn';
-import css from './ItemMenu.module.scss';
+// import css from './ItemDetails.module.scss';
 import numeral from 'numeral';
+import Card from '../../../styled/card/Card';
 
 type Props = {
   item: FrontItem;
 };
 
-const ItemMenu = ({ item }: Props) => {
+const ItemDetails = ({ item }: Props) => {
   const sizeStr = numeral(item.size).format('0.00 b');
-  console.log({ item });
+
   return (
-    <section className={css.ItemMenu}>
-      {/*<Btn>Share</Btn>*/}
-      {/*<Btn>Delete</Btn>*/}
-      {/*<Btn>Download</Btn>*/}
+    <Card>
       <p>Created: {new Date(item.createdAt).toLocaleString()}</p>
       <hr />
       <p>Size: {sizeStr}</p>
@@ -41,8 +38,8 @@ const ItemMenu = ({ item }: Props) => {
           </p>
         </>
       )}
-    </section>
+    </Card>
   );
 };
 
-export default memo(ItemMenu);
+export default memo(ItemDetails);

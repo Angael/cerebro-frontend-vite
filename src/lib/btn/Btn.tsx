@@ -3,6 +3,7 @@ import clsx from 'clsx';
 
 import css from './Btn.module.scss';
 
+// TODO: refactor to use styled
 type Props = {
   component?:
     | keyof JSX.IntrinsicElements

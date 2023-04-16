@@ -9,7 +9,7 @@ export const fetchItems = async (
   page: number,
   tagIds: string, // 1,2,3
 ): Promise<FrontItem[]> => {
-  const params: any = { limit, page, tagIds };
+  const params: any = { limit, page };
   if (tagIds) {
     params.tagIds = tagIds;
   }

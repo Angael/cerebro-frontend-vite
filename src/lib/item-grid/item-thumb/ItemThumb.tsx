@@ -53,6 +53,7 @@ const ItemThumb = ({ item }: IProps) => {
                 </div>
               ) : (
                 <img
+                  alt={'item ' + item.id}
                   src={src}
                   className={clsx(css.thumbnail, loading && 'loading')}
                 />

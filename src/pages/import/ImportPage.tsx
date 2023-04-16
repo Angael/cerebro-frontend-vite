@@ -14,7 +14,7 @@ const ImportPage = () => {
         <h1 className='h2'>Import files</h1>
         <UsedSpace />
       </div>
-      <label>
+      <label className={css.tagInputLabel}>
         <p>Tags to apply</p>
         <input
           className='textfield'

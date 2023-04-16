@@ -11,9 +11,10 @@ const Navbar = () => {
   const isLoggedIn = state === 'loggedIn';
 
   return (
-    <div className={css.navbar}>
+    <header className={css.navbar}>
       <div className={css.navbarFlex}>
         <div style={{ flex: 1 }}>
+          <h1 className='h5'>Cerebro</h1>
           {/*<IconBtn>*/}
           {/*  <Icon path={mdiMenu} />*/}
           {/*</IconBtn>*/}
@@ -21,35 +22,25 @@ const Navbar = () => {
 
         {isLoggedIn && (
           <>
-            <IconBtn component={NavLink} to='/import'>
+            <IconBtn component={NavLink} to='/import' title='Import media'>
               <Icon path={mdiPlus} />
             </IconBtn>
 
-            {/*<IconBtn component={NavLink} to='/favs' disabled tabIndex={-1}>*/}
-            {/*  <Icon path={mdiStar} />*/}
-            {/*</IconBtn>*/}
-            {/*<IconBtn component={NavLink} to='/library' disabled tabIndex={-1}>*/}
-            {/*  <Icon path={mdiBookmarkMultiple} />*/}
-            {/*</IconBtn>*/}
-            {/*<IconBtn component={NavLink} to='/account' disabled tabIndex={-1}>*/}
-            {/*  <Icon path={mdiAccount} />*/}
-            {/*</IconBtn>*/}
-
-            <IconBtn component={NavLink} to='/explore'>
+            <IconBtn component={NavLink} to='/explore' title='Explore media'>
               <Icon path={mdiCompass} />
             </IconBtn>
           </>
         )}
 
-        <IconBtn component={NavLink} to='/browse'>
+        <IconBtn component={NavLink} to='/browse' title='Browse media'>
           <Icon path={mdiViewGrid} />
         </IconBtn>
 
-        <IconBtn component={NavLink} to='/login' tabIndex={-1}>
+        <IconBtn component={NavLink} to='/login'>
           <Icon path={mdiAccount} size={1} />
         </IconBtn>
       </div>
-    </div>
+    </header>
   );
 };
 

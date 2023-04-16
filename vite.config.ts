@@ -24,6 +24,8 @@ export default defineConfig({
       '/vite-proxy': {
         target: 'http://192.168.1.100:3000',
         rewrite: (path) => path.replace('/vite-proxy', ''),
+        changeOrigin: true,
+        secure: false,
       },
     },
   },

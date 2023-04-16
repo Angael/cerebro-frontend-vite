@@ -876,10 +876,10 @@
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.2.tgz#1a62f89525723dde24ba1b01b092bf5df8ad4d39"
   integrity sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==
 
-"@vanih/cerebro-contracts@0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@vanih/cerebro-contracts/-/cerebro-contracts-0.0.6.tgz#462f0e4f98a381b690ea66d53a1cce93d3e94e7c"
-  integrity sha512-3xGDlwpUKfpWK3yldUpanlsFdmp3Jj6XwsHOLQdNXTLYFqR7ML+8oym+HQ9y5fwZ4L2hHmIzg76qR5fF8A57FQ==
+"@vanih/cerebro-contracts@0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@vanih/cerebro-contracts/-/cerebro-contracts-0.0.7.tgz#842d5f7810d9dcf28cfa0856dec03a39aaed66fc"
+  integrity sha512-5I66QKFWQBr4OCDAzALIzEpiwSLTcEovvwVnH9xf8S5fV0sTFGldyMqsul40m87mIZPiSXTWmt88bL4ZF2zcTw==
 
 "@vitejs/plugin-react-swc@^3.0.0":
   version "3.1.0"

@@ -21,31 +21,43 @@ const Browse = () => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const selectedTagIds = selectedTags.map((tag) => tag.id).join();
 
-  const items = useQuery({
+  const changeTags = (tags: Tag[]) => {
+    setSelectedTags(tags);
+    setPage(0);
+  };
+
+  const itemsQuery = useQuery({
     queryKey: [ITEMS_KEY, page, selectedTagIds],
     queryFn: () => fetchItems(PAGINATION_LIMIT, page, selectedTagIds),
     refetchInterval: 5 * 60 * 1000,
     enabled: !outlet,
     keepPreviousData: true,
-    initialData: [],
+    initialData: { items: [], count: 0 },
   });
 
   return (
     <Layout isMaxWidth>
       {outlet}
       <Suspense fallback={null}>
-        <SelectTag
-          selectedTags={selectedTags}
-          setSelectedTags={setSelectedTags}
-        />
+        <SelectTag selectedTags={selectedTags} setSelectedTags={changeTags} />
       </Suspense>
-      <Pagination items={items.data} page={page} setCursor={setPage} />
-      <div>{items.data && <ItemGrid items={items.data} />}</div>
-      {items.isError && items.data.length === 0 && (
+      <Pagination
+        count={itemsQuery.data?.count}
+        page={page}
+        setCursor={setPage}
+      />
+      <div>{itemsQuery.data && <ItemGrid items={itemsQuery.data.items} />}</div>
+      {itemsQuery.isError && itemsQuery.data.items.length === 0 && (
         <IconWithText text='Failed to load items' />
       )}
-      {items.isFetching && items.data.length === 0 && <CircleLoader />}
-      <Pagination items={items.data} page={page} setCursor={setPage} />
+      {itemsQuery.isFetching && itemsQuery.data.items.length === 0 && (
+        <CircleLoader />
+      )}
+      <Pagination
+        count={itemsQuery.data?.count}
+        page={page}
+        setCursor={setPage}
+      />
     </Layout>
   );
 };

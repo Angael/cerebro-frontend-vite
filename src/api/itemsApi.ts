@@ -1,14 +1,19 @@
-import { FrontItem } from '@vanih/cerebro-contracts';
+import { FrontItem, Tag } from '@vanih/cerebro-contracts';
 import { API } from './api';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { queryClient } from '../App';
 
-const fetchItems = async (
+export const fetchItems = async (
   limit: number,
   page: number,
+  tagIds: string, // 1,2,3
 ): Promise<FrontItem[]> => {
-  const response = await API.get('/items', { params: { limit, page } });
+  const params: any = { limit, page, tagIds };
+  if (tagIds) {
+    params.tagIds = tagIds;
+  }
+  const response = await API.get('/items', { params });
   return response.data;
 };
 
@@ -35,16 +40,6 @@ export const useQueryItem = (id: string | number) =>
       queryClient
         .getQueryData<FrontItem[]>([ITEMS_KEY])
         ?.find((item: FrontItem) => Number(item.id) === Number(id)),
-  });
-
-export const useQueryItems = (enabled: boolean, limit: number, page: number) =>
-  useQuery({
-    queryKey: [ITEMS_KEY, page],
-    queryFn: () => fetchItems(limit, page),
-    refetchInterval: 5 * 60 * 1000,
-    enabled,
-    keepPreviousData: true,
-    initialData: [],
   });
 
 // TODO: Change to fetch with rest of query. Later on each wall will have different item count, which could update after each fetch

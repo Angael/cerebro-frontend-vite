@@ -1,6 +1,6 @@
 import React from 'react';
 import { FrontItem } from '@vanih/cerebro-contracts';
-import { useTagsQuery } from '../../../api/item/fetchTags';
+import { useItemTagsQuery } from '../../../api/item/fetchTags';
 import Card from '../../../styled/card/Card';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 };
 
 const ItemTags = ({ item }: Props) => {
-  const tagsQuery = useTagsQuery(item.id);
+  const tagsQuery = useItemTagsQuery(item.id);
 
   return (
     <Card>

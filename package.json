@@ -23,6 +23,7 @@
     "nanoid": "^4.0.1",
     "numeral": "^2.0.6",
     "p-queue": "^7.3.4",
+    "primereact": "^9.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-progressive-graceful-image": "^0.7.0",

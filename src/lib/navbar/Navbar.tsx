@@ -11,9 +11,10 @@ const Navbar = () => {
   const isLoggedIn = state === 'loggedIn';
 
   return (
-    <div className={css.navbar}>
+    <header className={css.navbar}>
       <div className={css.navbarFlex}>
         <div style={{ flex: 1 }}>
+          <h1 className='h5'>Cerebro</h1>
           {/*<IconBtn>*/}
           {/*  <Icon path={mdiMenu} />*/}
           {/*</IconBtn>*/}
@@ -49,7 +50,7 @@ const Navbar = () => {
           <Icon path={mdiAccount} size={1} />
         </IconBtn>
       </div>
-    </div>
+    </header>
   );
 };
 

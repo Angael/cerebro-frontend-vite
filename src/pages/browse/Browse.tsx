@@ -1,27 +1,44 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { useOutlet } from 'react-router';
 import Layout from '../../lib/layout/Layout';
 import ItemGrid from '../../lib/item-grid/ItemGrid';
 
-import { useQueryItems } from '../../api/itemsApi';
+import { fetchItems, ITEMS_KEY } from '../../api/itemsApi';
 import Pagination from './Pagination';
 import { PAGINATION_LIMIT } from '../../utils/consts';
 import CircleLoader from '../../styled/loaders/CircleLoader';
 import IconWithText from '../../styled/icon-with-text/IconWithText';
-import WallSelectInput from './WallSelectInput';
+import { useQuery } from '@tanstack/react-query';
+import { Tag } from '@vanih/cerebro-contracts';
+
+const SelectTag = React.lazy(() => import('./SelectTag'));
 
 const Browse = () => {
   const outlet = useOutlet();
 
   const [page, setPage] = useState(0);
-  // TODO: Change to tags
-  const [wall, setWall] = useState<string>('');
-  const items = useQueryItems(!outlet, PAGINATION_LIMIT, page);
+
+  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const selectedTagIds = selectedTags.map((tag) => tag.id).join();
+
+  const items = useQuery({
+    queryKey: [ITEMS_KEY, page, selectedTagIds],
+    queryFn: () => fetchItems(PAGINATION_LIMIT, page, selectedTagIds),
+    refetchInterval: 5 * 60 * 1000,
+    enabled: !outlet,
+    keepPreviousData: true,
+    initialData: [],
+  });
 
   return (
     <Layout isMaxWidth>
       {outlet}
-      <WallSelectInput wall={wall} setWall={setWall} />
+      <Suspense fallback={null}>
+        <SelectTag
+          selectedTags={selectedTags}
+          setSelectedTags={setSelectedTags}
+        />
+      </Suspense>
       <Pagination items={items.data} page={page} setCursor={setPage} />
       <div>{items.data && <ItemGrid items={items.data} />}</div>
       {items.isError && items.data.length === 0 && (

@@ -7,7 +7,7 @@ export const fetchItemTags = async (id: FrontItem['id']): Promise<Tag[]> => {
   return response.data;
 };
 
-export function useTagsQuery(itemId: FrontItem['id']) {
+export function useItemTagsQuery(itemId: FrontItem['id']) {
   return useQuery({
     queryKey: ['itemTags', itemId],
     queryFn: () => fetchItemTags(itemId),

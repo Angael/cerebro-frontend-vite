@@ -33,7 +33,7 @@ const Pagination = (props: Props) => {
   const goTo = (index: number) => () => {
     setCursor(index);
   };
-  console.log({ itemCount, pageNr, page, pageCount });
+
   return (
     <nav className={css.pagination}>
       <Btn onClick={onPrevious} disabled={!canGoBack}>
@@ -45,7 +45,11 @@ const Pagination = (props: Props) => {
       {Array(pageCount)
         .fill(null)
         .map((_, pageIndex) => (
-          <Btn onClick={goTo(pageIndex)} disabled={page === pageIndex}>
+          <Btn
+            key={pageIndex}
+            onClick={goTo(pageIndex)}
+            disabled={page === pageIndex}
+          >
             {pageIndex + 1}
           </Btn>
         ))}

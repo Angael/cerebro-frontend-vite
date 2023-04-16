@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './style/global.scss';
 import { startAutoRefreshAuth } from './store/auth/autoUpdateAuth';
+
+import './style/global.scss';
+import 'primereact/resources/primereact.min.css';
 
 startAutoRefreshAuth();
 

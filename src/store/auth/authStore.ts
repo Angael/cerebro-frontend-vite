@@ -3,6 +3,7 @@ import { devtools } from 'zustand/middleware';
 import { User } from 'firebase/auth';
 
 export const AUTH_STATE = {
+  wait: 'wait',
   loggedOut: 'loggedOut',
   loggedIn: 'loggedIn',
 } as const;
@@ -16,7 +17,7 @@ interface AuthStore {
 export const useAuthStore = create<AuthStore>((set) => ({
   user: null,
   token: null,
-  state: AUTH_STATE.loggedOut,
+  state: AUTH_STATE.wait,
 }));
 
 // API

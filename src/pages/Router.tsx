@@ -6,6 +6,7 @@ import { useAnalytics } from '../utils/useAnalytics';
 import ItemPage from './browse/item/ItemPage';
 import ImportPage from './import/ImportPage';
 import Login from './login/Login';
+import ProtectedPath from './ProtectedPath';
 
 type Props = {};
 
@@ -41,7 +42,11 @@ const Router = (props: Props) => {
     },
     {
       path: '/import',
-      element: <ImportPage />,
+      element: (
+        <ProtectedPath>
+          <ImportPage />
+        </ProtectedPath>
+      ),
     },
     // {
     //   path: '/upload',

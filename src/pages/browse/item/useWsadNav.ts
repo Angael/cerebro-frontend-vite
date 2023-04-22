@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import { getItemsArray } from '../../../api/itemsApi';
+import { getItemsCache } from '../../../api/itemsApi';
 import { useEventListener } from 'usehooks-ts';
 import { itemUrl } from '../../../utils/routing/itemUrl';
 
@@ -7,7 +7,7 @@ export const useWsadNav = (currentItemId: string) => {
   const navigate = useNavigate();
 
   function goTo(next = true) {
-    const items = getItemsArray();
+    const { items } = getItemsCache() ?? {};
     if (!items) {
       return;
     }

@@ -3,6 +3,13 @@ import { API } from './api';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { queryClient } from '../App';
+import { useBrowseStore } from '../store/browse/browseStore';
+
+export const FETCH_ITEMS_KEY = (
+  limit: number,
+  page: number,
+  selectedTagIds: string,
+) => [ITEMS_KEY, limit, page, selectedTagIds];
 
 export const fetchItems = async (
   limit: number,
@@ -31,10 +38,14 @@ export const useQueryItem = (id: string | number) =>
     queryFn: () => fetchItem(id),
     retry: 0,
     initialData: () =>
-      queryClient
-        .getQueryData<FrontItem[]>([ITEMS_KEY])
-        ?.find((item: FrontItem) => Number(item.id) === Number(id)),
+      getItemsCache()?.items?.find(
+        (item: FrontItem) => Number(item.id) === Number(id),
+      ),
   });
 
-export const getItemsArray = () =>
-  queryClient.getQueryData<FrontItem[]>([ITEMS_KEY]);
+export const getItemsCache = () => {
+  const { page, limit, selectedTags } = useBrowseStore.getState();
+  return queryClient.getQueryData<QueryItems>(
+    FETCH_ITEMS_KEY(limit, page, selectedTags.map((tag) => tag.id).join()),
+  );
+};

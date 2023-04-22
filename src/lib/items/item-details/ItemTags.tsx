@@ -13,7 +13,7 @@ const ItemTags = ({ item }: Props) => {
   return (
     <Card>
       {tagsQuery.data?.map((tag) => (
-        <p>{tag.name}</p>
+        <p key={tag.id}>{tag.name}</p>
       ))}
     </Card>
   );

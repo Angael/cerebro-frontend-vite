@@ -10,8 +10,8 @@ type Props = {
 const ItemView = ({ item }: Props) => {
   return (
     <>
-      {item?.type === 'IMAGE' && <ImageView item={item as ImageItem} />}
-      {item?.type === 'VIDEO' && <VideoView item={item as VideoItem} />}
+      {item?.type === 'IMAGE' && <ImageView item={item} />}
+      {item?.type === 'VIDEO' && <VideoView item={item} />}
     </>
   );
 };

@@ -13,10 +13,10 @@ import ItemTags from '../../../lib/items/item-details/ItemTags';
 
 const ItemPage = () => {
   const navigate = useNavigate();
-  const { id = '' } = useParams();
-  const item = useQueryItem(id);
+  const { itemId = '' } = useParams();
+  const item = useQueryItem(itemId);
 
-  useWsadNav(id);
+  useWsadNav(itemId);
 
   const closeItem = () => navigate('/browse');
 
@@ -27,7 +27,7 @@ const ItemPage = () => {
   }
 
   return (
-    <ItemDialog open={!!id} onClose={closeItem}>
+    <ItemDialog open={!!itemId} onClose={closeItem}>
       <IconBtn className={css.CloseItemBtn} onClick={closeItem}>
         <Icon path={mdiClose} />
       </IconBtn>

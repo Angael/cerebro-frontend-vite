@@ -8,7 +8,6 @@ $layer-navbar: 1000;
 $layer-modal: 1010;
 
 $containerWidth: 1000px;
-$modalWidth: 1600px;
 
 @mixin container($width: $containerWidth) {
   max-width: $width;

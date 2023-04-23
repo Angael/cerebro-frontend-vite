@@ -16,7 +16,7 @@ export default defineConfig({
         gzipSize: true,
         brotliSize: false,
         filename: 'dist/analize.html',
-      }) as PluginOption),
+      }) as any as PluginOption),
   ],
   server: {
     port: 4000,

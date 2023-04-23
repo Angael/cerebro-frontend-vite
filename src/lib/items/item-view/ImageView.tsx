@@ -12,18 +12,16 @@ const ImageView = ({ item }: Props) => {
     return <div>Corrupted file</div>;
   }
 
-  const { width, height } = item.image;
-  const style = {
-    '--width': `${width}px`,
-    '--height': `${height}px`,
-  } as React.CSSProperties;
-
   const placeholder = item.thumbnail;
 
   return (
     <ProgressiveImage src={item.image.src} placeholder={placeholder ?? ''}>
       {(src: string) => (
-        <img className={css.modalImage} style={style} src={src} />
+        <img
+          className={css.modalImage}
+          src={src}
+          alt='Viewed uploaded media item'
+        />
       )}
     </ProgressiveImage>
   );

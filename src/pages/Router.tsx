@@ -27,7 +27,7 @@ const Router = (props: Props) => {
       element: <Browse />,
       children: [
         {
-          path: 'item/:id',
+          path: 'item/:itemId',
           element: <ItemPage />,
         },
       ],

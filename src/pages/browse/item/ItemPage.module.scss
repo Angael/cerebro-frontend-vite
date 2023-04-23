@@ -1,37 +1,42 @@
 @use 'src/style/breakpoints';
 @use 'src/style/util';
 
-.ItemPageGrid {
-  display: grid;
-  gap: 16px;
+.itemContent {
+  grid-area: itemContent;
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
 
-  grid-template:
-    'itemContent'
-    'menu';
-  grid-template-columns: 1fr;
-  @include breakpoints.desktop(1200px) {
-    grid-template: 'itemContent menu';
-    grid-template-columns: 1fr 400px;
-  }
+.ItemMenu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: menuShow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-  .ItemContent {
-    grid-area: itemContent;
-    position: relative;
-    height: 100%;
-    max-height: calc(100vh - 48px);
+.iconBar {
+  z-index: #{util.$layer-modal + 1};
 
-    background-color: rgba(0, 0, 0, 50%);
-  }
-
-  .ItemMenu {
-    grid-area: menu;
+  .iconCard {
     display: flex;
-    flex-direction: column;
-    gap: 16px;
+    justify-content: space-between;
+    padding: 8px;
+
+    .InfoItemBtn,
+    .CloseItemBtn {
+      --iconSize: 48px;
+    }
   }
 }
 
-.CloseItemBtn {
-  z-index: #{util.$layer-modal + 1};
-  margin-left: auto;
+@keyframes menuShow {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

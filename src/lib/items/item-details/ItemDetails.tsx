@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 import { FrontItem } from '@vanih/cerebro-contracts';
 // import css from './ItemDetails.module.scss';
 import numeral from 'numeral';
-import Card from '../../../styled/card/Card';
 
 type Props = {
   item: FrontItem;
@@ -12,7 +11,7 @@ const ItemDetails = ({ item }: Props) => {
   const sizeStr = numeral(item.size).format('0.00 b');
 
   return (
-    <Card>
+    <section>
       <p>Created: {new Date(item.createdAt).toLocaleString()}</p>
       <hr />
       <p>Size: {sizeStr}</p>
@@ -38,7 +37,7 @@ const ItemDetails = ({ item }: Props) => {
           </p>
         </>
       )}
-    </Card>
+    </section>
   );
 };
 

@@ -4,7 +4,9 @@ import { uploadStoreActions } from './uploadStore';
 import { API } from '../../api/api';
 import { AxiosProgressEvent } from 'axios';
 
-export const uploadQueue = new PQueue({ concurrency: 1 });
+const isProd = process.env.NODE_ENV === 'production';
+
+export const uploadQueue = new PQueue({ concurrency: isProd ? 1 : 3 });
 
 const onUploadProgress = (file: ExtendedFile) => (e: AxiosProgressEvent) => {
   const totalLength = e.total;

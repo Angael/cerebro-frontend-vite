@@ -1,37 +1,31 @@
 @use 'src/style/breakpoints';
 @use 'src/style/util';
 
-.ItemPageGrid {
-  display: grid;
-  gap: 16px;
+// TODO remove grid, make item the only thing
 
-  grid-template:
-    'itemContent'
-    'menu';
-  grid-template-columns: 1fr;
-  @include breakpoints.desktop(1200px) {
-    grid-template: 'itemContent menu';
-    grid-template-columns: 1fr 400px;
-  }
+.ItemContent {
+  grid-area: itemContent;
+  position: relative;
+  height: 100%;
+  max-height: calc(100vh - 48px);
 
-  .ItemContent {
-    grid-area: itemContent;
-    position: relative;
-    height: 100%;
-    max-height: calc(100vh - 48px);
-
-    background-color: rgba(0, 0, 0, 50%);
-  }
-
-  .ItemMenu {
-    grid-area: menu;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
+  background-color: rgba(0, 0, 0, 50%);
 }
 
 .CloseItemBtn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
   z-index: #{util.$layer-modal + 1};
-  margin-left: auto;
+
+  --iconSize: 48px;
+}
+
+.InfoItemBtn {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: #{util.$layer-modal + 1};
+
+  --iconSize: 48px;
 }

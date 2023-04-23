@@ -1,5 +1,5 @@
 import React from 'react';
-import { FrontItem, ImageItem, VideoItem } from '@vanih/cerebro-contracts';
+import { FrontItem } from '@vanih/cerebro-contracts';
 import ImageView from './item-view/ImageView';
 import VideoView from './item-view/VideoView';
 

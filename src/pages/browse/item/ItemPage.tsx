@@ -4,12 +4,10 @@ import ItemView from '../../../lib/items/ItemView';
 import ItemDialog from '../../../lib/items/ItemDialog';
 import { useQueryItem } from '../../../api/itemsApi';
 import { useWsadNav } from './useWsadNav';
-import ItemDetails from '../../../lib/items/item-details/ItemDetails';
 import css from './ItemPage.module.scss';
 import IconBtn from '../../../styled/icon-btn/IconBtn';
 import { Icon } from '@mdi/react';
-import { mdiClose } from '@mdi/js';
-import ItemTags from '../../../lib/items/item-details/ItemTags';
+import { mdiClose, mdiInformationOutline } from '@mdi/js';
 
 const ItemPage = () => {
   const navigate = useNavigate();
@@ -28,21 +26,28 @@ const ItemPage = () => {
 
   return (
     <ItemDialog open={!!itemId} onClose={closeItem}>
+      <IconBtn className={css.InfoItemBtn} onClick={closeItem}>
+        <Icon path={mdiInformationOutline} />
+      </IconBtn>
       <IconBtn className={css.CloseItemBtn} onClick={closeItem}>
         <Icon path={mdiClose} />
       </IconBtn>
-      <main className={css.ItemPageGrid}>
+      <main>
         <div className={css.ItemContent}>
           {item.data && <ItemView item={item.data} />}
         </div>
-        <div className={css.ItemMenu}>
-          {item.data && (
-            <>
-              <ItemDetails item={item.data} />
-              <ItemTags item={item.data} />
-            </>
-          )}
+        {/*Menu button*/}
+        <div>
+          <button className={css.MenuBtn}>Menu</button>
         </div>
+        {/*<div className={css.ItemMenu}>*/}
+        {/*  {item.data && (*/}
+        {/*    <>*/}
+        {/*      <ItemDetails item={item.data} />*/}
+        {/*      <ItemTags item={item.data} />*/}
+        {/*    </>*/}
+        {/*  )}*/}
+        {/*</div>*/}
       </main>
     </ItemDialog>
   );

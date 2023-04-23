@@ -10,6 +10,7 @@ import { Icon } from '@mdi/react';
 import { mdiClose, mdiInformationOutline } from '@mdi/js';
 import ItemDetails from '../../../lib/items/item-details/ItemDetails';
 import ItemTags from '../../../lib/items/item-details/ItemTags';
+import Card from '../../../styled/card/Card';
 
 const ItemPage = () => {
   const navigate = useNavigate();
@@ -30,27 +31,34 @@ const ItemPage = () => {
   return (
     <ItemDialog open={!!itemId} onClose={closeItem}>
       <div className={css.iconBar}>
-        <IconBtn
-          className={css.InfoItemBtn}
-          onClick={() => setInfoOpen(!infoOpen)}
-        >
-          <Icon path={mdiInformationOutline} />
-        </IconBtn>
-        <IconBtn className={css.CloseItemBtn} onClick={closeItem}>
-          <Icon path={mdiClose} />
-        </IconBtn>
+        <Card className={css.iconCard}>
+          <IconBtn
+            title='Open media info'
+            className={css.InfoItemBtn}
+            onClick={() => setInfoOpen(!infoOpen)}
+          >
+            <Icon path={mdiInformationOutline} />
+          </IconBtn>
+          <IconBtn
+            title='Close modal'
+            className={css.CloseItemBtn}
+            onClick={closeItem}
+          >
+            <Icon path={mdiClose} />
+          </IconBtn>
+        </Card>
       </div>
       <div className={css.itemContent}>
         {item.data && <ItemView item={item.data} />}
         {infoOpen && (
-          <div className={css.ItemMenu}>
+          <Card className={css.ItemMenu}>
             {item.data && (
               <>
                 <ItemDetails item={item.data} />
                 <ItemTags item={item.data} />
               </>
             )}
-          </div>
+          </Card>
         )}
       </div>
     </ItemDialog>

@@ -12,19 +12,21 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
   animation: menuShow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .iconBar {
-  display: flex;
-  justify-content: space-between;
   z-index: #{util.$layer-modal + 1};
 
-  .InfoItemBtn,
-  .CloseItemBtn {
-    --iconSize: 48px;
+  .iconCard {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+
+    .InfoItemBtn,
+    .CloseItemBtn {
+      --iconSize: 48px;
+    }
   }
 }
 

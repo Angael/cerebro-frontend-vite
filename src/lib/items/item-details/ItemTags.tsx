@@ -1,7 +1,6 @@
 import React from 'react';
 import { FrontItem } from '@vanih/cerebro-contracts';
 import { useItemTagsQuery } from '../../../api/item/fetchTags';
-import Card from '../../../styled/card/Card';
 
 type Props = {
   item: FrontItem;
@@ -10,12 +9,21 @@ type Props = {
 const ItemTags = ({ item }: Props) => {
   const tagsQuery = useItemTagsQuery(item.id);
 
+  if (!tagsQuery.data || tagsQuery.data.length === 0) {
+    return null;
+  }
+
   return (
-    <Card>
-      {tagsQuery.data?.map((tag) => (
-        <p key={tag.id}>{tag.name}</p>
-      ))}
-    </Card>
+    <section>
+      <p>Tags:</p>
+      <ul>
+        {tagsQuery.data?.map((tag) => (
+          <li className='body1' key={tag.id}>
+            {tag.name}
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 };
 

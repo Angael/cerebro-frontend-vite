@@ -26,7 +26,7 @@ const PreviewLocalFile = (props: Props) => {
       {type === 'image' && <img src={src} alt='' />}
 
       {type === 'video' && (
-        <video controls>
+        <video controls muted autoPlay={false}>
           <source src={src} type='video/mp4' />
         </video>
       )}

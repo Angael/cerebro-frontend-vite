@@ -24,6 +24,7 @@ const ImportLocalPage = () => {
       <UsedSpace />
       <div>
         <input
+          name='windows path'
           className='textfield'
           value={path}
           onChange={(e) => setPath(e.target.value)}

@@ -9,14 +9,16 @@ type Props = {
   files: LocalFile[];
 };
 
-const FILES_PER_PAGE = 9;
+const FILES_PER_PAGE = 3 * 3;
 
 const PreviewLocalFiles = (props: Props) => {
   const { filePaths, toggleFilePath } = useLocalStore();
   const [page, setPage] = React.useState(0);
 
+  const ref = React.useRef<HTMLDivElement>(null);
   const handlePageChange = (_page: number) => {
     setPage(_page - 1);
+    ref.current?.scrollIntoView();
   };
 
   const start = page * FILES_PER_PAGE;
@@ -32,7 +34,7 @@ const PreviewLocalFiles = (props: Props) => {
         pageCount={pageCount}
       />
 
-      <div className={css.previewLocalStack}>
+      <div className={css.previewLocalStack} ref={ref}>
         {paginatedFiles.map((file) => (
           <PreviewLocalFile
             key={file.path}

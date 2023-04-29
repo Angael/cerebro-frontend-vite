@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import Layout from '../../lib/layout/Layout';
 import UsedSpace from '../../lib/used-space/UsedSpace';
 import { useQuery } from '@tanstack/react-query';
-import { fetchLocalPath } from '../../api/local/localApi';
+import { fetchLocalPath, postLocalFilesChange } from '../../api/local/localApi';
 import css from './ImportLocalPage.module.scss';
 import PreviewLocalFiles from '../../lib/local/PreviewLocalFiles';
 import Btn from '../../styled/btn/Btn';
 import { useLocalStore } from '../../lib/local/localStores';
+import { queryClient } from '../../App';
 
 const ImportLocalPage = () => {
   const [path, setPath] = useState('');
@@ -18,8 +19,20 @@ const ImportLocalPage = () => {
   const query = useQuery({
     queryKey: ['import-local', path],
     queryFn: () => fetchLocalPath(path),
-    retry: false,
+    refetchOnWindowFocus: true,
   });
+
+  const onMove = async () => {
+    removeAll();
+    await postLocalFilesChange({
+      type: 'move',
+      filePaths,
+      moveDist: destPath,
+    });
+    console.log(1);
+    queryClient.invalidateQueries({ queryKey: ['import-local', path] });
+    console.log(2);
+  };
 
   const fileList = query.data?.files ?? [];
 
@@ -52,11 +65,11 @@ const ImportLocalPage = () => {
         maxLength={100}
       />
       <div>
-        <p>Selection stats</p>
         <p>Selected: {filePaths.length}</p>
       </div>
       <div className={css.importLocalPageActions}>
         <Btn>Upload + Move + Remove from list</Btn>
+        <Btn onClick={onMove}>Move + Remove from list</Btn>
         <Btn>Select all</Btn>
         <Btn onClick={removeAll}>Remove selection</Btn>
         <Btn>Delete files</Btn>

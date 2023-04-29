@@ -27,7 +27,7 @@ const PreviewLocalFile = (props: Props) => {
       {type === 'image' && <img src={src} alt='' />}
 
       {type === 'video' && (
-        <video controls muted autoPlay>
+        <video controls muted autoPlay loop>
           <source src={src} type='video/mp4' />
         </video>
       )}
@@ -35,4 +35,4 @@ const PreviewLocalFile = (props: Props) => {
   );
 };
 
-export default PreviewLocalFile;
+export default React.memo(PreviewLocalFile);

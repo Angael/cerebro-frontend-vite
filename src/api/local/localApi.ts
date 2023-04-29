@@ -18,3 +18,14 @@ export const fetchLocalPath = async (path: string): Promise<LocalPath> => {
   const response = await API.get('/local-fs/folder', { params });
   return response.data;
 };
+
+type PostLocalChange = {
+  type: 'upload' | 'move' | 'delete';
+  filePaths: string[];
+  tags?: string[];
+  moveDist?: string;
+};
+
+export const postLocalFilesChange = (data: PostLocalChange) => {
+  return API.post('/local-fs/files', data);
+};

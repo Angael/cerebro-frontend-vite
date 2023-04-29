@@ -1,3 +1,5 @@
+export const isProd = import.meta.env.PROD as boolean;
+
 export const FIREBASE_KEY = import.meta.env.VITE_FIREBASE_KEY as string;
 export const FIREBASE_DOMAIN = import.meta.env.VITE_FIREBASE_DOMAIN as string;
 export const FIREBASE_DATABASE = import.meta.env

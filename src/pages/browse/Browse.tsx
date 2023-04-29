@@ -45,7 +45,7 @@ const Browse = () => {
       <Pagination
         count={itemsQuery.data?.count}
         page={page}
-        setCursor={setPage}
+        setPage={setPage}
       />
       <div>{itemsQuery.data && <ItemGrid items={itemsQuery.data.items} />}</div>
       {itemsQuery.isError && itemsQuery.data.items.length === 0 && (
@@ -57,7 +57,7 @@ const Browse = () => {
       <Pagination
         count={itemsQuery.data?.count}
         page={page}
-        setCursor={setPage}
+        setPage={setPage}
       />
     </Layout>
   );

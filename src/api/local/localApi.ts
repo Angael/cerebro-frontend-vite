@@ -1,8 +1,13 @@
 import { API } from '../api';
 
+export type LocalFile = {
+  path: string;
+  type: 'image' | 'video' | 'unknown';
+};
+
 export type LocalPath = {
   path: string;
-  items: string[];
+  files: LocalFile[];
 };
 
 export const fetchLocalPath = async (path: string): Promise<LocalPath> => {
@@ -10,6 +15,6 @@ export const fetchLocalPath = async (path: string): Promise<LocalPath> => {
     path,
   };
 
-  const response = await API.get('/local-fs/', { params });
+  const response = await API.get('/local-fs/folder', { params });
   return response.data;
 };

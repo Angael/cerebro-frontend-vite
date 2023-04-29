@@ -1,6 +1,12 @@
 import React from 'react';
 import { Icon } from '@mdi/react';
-import { mdiAccount, mdiCompass, mdiMenu, mdiPlus, mdiViewGrid } from '@mdi/js';
+import {
+  mdiAccount,
+  mdiCompass,
+  mdiFolder,
+  mdiPlus,
+  mdiViewGrid,
+} from '@mdi/js';
 import { NavLink } from 'react-router-dom';
 import css from './Navbar.module.scss';
 import IconBtn from '../../styled/icon-btn/IconBtn';
@@ -24,6 +30,10 @@ const Navbar = () => {
           <>
             <IconBtn component={NavLink} to='/import' title='Import media'>
               <Icon path={mdiPlus} />
+            </IconBtn>
+
+            <IconBtn component={NavLink} to='/local' title='Local'>
+              <Icon path={mdiFolder} />
             </IconBtn>
 
             <IconBtn component={NavLink} to='/explore' title='Explore media'>

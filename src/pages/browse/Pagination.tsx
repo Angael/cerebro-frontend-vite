@@ -6,28 +6,26 @@ import { PAGINATION_LIMIT } from '../../utils/consts';
 type Props = {
   count?: number;
   page: number;
-  setCursor: (cursor: number) => void;
+  setPage: (cursor: number) => void;
 };
 
-const Pagination = (props: Props) => {
-  const { count, page, setCursor } = props;
-
+const Pagination = ({ count, page, setPage }: Props) => {
   const pageNr = page + 1;
   const pageCount = Math.ceil((count ?? 0) / PAGINATION_LIMIT);
 
   const onNext = () => {
-    setCursor(page + 1);
+    setPage(page + 1);
   };
 
   const canGoBack = pageNr > 1;
   const canGoForward = page < pageCount - 1;
 
   const onPrevious = () => {
-    setCursor(page - 1);
+    setPage(page - 1);
   };
 
   const goTo = (index: number) => () => {
-    setCursor(index);
+    setPage(index);
   };
 
   return (

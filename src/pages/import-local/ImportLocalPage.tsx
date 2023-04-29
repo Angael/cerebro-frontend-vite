@@ -5,11 +5,15 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchLocalPath } from '../../api/local/localApi';
 import css from './ImportLocalPage.module.scss';
 import PreviewLocalFiles from '../../lib/local/PreviewLocalFiles';
+import Btn from '../../styled/btn/Btn';
+import { useLocalStore } from '../../lib/local/localStores';
 
 const ImportLocalPage = () => {
   const [path, setPath] = useState('');
   const [tags, setTags] = useState('');
   const [destPath, setDestPath] = useState('');
+
+  const { filePaths, removeAll } = useLocalStore();
 
   const query = useQuery({
     queryKey: ['import-local', path],
@@ -47,8 +51,17 @@ const ImportLocalPage = () => {
         placeholder='Tags'
         maxLength={100}
       />
+      <div>
+        <p>Selection stats</p>
+        <p>Selected: {filePaths.length}</p>
+      </div>
+      <div className={css.importLocalPageActions}>
+        <Btn>Upload + Move + Remove from list</Btn>
+        <Btn>Select all</Btn>
+        <Btn onClick={removeAll}>Remove selection</Btn>
+        <Btn>Delete files</Btn>
+      </div>
       <PreviewLocalFiles files={fileList} />
-      {query.data && <pre>{JSON.stringify(query.data, null, 2)}</pre>}
     </Layout>
   );
 };

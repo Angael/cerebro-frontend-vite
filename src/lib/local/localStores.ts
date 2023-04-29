@@ -3,6 +3,8 @@ import create from 'zustand';
 type LocalStore = {
   filePaths: string[];
   toggleFilePath: (path: string) => void;
+  removePaths: (paths: string[]) => void;
+  removeAll: () => void;
 };
 
 export const useLocalStore = create<LocalStore>((set) => ({
@@ -15,4 +17,12 @@ export const useLocalStore = create<LocalStore>((set) => ({
         return { filePaths: [...store.filePaths, path] };
       }
     }),
+  removePaths: (paths) => {
+    set((store) => {
+      return { filePaths: store.filePaths.filter((p) => !paths.includes(p)) };
+    });
+  },
+  removeAll: () => {
+    set({ filePaths: [] });
+  },
 }));

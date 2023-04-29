@@ -1,24 +1,20 @@
 import React from 'react';
 import Btn from '../../styled/btn/Btn';
 import css from './Pagination.module.scss';
-import { PAGINATION_LIMIT } from '../../utils/consts';
 
 type Props = {
-  count?: number;
   page: number;
   setPage: (cursor: number) => void;
+  pageCount: number;
 };
 
-const Pagination = ({ count, page, setPage }: Props) => {
-  const pageNr = page + 1;
-  const pageCount = Math.ceil((count ?? 0) / PAGINATION_LIMIT);
-
+const Pagination = ({ page, setPage, pageCount }: Props) => {
   const onNext = () => {
     setPage(page + 1);
   };
 
-  const canGoBack = pageNr > 1;
-  const canGoForward = page < pageCount - 1;
+  const canGoBack = page > 1;
+  const canGoForward = page < pageCount;
 
   const onPrevious = () => {
     setPage(page - 1);
@@ -34,16 +30,16 @@ const Pagination = ({ count, page, setPage }: Props) => {
         Back
       </Btn>
 
-      <p style={{ whiteSpace: 'nowrap' }}>Page {pageNr}</p>
+      <p style={{ whiteSpace: 'nowrap' }}>Page {page}</p>
 
       {Array(pageCount)
         .fill(null)
         .map((_, pageIndex) => (
           <Btn
             className={css.mobileHidden}
-            key={pageIndex}
-            onClick={goTo(pageIndex)}
-            disabled={page === pageIndex}
+            key={pageIndex + 1}
+            onClick={goTo(pageIndex + 1)}
+            disabled={page === pageIndex + 1}
           >
             {pageIndex + 1}
           </Btn>

@@ -9,11 +9,15 @@ type Props = {
   files: LocalFile[];
 };
 
-const FILES_PER_PAGE = 10;
+const FILES_PER_PAGE = 9;
 
 const PreviewLocalFiles = (props: Props) => {
   const { filePaths, toggleFilePath } = useLocalStore();
   const [page, setPage] = React.useState(0);
+
+  const handlePageChange = (_page: number) => {
+    setPage(_page - 1);
+  };
 
   const start = page * FILES_PER_PAGE;
   const end = start + FILES_PER_PAGE;
@@ -22,7 +26,11 @@ const PreviewLocalFiles = (props: Props) => {
 
   return (
     <div>
-      <Pagination page={page} setPage={setPage} count={props.files.length} />
+      <Pagination
+        page={page + 1}
+        setPage={handlePageChange}
+        pageCount={pageCount}
+      />
 
       <div className={css.previewLocalStack}>
         {paginatedFiles.map((file) => (
@@ -35,7 +43,11 @@ const PreviewLocalFiles = (props: Props) => {
         ))}
       </div>
 
-      <Pagination page={page} setPage={setPage} count={3} />
+      <Pagination
+        page={page + 1}
+        setPage={handlePageChange}
+        pageCount={pageCount}
+      />
     </div>
   );
 };

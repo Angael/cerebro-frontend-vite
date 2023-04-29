@@ -14,19 +14,20 @@ const PreviewLocalFile = (props: Props) => {
   const { type, path } = props.file;
   const src = getLocalSrc(path);
 
-  function handleClick() {
+  function handleClick(e: any) {
+    e.preventDefault();
     props.onToggle(path);
   }
 
   return (
     <div
       className={clsx(css.previewLocalFile, props.selected && css.selected)}
-      onClick={handleClick}
+      onMouseDown={handleClick}
     >
       {type === 'image' && <img src={src} alt='' />}
 
       {type === 'video' && (
-        <video controls muted autoPlay={false}>
+        <video controls muted autoPlay>
           <source src={src} type='video/mp4' />
         </video>
       )}

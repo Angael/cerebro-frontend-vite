@@ -1,16 +1,16 @@
 .previewLocalFile {
   width: 100%;
-  height: 350px;
+  max-height: 350px;
   object-fit: contain;
   display: block;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--c-bg-paper);
   border-radius: 8px;
 
   transition: 0.2s;
-  border: 3px solid transparent;
+  border: 5px solid transparent;
 
   &.selected {
-    border: 3px solid #fff;
+    border: 5px solid var(--c-primary);
   }
 
   img,

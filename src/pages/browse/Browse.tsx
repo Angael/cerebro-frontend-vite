@@ -10,6 +10,7 @@ import IconWithText from '../../styled/icon-with-text/IconWithText';
 import { useQuery } from '@tanstack/react-query';
 import { Tag } from '@vanih/cerebro-contracts';
 import { useBrowseStore } from '../../store/browse/browseStore';
+import { PAGINATION_LIMIT } from '../../utils/consts';
 
 const SelectTag = React.lazy(() => import('./SelectTag'));
 
@@ -23,8 +24,8 @@ const Browse = () => {
     set({ selectedTags: tags, page: 0 });
   };
 
-  const setPage = (page: number) => {
-    set({ page });
+  const setPage = (_page: number) => {
+    set({ page: _page - 1 });
   };
 
   const itemsQuery = useQuery({
@@ -36,17 +37,16 @@ const Browse = () => {
     initialData: { items: [], count: 0 },
   });
 
+  const pageNr = page + 1;
+  const pageCount = Math.ceil(itemsQuery.data.count / PAGINATION_LIMIT);
+
   return (
     <Layout isMaxWidth>
       {outlet}
       <Suspense fallback={null}>
         <SelectTag selectedTags={selectedTags} setSelectedTags={changeTags} />
       </Suspense>
-      <Pagination
-        count={itemsQuery.data?.count}
-        page={page}
-        setPage={setPage}
-      />
+      <Pagination pageCount={pageCount} page={pageNr} setPage={setPage} />
       <div>{itemsQuery.data && <ItemGrid items={itemsQuery.data.items} />}</div>
       {itemsQuery.isError && itemsQuery.data.items.length === 0 && (
         <IconWithText text='Failed to load items' />
@@ -54,11 +54,7 @@ const Browse = () => {
       {itemsQuery.isFetching && itemsQuery.data.items.length === 0 && (
         <CircleLoader />
       )}
-      <Pagination
-        count={itemsQuery.data?.count}
-        page={page}
-        setPage={setPage}
-      />
+      <Pagination pageCount={pageCount} page={pageNr} setPage={setPage} />
     </Layout>
   );
 };

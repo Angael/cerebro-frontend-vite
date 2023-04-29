@@ -11,6 +11,7 @@ const ImportLocalPage = () => {
   const query = useQuery({
     queryKey: ['import-local', path],
     queryFn: () => fetchLocalPath(path),
+    retry: false,
   });
 
   return (

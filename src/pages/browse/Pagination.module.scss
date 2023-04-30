@@ -1,6 +1,6 @@
 @use 'src/style/breakpoints';
 
-.pagination {
+.paginationStack {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,4 +15,11 @@
       display: block;
     }
   }
+}
+
+.pages {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
 }

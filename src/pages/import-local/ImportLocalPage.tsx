@@ -31,9 +31,7 @@ const ImportLocalPage = () => {
       filePaths,
       moveDist: destPath,
     });
-    console.log(1);
-    queryClient.invalidateQueries({ queryKey: ['import-local', path] });
-    console.log(2);
+    await queryClient.invalidateQueries({ queryKey: ['import-local', path] });
   };
 
   const onSelectAll = () => {

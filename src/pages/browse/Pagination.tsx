@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import Btn from '../../styled/btn/Btn';
 import css from './Pagination.module.scss';
 import clamp from 'clamp';
+import { getPagination } from './getPagination';
 
 type Props = {
   page: number;
@@ -31,28 +32,26 @@ const Pagination = ({ page, setPage, pageCount }: Props) => {
     }
   }, [page, pageCount]);
 
+  const shownButtons = getPagination(page, pageCount, 9);
+
   return (
-    <nav className={css.pagination}>
+    <nav className={css.paginationStack}>
       <Btn onClick={onPrevious} disabled={!canGoBack}>
         Back
       </Btn>
 
-      <p style={{ whiteSpace: 'nowrap' }}>Page {page}</p>
-
-      {Array(pageCount)
-        .fill(null)
-        .map((_, pageIndex) => (
+      <div className={css.pages}>
+        {shownButtons.map((nr) => (
           <Btn
             className={css.mobileHidden}
-            key={pageIndex + 1}
-            onClick={goTo(pageIndex + 1)}
-            disabled={page === pageIndex + 1}
+            key={nr}
+            onClick={goTo(nr)}
+            disabled={page === nr}
           >
-            {pageIndex + 1}
+            {nr}
           </Btn>
         ))}
-
-      <div style={{ flex: 1 }} />
+      </div>
 
       <Btn onClick={onNext} disabled={!canGoForward}>
         Next

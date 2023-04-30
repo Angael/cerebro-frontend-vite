@@ -5,24 +5,30 @@ type LocalStore = {
   toggleFilePath: (path: string) => void;
   removePaths: (paths: string[]) => void;
   removeAll: () => void;
+  addPaths: (paths: string[]) => void;
 };
 
 export const useLocalStore = create<LocalStore>((set) => ({
   filePaths: [],
   toggleFilePath: (path) =>
-    set((store) => {
-      if (store.filePaths.includes(path)) {
-        return { filePaths: store.filePaths.filter((p) => p !== path) };
-      } else {
-        return { filePaths: [...store.filePaths, path] };
-      }
-    }),
+    set((store) =>
+      store.filePaths.includes(path)
+        ? { filePaths: store.filePaths.filter((p) => p !== path) }
+        : { filePaths: [...store.filePaths, path] },
+    ),
   removePaths: (paths) => {
-    set((store) => {
-      return { filePaths: store.filePaths.filter((p) => !paths.includes(p)) };
-    });
+    set((store) => ({
+      filePaths: store.filePaths.filter((p) => !paths.includes(p)),
+    }));
   },
   removeAll: () => {
     set({ filePaths: [] });
+  },
+  addPaths: (paths) => {
+    set((store) => {
+      const newPaths = paths.filter((p) => !store.filePaths.includes(p));
+
+      return { filePaths: [...store.filePaths, ...newPaths] };
+    });
   },
 }));

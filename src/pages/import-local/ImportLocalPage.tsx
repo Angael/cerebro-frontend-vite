@@ -14,13 +14,15 @@ const ImportLocalPage = () => {
   const [tags, setTags] = useState('');
   const [destPath, setDestPath] = useState('');
 
-  const { filePaths, removeAll } = useLocalStore();
+  const { filePaths, removeAll, addPaths } = useLocalStore();
 
   const query = useQuery({
     queryKey: ['import-local', path],
     queryFn: () => fetchLocalPath(path),
     refetchOnWindowFocus: true,
   });
+
+  const fileList = query.data?.files ?? [];
 
   const onMove = async () => {
     removeAll();
@@ -34,7 +36,9 @@ const ImportLocalPage = () => {
     console.log(2);
   };
 
-  const fileList = query.data?.files ?? [];
+  const onSelectAll = () => {
+    addPaths(fileList.map((f) => f.path));
+  };
 
   return (
     <Layout isMaxWidth className={css.importLocalPageWrapper}>
@@ -51,6 +55,7 @@ const ImportLocalPage = () => {
         {query.status}
       </div>
       <input
+        name='windows dest path'
         className='textfield'
         value={destPath}
         onChange={(e) => setDestPath(e.target.value)}
@@ -70,7 +75,7 @@ const ImportLocalPage = () => {
       <div className={css.importLocalPageActions}>
         <Btn>Upload + Move + Remove from list</Btn>
         <Btn onClick={onMove}>Move + Remove from list</Btn>
-        <Btn>Select all</Btn>
+        <Btn onClick={onSelectAll}>Select all</Btn>
         <Btn onClick={removeAll}>Remove selection</Btn>
         <Btn>Delete files</Btn>
       </div>

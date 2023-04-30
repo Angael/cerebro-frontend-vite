@@ -828,6 +828,11 @@
     "@tanstack/query-core" "4.24.9"
     use-sync-external-store "^1.2.0"
 
+"@types/clamp@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/clamp/-/clamp-1.0.1.tgz#571d0267f116314eba70dc8ae5680cdd654e0cf0"
+  integrity sha512-mWimIPuHSjSXP/xpabzQTXWTutHseD0VtFUiJmeArnz21wkT8G92zhadC5WUCa3prlwPexn779Uetx70CIhA5A==
+
 "@types/long@^4.0.1":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.2.tgz#b74129719fc8d11c01868010082d483b7545591a"
@@ -955,6 +960,11 @@ braces@~3.0.2:
     readdirp "~3.6.0"
   optionalDependencies:
     fsevents "~2.3.2"
+
+clamp@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/clamp/-/clamp-1.0.1.tgz#66a0e64011816e37196828fdc8c8c147312c8634"
+  integrity sha512-kgMuFyE78OC6Dyu3Dy7vcx4uy97EIbVxJB/B0eJ3bUNAkwdNcxYzgKltnyADiYwsR7SEqkkUPsEUT//OVS6XMA==
 
 cliui@^7.0.2:
   version "7.0.4"

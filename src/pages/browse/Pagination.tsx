@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Btn from '../../styled/btn/Btn';
 import css from './Pagination.module.scss';
+import clamp from 'clamp';
 
 type Props = {
   page: number;
@@ -23,6 +24,12 @@ const Pagination = ({ page, setPage, pageCount }: Props) => {
   const goTo = (index: number) => () => {
     setPage(index);
   };
+
+  useEffect(() => {
+    if (page > pageCount) {
+      setPage(clamp(page, 1, pageCount));
+    }
+  }, [page, pageCount]);
 
   return (
     <nav className={css.pagination}>

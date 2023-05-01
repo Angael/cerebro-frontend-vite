@@ -9,11 +9,14 @@ import Btn from '../../styled/btn/Btn';
 import { useLocalStore } from '../../lib/local/localStores';
 import { queryClient } from '../../App';
 import { deleteLocalFiles } from '../../api/local/deleteLocalFiles';
+import Card from '../../styled/card/Card';
+import { useTagInput } from '../import/useTagInput';
 
 const ImportLocalPage = () => {
   const [path, setPath] = useState('');
-  const [tags, setTags] = useState('');
+  const [tags, setTags, tagsArr] = useTagInput();
   const [destPath, setDestPath] = useState('');
+  const [onlyShowSelected, setOnlyShowSelected] = useState(false);
 
   const { filePaths, toggleFilePath, removeAll, addPaths } = useLocalStore();
 
@@ -48,10 +51,14 @@ const ImportLocalPage = () => {
 
   const deleteSelected = () => deleteFiles(filePaths);
 
+  const shownFiles = onlyShowSelected
+    ? fileList.filter((f) => filePaths.includes(f.path))
+    : fileList;
+
   return (
     <Layout isMaxWidth className={css.importLocalPageWrapper}>
       <UsedSpace />
-      <div>
+      <Card>
         <input
           name='windows path'
           className='textfield'
@@ -61,7 +68,7 @@ const ImportLocalPage = () => {
           maxLength={100}
         />
         {query.status}
-      </div>
+      </Card>
       <input
         name='windows dest path'
         className='textfield'
@@ -80,15 +87,18 @@ const ImportLocalPage = () => {
       <div>
         <p>Selected: {filePaths.length}</p>
       </div>
-      <div className={css.importLocalPageActions}>
+      <Card className={css.importLocalPageActions}>
         <Btn>Upload + Move + Remove from list</Btn>
         <Btn onClick={onMove}>Move + Remove from list</Btn>
         <Btn onClick={onSelectAll}>Select all</Btn>
         <Btn onClick={removeAll}>Remove selection</Btn>
         <Btn onClick={deleteSelected}>Delete files</Btn>
-      </div>
+        <Btn onClick={() => setOnlyShowSelected(!onlyShowSelected)}>
+          {onlyShowSelected ? 'Show all' : 'Show selected'}
+        </Btn>
+      </Card>
       <PreviewLocalFiles
-        files={fileList}
+        files={shownFiles}
         selectedFiles={filePaths}
         toggleSelectFile={toggleFilePath}
         onDeleteItem={deleteFiles}

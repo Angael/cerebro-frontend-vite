@@ -3,10 +3,10 @@ import Layout from '../../lib/layout/Layout';
 import UsedSpace from '../../lib/used-space/UsedSpace';
 import css from './ImportPage.module.scss';
 import UploadMedia from '../../lib/import/UploadMedia';
+import { useTagInput } from './useTagInput';
 
 const ImportPage = () => {
-  const [tags, setTags] = useState('');
-  const tagsArr = tags.split(',').map((t) => t.trim().toLowerCase());
+  const [tags, setTags, tagsArr] = useTagInput();
 
   return (
     <Layout isMaxWidth>

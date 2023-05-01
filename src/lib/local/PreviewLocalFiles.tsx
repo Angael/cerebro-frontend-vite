@@ -7,12 +7,13 @@ import Pagination from '../../pages/browse/Pagination';
 
 type Props = {
   files: LocalFile[];
+  selectedFiles: string[];
+  toggleSelectFile: (path: string) => void;
 };
 
 const FILES_PER_PAGE = 3 * 6;
 
 const PreviewLocalFiles = (props: Props) => {
-  const { filePaths, toggleFilePath } = useLocalStore();
   const [page, setPage] = React.useState(0);
 
   const ref = React.useRef<HTMLDivElement>(null);
@@ -39,8 +40,8 @@ const PreviewLocalFiles = (props: Props) => {
           <PreviewLocalFile
             key={file.path}
             file={file}
-            selected={filePaths.includes(file.path)}
-            onToggle={toggleFilePath}
+            selected={props.selectedFiles.includes(file.path)}
+            onToggle={props.toggleSelectFile}
           />
         ))}
       </div>

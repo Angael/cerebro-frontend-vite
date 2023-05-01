@@ -14,7 +14,7 @@ const ImportLocalPage = () => {
   const [tags, setTags] = useState('');
   const [destPath, setDestPath] = useState('');
 
-  const { filePaths, removeAll, addPaths } = useLocalStore();
+  const { filePaths, toggleFilePath, removeAll, addPaths } = useLocalStore();
 
   const query = useQuery({
     queryKey: ['import-local', path],
@@ -77,7 +77,11 @@ const ImportLocalPage = () => {
         <Btn onClick={removeAll}>Remove selection</Btn>
         <Btn>Delete files</Btn>
       </div>
-      <PreviewLocalFiles files={fileList} />
+      <PreviewLocalFiles
+        files={fileList}
+        selectedFiles={filePaths}
+        toggleSelectFile={toggleFilePath}
+      />
     </Layout>
   );
 };

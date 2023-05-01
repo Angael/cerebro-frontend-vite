@@ -3,11 +3,15 @@ import clsx from 'clsx';
 import { getLocalSrc } from './getLocalSrc';
 import { LocalFile } from '../../api/local/localApi';
 import css from './PreviewLocalFile.module.scss';
+import IconBtn from '../../styled/icon-btn/IconBtn';
+import { Icon } from '@mdi/react';
+import { mdiDelete } from '@mdi/js';
 
 type Props = {
   file: LocalFile;
   selected: boolean;
   onToggle: (path: string) => void;
+  onDelete: (paths: string[]) => void;
 };
 
 const PreviewLocalFile = (props: Props) => {
@@ -19,10 +23,15 @@ const PreviewLocalFile = (props: Props) => {
     props.onToggle(path);
   }
 
+  function deleteMe(e: any) {
+    e.stopPropagation();
+    props.onDelete([path]);
+  }
+
   return (
     <div
       className={clsx(css.previewLocalFile, props.selected && css.selected)}
-      onMouseDown={handleClick}
+      onClick={handleClick}
     >
       {type === 'image' && <img src={src} alt='' />}
 
@@ -31,6 +40,10 @@ const PreviewLocalFile = (props: Props) => {
           <source src={src} type='video/mp4' />
         </video>
       )}
+
+      <IconBtn className={css.deleteBtn} onClick={deleteMe}>
+        <Icon path={mdiDelete} size={1} />
+      </IconBtn>
     </div>
   );
 };

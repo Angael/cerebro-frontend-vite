@@ -20,7 +20,7 @@ export const fetchLocalPath = async (path: string): Promise<LocalPath> => {
 };
 
 type PostLocalChange = {
-  type: 'upload' | 'move' | 'delete';
+  type: 'upload' | 'move';
   filePaths: string[];
   tags?: string[];
   moveDist?: string;

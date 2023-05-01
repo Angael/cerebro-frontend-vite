@@ -8,6 +8,7 @@ import PreviewLocalFiles from '../../lib/local/PreviewLocalFiles';
 import Btn from '../../styled/btn/Btn';
 import { useLocalStore } from '../../lib/local/localStores';
 import { queryClient } from '../../App';
+import { deleteLocalFiles } from '../../api/local/deleteLocalFiles';
 
 const ImportLocalPage = () => {
   const [path, setPath] = useState('');
@@ -31,12 +32,21 @@ const ImportLocalPage = () => {
       filePaths,
       moveDist: destPath,
     });
-    await queryClient.invalidateQueries({ queryKey: ['import-local', path] });
+    await queryClient.invalidateQueries({ queryKey: ['import-local'] });
   };
 
   const onSelectAll = () => {
     addPaths(fileList.map((f) => f.path));
   };
+
+  async function deleteFiles(paths: string[]) {
+    if (confirm(`Are you sure you want to delete ${paths.length} files?`)) {
+      await deleteLocalFiles(paths);
+      await queryClient.invalidateQueries({ queryKey: ['import-local'] });
+    }
+  }
+
+  const deleteSelected = () => deleteFiles(filePaths);
 
   return (
     <Layout isMaxWidth className={css.importLocalPageWrapper}>
@@ -75,12 +85,13 @@ const ImportLocalPage = () => {
         <Btn onClick={onMove}>Move + Remove from list</Btn>
         <Btn onClick={onSelectAll}>Select all</Btn>
         <Btn onClick={removeAll}>Remove selection</Btn>
-        <Btn>Delete files</Btn>
+        <Btn onClick={deleteSelected}>Delete files</Btn>
       </div>
       <PreviewLocalFiles
         files={fileList}
         selectedFiles={filePaths}
         toggleSelectFile={toggleFilePath}
+        onDeleteItem={deleteFiles}
       />
     </Layout>
   );

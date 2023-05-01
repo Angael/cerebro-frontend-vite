@@ -2,13 +2,13 @@ import React from 'react';
 import { LocalFile } from '../../api/local/localApi';
 import PreviewLocalFile from './PreviewLocalFile';
 import css from './PreviewLocalFiles.module.scss';
-import { useLocalStore } from './localStores';
 import Pagination from '../../pages/browse/Pagination';
 
 type Props = {
   files: LocalFile[];
   selectedFiles: string[];
   toggleSelectFile: (path: string) => void;
+  onDeleteItem: (paths: string[]) => void;
 };
 
 const FILES_PER_PAGE = 3 * 6;
@@ -42,6 +42,7 @@ const PreviewLocalFiles = (props: Props) => {
             file={file}
             selected={props.selectedFiles.includes(file.path)}
             onToggle={props.toggleSelectFile}
+            onDelete={props.onDeleteItem}
           />
         ))}
       </div>

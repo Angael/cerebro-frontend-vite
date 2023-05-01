@@ -9,7 +9,7 @@ type Props = {
   files: LocalFile[];
 };
 
-const FILES_PER_PAGE = 3 * 3;
+const FILES_PER_PAGE = 3 * 6;
 
 const PreviewLocalFiles = (props: Props) => {
   const { filePaths, toggleFilePath } = useLocalStore();

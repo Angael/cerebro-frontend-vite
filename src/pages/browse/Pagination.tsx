@@ -32,7 +32,7 @@ const Pagination = ({ page, setPage, pageCount }: Props) => {
     }
   }, [page, pageCount]);
 
-  const shownButtons = getPagination(page, pageCount, 9);
+  const shownButtons = getPagination(page, pageCount, 11);
 
   return (
     <nav className={css.paginationStack}>

@@ -88,7 +88,6 @@ const ImportLocalPage = () => {
         <p>Selected: {filePaths.length}</p>
       </div>
       <Card className={css.importLocalPageActions}>
-        <Btn>Upload + Move + Remove from list</Btn>
         <Btn onClick={onMove}>Move + Remove from list</Btn>
         <Btn onClick={onSelectAll}>Select all</Btn>
         <Btn onClick={removeAll}>Remove selection</Btn>

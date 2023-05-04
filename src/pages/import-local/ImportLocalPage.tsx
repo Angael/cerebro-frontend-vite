@@ -11,6 +11,8 @@ import { queryClient } from '../../App';
 import { deleteLocalFiles } from '../../api/local/deleteLocalFiles';
 import Card from '../../styled/card/Card';
 import { useTagInput } from '../import/useTagInput';
+import CinemaViewer, { CinemaItem } from '../../lib/cinema-viewer/CinemaViewer';
+import { getLocalSrc } from '../../lib/local/getLocalSrc';
 
 const ImportLocalPage = () => {
   const [path, setPath] = useState('');
@@ -54,6 +56,11 @@ const ImportLocalPage = () => {
   const shownFiles = onlyShowSelected
     ? fileList.filter((f) => filePaths.includes(f.path))
     : fileList;
+
+  const cinemaFiles: CinemaItem[] = shownFiles.map((f) => ({
+    src: getLocalSrc(f.path),
+    type: f.type,
+  }));
 
   return (
     <Layout isMaxWidth className={css.importLocalPageWrapper}>
@@ -102,6 +109,7 @@ const ImportLocalPage = () => {
         toggleSelectFile={toggleFilePath}
         onDeleteItem={deleteFiles}
       />
+      <CinemaViewer items={cinemaFiles} />
     </Layout>
   );
 };

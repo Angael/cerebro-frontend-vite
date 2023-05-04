@@ -19,7 +19,7 @@ const PreviewLocalFiles = (props: Props) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const handlePageChange = (_page: number) => {
     setPage(_page - 1);
-    ref.current?.scrollIntoView();
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const start = page * FILES_PER_PAGE;

@@ -32,4 +32,23 @@
     cursor: auto;
     pointer-events: none;
   }
+
+  &.filled {
+    color: var(--c-primary-contrast);
+    background-color: var(--c-primary);
+    border-radius: 50%;
+    &:hover,
+    &:focus-visible {
+      background-color: var(--c-primary-hover);
+    }
+    &:active {
+      background-color: var(--c-primary-active);
+    }
+    &[disabled] {
+      color: var(--c-disabled-text);
+      background-color: var(--c-disabled-bg);
+      cursor: auto;
+      pointer-events: none;
+    }
+  }
 }

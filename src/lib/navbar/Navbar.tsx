@@ -22,21 +22,21 @@ const Navbar = () => {
 
         {isLoggedIn && (
           <>
-            <IconBtn component={NavLink} to='/import' title='Import media'>
+            <IconBtn as={NavLink} to='/import' title='Import media'>
               <Icon path={mdiPlus} />
             </IconBtn>
 
-            <IconBtn component={NavLink} to='/explore' title='Explore media'>
+            <IconBtn as={NavLink} to='/explore' title='Explore media'>
               <Icon path={mdiCompass} />
             </IconBtn>
           </>
         )}
 
-        <IconBtn component={NavLink} to='/browse' title='Browse media'>
+        <IconBtn as={NavLink} to='/browse' title='Browse media'>
           <Icon path={mdiViewGrid} />
         </IconBtn>
 
-        <IconBtn component={NavLink} to='/login'>
+        <IconBtn as={NavLink} to='/login'>
           <Icon path={mdiAccount} size={1} />
         </IconBtn>
       </div>

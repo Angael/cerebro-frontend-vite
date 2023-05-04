@@ -36,10 +36,6 @@ body {
 
   --c-error: #f87171;
 
-  @media (prefers-color-scheme: light) {
-    @include light;
-  }
-
   &.theme-light {
     @include light;
   }

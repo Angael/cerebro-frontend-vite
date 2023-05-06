@@ -7,6 +7,7 @@ import {
 } from '../../../store/upload/uploadTypes';
 import Btn from '../../../styled/btn/Btn';
 import ProgressOverlay from './ProgressOverlay';
+import { Button } from 'primereact/button';
 
 interface IProps {
   file: ExtendedFile;
@@ -30,6 +31,7 @@ const FilePreview = ({ file, onDelete }: IProps) => {
 
   return (
     <article className={css.filePreview}>
+      <Button></Button>
       {showLoader && (
         <ProgressOverlay status={uploadStatus} progress={uploadProgress} />
       )}
@@ -51,7 +53,7 @@ const FilePreview = ({ file, onDelete }: IProps) => {
         </header>
 
         <div className={css.uploadFileActions}>
-          <Btn as='button' href={file.previewSrc} target='_blank'>
+          <Btn as='a' href={file.previewSrc} target='_blank'>
             Open
           </Btn>
           <Btn color='error' onClick={() => onDelete(file.id)}>

@@ -18,7 +18,7 @@
   --c-error: #dc2626;
 }
 
-body {
+@mixin dark {
   --c-primary: #bae6fd;
   --c-primary-hover: #7dd3fc;
   --c-primary-active: #38bdf8;
@@ -35,6 +35,10 @@ body {
   --c-bg-paper: #1e293bcc;
 
   --c-error: #f87171;
+}
+
+body {
+  @include dark;
 
   &.theme-light {
     @include light;

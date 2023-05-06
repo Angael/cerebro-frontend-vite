@@ -4,15 +4,15 @@ import css from './Btn.module.scss';
 import { styled, StyledElementProps } from '../styled';
 import { NavLink } from 'react-router-dom';
 
-const _Btn = styled('button', css.btnStyle);
+type Props = { disabled?: boolean };
 
-type Props = { disabled?: boolean } & (
-  | ({ as: 'a' } & StyledElementProps<'a' | typeof NavLink>)
-  | StyledElementProps<'button'>
-);
+const _Btn = styled<
+  Props &
+    (
+      | ComponentProps<'button'>
+      | ComponentProps<typeof NavLink>
+      | ComponentProps<'a'>
+    )
+>('button', css.btnStyle);
 
-const Btn = (props: Props) => {
-  return <_Btn tabIndex={0} {...props} />;
-};
-
-export default Btn;
+export default _Btn;

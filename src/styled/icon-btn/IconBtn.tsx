@@ -1,16 +1,17 @@
-import React, { ComponentPropsWithRef } from 'react';
+import React, { ComponentProps, ComponentPropsWithRef } from 'react';
 
 import css from './IconBtn.module.scss';
 import { styled, StyledElementProps } from '../styled';
 import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
 
-const _Btn = styled('button', css.iconBtn);
+const _Btn = styled<
+  ComponentPropsWithRef<'button'> | ComponentPropsWithRef<typeof NavLink>
+>('button', css.iconBtn);
 
-type Props = { filled?: boolean; disabled?: boolean } & (
-  | ({ as: 'a' } & StyledElementProps<'a' | typeof NavLink>)
-  | StyledElementProps<'button'>
-);
+type Props = { filled?: boolean; disabled?: boolean } & ComponentProps<
+  typeof _Btn
+>;
 
 const IconBtn = ({ filled, ...props }: Props) => {
   return (

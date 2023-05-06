@@ -14,6 +14,7 @@ import css from './Navbar.module.scss';
 import IconBtn from '../../styled/icon-btn/IconBtn';
 import { useAuthStore } from '../../store/auth/authStore';
 import { useDarkTheme } from '../../utils/useDarkTheme';
+import { isProd } from '../../env';
 
 const Navbar = () => {
   const { state } = useAuthStore();
@@ -36,9 +37,11 @@ const Navbar = () => {
               <Icon path={mdiPlus} />
             </IconBtn>
 
-            <IconBtn as={NavLink} to='/local' title='Local'>
-              <Icon path={mdiFolder} />
-            </IconBtn>
+            {!isProd && (
+              <IconBtn as={NavLink} to='/local' title='Local'>
+                <Icon path={mdiFolder} />
+              </IconBtn>
+            )}
 
             <IconBtn as={NavLink} to='/explore' title='Explore media'>
               <Icon path={mdiCompass} />

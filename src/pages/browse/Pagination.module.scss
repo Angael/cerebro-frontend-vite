@@ -10,6 +10,12 @@
   overflow: auto;
 
   .mobileHidden {
+    // Keep same width even when longer numbers are shown
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    text-align: center;
+
     display: none;
     @include breakpoints.desktop() {
       display: block;

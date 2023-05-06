@@ -8,11 +8,11 @@ const meta = {
   component: Pagination,
   tags: ['autodocs'],
   argTypes: {
-    count: { control: 'number' },
+    pageCount: { control: 'number' },
   },
   args: {
     page: 1,
-    count: 100,
+    pageCount: 100,
   },
 } satisfies Meta<typeof Pagination>;
 export default meta;
@@ -21,24 +21,24 @@ type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const main: Story = {
-  render: ({ count, page: _page }) => {
+  render: ({ pageCount, page: _page }) => {
     const [page, setPage] = useState(_page);
-    return <Pagination count={count} page={page} setCursor={setPage} />;
+    return <Pagination pageCount={pageCount} page={page} setPage={setPage} />;
   },
   parameters: {
-    controls: { include: ['count'] },
+    controls: { include: ['pageCount'] },
   },
 };
 
 export const many: Story = {
-  render: ({ count, page: _page }) => {
+  render: ({ pageCount, page: _page }) => {
     const [page, setPage] = useState(_page);
-    return <Pagination count={count} page={page} setCursor={setPage} />;
+    return <Pagination pageCount={pageCount} page={page} setPage={setPage} />;
   },
   parameters: {
-    controls: { include: ['count'] },
+    controls: { include: ['pageCount'] },
   },
   args: {
-    count: 10000,
+    pageCount: 10000,
   },
 };

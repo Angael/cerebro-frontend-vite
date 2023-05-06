@@ -6,15 +6,19 @@ import {
   mdiFolder,
   mdiPlus,
   mdiViewGrid,
+  mdiLightbulbOn,
+  mdiLightbulbOutline,
 } from '@mdi/js';
 import { NavLink } from 'react-router-dom';
 import css from './Navbar.module.scss';
 import IconBtn from '../../styled/icon-btn/IconBtn';
 import { useAuthStore } from '../../store/auth/authStore';
+import { useDarkTheme } from '../../utils/useDarkTheme';
 
 const Navbar = () => {
   const { state } = useAuthStore();
   const isLoggedIn = state === 'loggedIn';
+  const [darkTheme, setDarkTheme] = useDarkTheme();
 
   return (
     <header className={css.navbar}>
@@ -28,25 +32,32 @@ const Navbar = () => {
 
         {isLoggedIn && (
           <>
-            <IconBtn component={NavLink} to='/import' title='Import media'>
+            <IconBtn as={NavLink} to='/import' title='Import media'>
               <Icon path={mdiPlus} />
             </IconBtn>
 
-            <IconBtn component={NavLink} to='/local' title='Local'>
+            <IconBtn as={NavLink} to='/local' title='Local'>
               <Icon path={mdiFolder} />
             </IconBtn>
 
-            <IconBtn component={NavLink} to='/explore' title='Explore media'>
+            <IconBtn as={NavLink} to='/explore' title='Explore media'>
               <Icon path={mdiCompass} />
             </IconBtn>
           </>
         )}
 
-        <IconBtn component={NavLink} to='/browse' title='Browse media'>
+        <IconBtn as={NavLink} to='/browse' title='Browse media'>
           <Icon path={mdiViewGrid} />
         </IconBtn>
 
-        <IconBtn component={NavLink} to='/login'>
+        <IconBtn onClick={() => setDarkTheme(!darkTheme)}>
+          <Icon
+            path={darkTheme ? mdiLightbulbOn : mdiLightbulbOutline}
+            size={1}
+          />
+        </IconBtn>
+
+        <IconBtn as={NavLink} to='/login'>
           <Icon path={mdiAccount} size={1} />
         </IconBtn>
       </div>

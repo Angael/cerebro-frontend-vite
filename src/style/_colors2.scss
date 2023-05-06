@@ -1,36 +1,46 @@
 // https://tailwindcss.com/docs/customizing-colors
-:root {
+@mixin light {
+  --c-primary: #0ea5e9;
+  --c-primary-hover: #0284c7;
+  --c-primary-active: #0369a1;
+  --c-primary-contrast: #f8fafc;
+  --c-primary-contrast-weak: #cbd5e1; // unused
+
+  --c-text: #020617;
+  --c-textSecondary: #475569;
+
+  --c-disabled-bg: #e5e7eb;
+  --c-disabled-text: #d1d5db;
+
+  --c-bg: #f1f5f9;
+  --c-bg-paper: #cbd5e1cc;
+
+  --c-error: #dc2626;
+}
+
+@mixin dark {
   --c-primary: #bae6fd;
   --c-primary-hover: #7dd3fc;
   --c-primary-active: #38bdf8;
   --c-primary-contrast: #0f172acc;
+  --c-primary-contrast-weak: #1e293b; // unused
 
   --c-text: #f8fafc;
   --c-textSecondary: #94a3b8;
 
-  --c-disabled-bg: #1f2937;
-  --c-disabled-text: #374151;
+  --c-disabled-bg: #6b7280;
+  --c-disabled-text: #4b5563;
 
-  --c-bg: #0f172acc;
-  --c-bg-paper: #334155cc;
+  --c-bg: #0f172a;
+  --c-bg-paper: #1e293bcc;
 
   --c-error: #f87171;
+}
 
-  @media (prefers-color-scheme: light) {
-    --c-primary: #0ea5e9;
-    --c-primary-hover: #0284c7;
-    --c-primary-active: #0369a1;
-    --c-primary-contrast: #f8fafc;
+body {
+  @include dark;
 
-    --c-text: #020617;
-    --c-textSecondary: #475569;
-
-    --c-disabled-bg: #e5e7eb;
-    --c-disabled-text: #d1d5db;
-
-    --c-bg: #f8fafccc;
-    --c-bg-paper: #cbd5e1cc;
-
-    --c-error: #dc2626;
+  &.theme-light {
+    @include light;
   }
 }

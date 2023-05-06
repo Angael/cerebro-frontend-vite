@@ -51,7 +51,7 @@ const FilePreview = ({ file, onDelete }: IProps) => {
         </header>
 
         <div className={css.uploadFileActions}>
-          <Btn as='button' href={file.previewSrc} target='_blank'>
+          <Btn as='a' href={file.previewSrc} target='_blank'>
             Open
           </Btn>
           <Btn color='error' onClick={() => onDelete(file.id)}>

@@ -1,21 +1,22 @@
-import React, { ComponentProps } from 'react';
-import clsx from 'clsx';
+import React, { ComponentPropsWithRef } from 'react';
 
 import css from './IconBtn.module.scss';
+import { styled, StyledElementProps } from '../styled';
+import clsx from 'clsx';
+import { NavLink } from 'react-router-dom';
 
-type Props = {
-  component?:
-    | keyof JSX.IntrinsicElements
-    | React.ForwardRefExoticComponent<any>;
-  [key: string]: any;
-} & ComponentProps<'button'>;
+const _Btn = styled('button', css.iconBtn);
 
-const IconBtn = ({ component, className, ...props }: Props) => {
-  const Component = component ?? 'button';
+type Props = { filled?: boolean; disabled?: boolean } & (
+  | ({ as: 'a' } & StyledElementProps<'a' | typeof NavLink>)
+  | StyledElementProps<'button'>
+);
+
+const IconBtn = ({ filled, ...props }: Props) => {
   return (
-    <Component
+    <_Btn
+      className={clsx(props.className, filled && css.filled)}
       tabIndex={0}
-      className={clsx(css.iconBtn, className)}
       {...props}
     />
   );

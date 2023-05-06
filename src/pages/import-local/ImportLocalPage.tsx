@@ -13,6 +13,7 @@ import Card from '../../styled/card/Card';
 import { useTagInput } from '../import/useTagInput';
 import CinemaViewer, { CinemaItem } from '../../lib/cinema-viewer/CinemaViewer';
 import { getLocalSrc } from '../../lib/local/getLocalSrc';
+import Textfield from '../../styled/textfield/Textfield';
 
 const ImportLocalPage = () => {
   const [path, setPath] = useState('');
@@ -66,30 +67,34 @@ const ImportLocalPage = () => {
     <Layout isMaxWidth className={css.importLocalPageWrapper}>
       <UsedSpace />
       <Card>
-        <input
-          name='windows path'
-          className='textfield'
-          value={path}
-          onChange={(e) => setPath(e.target.value)}
-          placeholder='Windows path'
-          maxLength={100}
+        <Textfield
+          label='Src path'
+          input={{
+            name: 'windows path',
+            value: path,
+            onChange: (e) => setPath(e.currentTarget.value),
+            maxLength: 100,
+          }}
         />
         {query.status}
       </Card>
-      <input
-        name='windows dest path'
-        className='textfield'
-        value={destPath}
-        onChange={(e) => setDestPath(e.target.value)}
-        placeholder='Where to move the files after upload'
-        maxLength={100}
+      <Textfield
+        label='Dest path'
+        input={{
+          name: 'windows dest path',
+          value: destPath,
+          onChange: (e) => setDestPath(e.currentTarget.value),
+          maxLength: 100,
+        }}
       />
-      <input
-        className='textfield'
-        value={tags}
-        onChange={(e) => setTags(e.target.value)}
-        placeholder='Tags'
-        maxLength={100}
+      <Textfield
+        label='Tags'
+        input={{
+          name: 'tags',
+          value: tags,
+          onChange: (e) => setTags(e.currentTarget.value),
+          maxLength: 100,
+        }}
       />
       <div>
         <p>Selected: {filePaths.length}</p>

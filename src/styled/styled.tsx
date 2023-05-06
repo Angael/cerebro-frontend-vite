@@ -11,6 +11,7 @@ export type StyledElementProps<T extends ElementType> =
     className?: string;
   };
 
+// TODO accept generic type for props
 export function styled(defaultComponent: ComponentType, baseClassName: string) {
   return ({
     as = defaultComponent,

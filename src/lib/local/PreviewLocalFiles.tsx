@@ -11,7 +11,7 @@ type Props = {
   onDeleteItem: (paths: string[]) => void;
 };
 
-const FILES_PER_PAGE = 3 * 6;
+const FILES_PER_PAGE = 3 * 18;
 
 const PreviewLocalFiles = (props: Props) => {
   const [page, setPage] = React.useState(0);
@@ -19,7 +19,7 @@ const PreviewLocalFiles = (props: Props) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const handlePageChange = (_page: number) => {
     setPage(_page - 1);
-    ref.current?.scrollIntoView({ behavior: 'smooth' });
+    ref.current?.scrollIntoView();
   };
 
   const start = page * FILES_PER_PAGE;
@@ -28,14 +28,14 @@ const PreviewLocalFiles = (props: Props) => {
   const pageCount = Math.ceil(props.files.length / FILES_PER_PAGE);
 
   return (
-    <div>
+    <div ref={ref} style={{ scrollMargin: 60 }}>
       <Pagination
         page={page + 1}
         setPage={handlePageChange}
         pageCount={pageCount}
       />
 
-      <div className={css.previewLocalStack} ref={ref}>
+      <div className={css.previewLocalStack}>
         {paginatedFiles.map((file) => (
           <PreviewLocalFile
             key={file.path}

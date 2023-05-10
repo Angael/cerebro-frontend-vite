@@ -9,12 +9,13 @@ export const useDarkTheme = (): [boolean, (newVal: boolean) => void] => {
   };
 
   useEffect(() => {
+    const classList = document.documentElement.classList;
     if (darkTheme) {
-      document.body.classList.add('theme-dark');
-      document.body.classList.remove('theme-light');
+      classList.add('theme-dark');
+      classList.remove('theme-light');
     } else {
-      document.body.classList.remove('theme-dark');
-      document.body.classList.add('theme-light');
+      classList.remove('theme-dark');
+      classList.add('theme-light');
     }
   }, [darkTheme]);
 

@@ -1,5 +1,6 @@
 // https://tailwindcss.com/docs/customizing-colors
 @mixin light {
+  color-scheme: light;
   --c-primary: #0ea5e9;
   --c-primary-hover: #0284c7;
   --c-primary-active: #0369a1;
@@ -19,6 +20,7 @@
 }
 
 @mixin dark {
+  color-scheme: dark;
   --c-primary: #bae6fd;
   --c-primary-hover: #7dd3fc;
   --c-primary-active: #38bdf8;
@@ -37,7 +39,7 @@
   --c-error: #f87171;
 }
 
-body {
+html {
   @include dark;
 
   &.theme-light {

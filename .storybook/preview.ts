@@ -15,7 +15,7 @@ const preview: Preview = {
       current: 'dark',
       darkClass: 'theme-dark',
       lightClass: 'theme-light',
-      classTarget: 'body',
+      classTarget: 'html',
       stylePreview: true,
     },
   },

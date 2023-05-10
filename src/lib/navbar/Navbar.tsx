@@ -47,7 +47,7 @@ const Navbar = () => {
 
         <IconBtn onClick={() => setDarkTheme(!darkTheme)}>
           <Icon
-            path={darkTheme ? mdiLightbulbOn : mdiLightbulbOutline}
+            path={darkTheme ? mdiLightbulbOutline : mdiLightbulbOn}
             size={1}
           />
         </IconBtn>

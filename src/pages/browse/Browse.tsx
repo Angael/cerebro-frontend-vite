@@ -34,11 +34,10 @@ const Browse = () => {
     refetchInterval: 5 * 60 * 1000,
     enabled: !outlet,
     keepPreviousData: true,
-    initialData: { items: [], count: 0 },
   });
 
   const pageNr = page + 1;
-  const pageCount = Math.ceil(itemsQuery.data.count / PAGINATION_LIMIT);
+  const pageCount = Math.ceil((itemsQuery.data?.count ?? 1) / PAGINATION_LIMIT);
 
   return (
     <Layout isMaxWidth>
@@ -47,11 +46,11 @@ const Browse = () => {
         <SelectTag selectedTags={selectedTags} setSelectedTags={changeTags} />
       </Suspense>
       <Pagination pageCount={pageCount} page={pageNr} setPage={setPage} />
-      <div>{itemsQuery.data && <ItemGrid items={itemsQuery.data.items} />}</div>
-      {itemsQuery.isError && itemsQuery.data.items.length === 0 && (
+      {itemsQuery.data && <ItemGrid items={itemsQuery.data.items} />}
+      {itemsQuery.isError && itemsQuery.data?.items.length === 0 && (
         <IconWithText text='Failed to load items' />
       )}
-      {itemsQuery.isFetching && itemsQuery.data.items.length === 0 && (
+      {itemsQuery.isFetching && itemsQuery.data?.items.length === 0 && (
         <CircleLoader />
       )}
       <Pagination pageCount={pageCount} page={pageNr} setPage={setPage} />

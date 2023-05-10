@@ -16,24 +16,22 @@ const SelectTag = ({ selectedTags, setSelectedTags }: Props) => {
   const selectedTag = selectedTags[0] as Tag | undefined;
 
   return (
-    <section>
-      <nav>
-        <Card className={css.tagChips}>
-          <Btn onClick={() => setSelectedTags([])} disabled={!selectedTag}>
-            All
+    <nav>
+      <Card className={css.tagChips}>
+        <Btn onClick={() => setSelectedTags([])} disabled={!selectedTag}>
+          All
+        </Btn>
+        {tagsQuery.data?.map((tag) => (
+          <Btn
+            key={tag.id}
+            onClick={() => setSelectedTags([tag])}
+            disabled={tag.id === selectedTag?.id}
+          >
+            {tag.name}
           </Btn>
-          {tagsQuery.data?.map((tag) => (
-            <Btn
-              key={tag.id}
-              onClick={() => setSelectedTags([tag])}
-              disabled={tag.id === selectedTag?.id}
-            >
-              {tag.name}
-            </Btn>
-          ))}
-        </Card>
-      </nav>
-    </section>
+        ))}
+      </Card>
+    </nav>
   );
 };
 

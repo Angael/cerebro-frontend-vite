@@ -11,7 +11,7 @@ import { queryClient } from '../../App';
 import { deleteLocalFiles } from '../../api/local/deleteLocalFiles';
 import Card from '../../styled/card/Card';
 import { useTagInput } from '../import/useTagInput';
-import CinemaViewer, { CinemaItem } from '../../lib/cinema-viewer/CinemaViewer';
+import { CinemaItem } from '../../lib/cinema-viewer/CinemaViewer';
 import { getLocalSrc } from '../../lib/local/getLocalSrc';
 import Textfield from '../../styled/textfield/Textfield';
 
@@ -114,7 +114,6 @@ const ImportLocalPage = () => {
         toggleSelectFile={toggleFilePath}
         onDeleteItem={deleteFiles}
       />
-      <CinemaViewer items={cinemaFiles} />
     </Layout>
   );
 };

@@ -11,7 +11,7 @@ type Props = {
   onDeleteItem: (paths: string[]) => void;
 };
 
-const FILES_PER_PAGE = 3 * 18;
+const FILES_PER_PAGE = 3 * 9;
 
 const PreviewLocalFiles = (props: Props) => {
   const [page, setPage] = React.useState(0);

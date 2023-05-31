@@ -24,9 +24,11 @@ export const useWsadNav = (currentItemId: string) => {
 
   function handleKey({ key }: KeyboardEvent) {
     switch (key) {
+      case 'd':
       case 'ArrowRight':
         goTo(true);
         break;
+      case 'a':
       case 'ArrowLeft':
         goTo(false);
         break;

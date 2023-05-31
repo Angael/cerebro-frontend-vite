@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Btn from '../../styled/btn/Btn';
 import css from './LoginInputs.module.scss';
 import CircleLoader from '../../styled/loaders/CircleLoader';
+import Textfield from '../../styled/textfield/Textfield';
 
 interface IProps {
   fetching: boolean;
@@ -30,44 +31,45 @@ const LoginInputs = ({ fetching, onOk, isRegistration }: IProps) => {
         Login
       </h1>
 
-      <label htmlFor='email'>
-        <p>Email: </p>
-        <input
-          className='textfield'
-          id='email'
-          type='email'
-          name='email'
-          placeholder='enter@email.com'
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        />
-      </label>
+      <Textfield
+        label='Email'
+        input={{
+          value: email,
+          onChange: (e) => setEmail(e.currentTarget.value),
+          placeholder: 'enter@email.com',
+          id: 'email',
+          type: 'email',
+          name: 'email',
+        }}
+      />
 
-      <label htmlFor='pass1'>
-        <p>Password: </p>
-        <input
-          className='textfield'
-          id='pass1'
-          type='password'
-          placeholder='********'
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
-      </label>
+      <Textfield
+        label='Password'
+        input={{
+          value: password,
+          onChange: (e) => setPassword(e.currentTarget.value),
+          placeholder: '********',
+          id: 'password',
+          type: 'password',
+          name: 'password',
+        }}
+      />
 
       {isRegistration && (
-        <label htmlFor='pass2'>
-          <p>Repeat password: </p>
-          <input
-            className='textfield'
-            id='pass2'
-            type='password'
-            placeholder='********'
-            onChange={(e) => setPassword2(e.target.value)}
-            value={password2}
+        <>
+          <Textfield
+            label='Repeat password'
+            input={{
+              value: password2,
+              onChange: (e) => setPassword2(e.currentTarget.value),
+              placeholder: '********',
+              id: 'pass2',
+              type: 'password',
+              name: 'pass2',
+            }}
           />
           {!passwordsMatch && <p>Passwords don't match </p>}
-        </label>
+        </>
       )}
 
       <Btn

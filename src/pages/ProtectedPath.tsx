@@ -19,7 +19,8 @@ const ProtectedPath = ({ children }: Props) => {
     return <Navigate to='/login' state={{ from: location }} replace />;
   }
 
-  return <>{children}</>;
+  // Slight lie, but it's fine
+  return children as React.ReactElement;
 };
 
 export default ProtectedPath;

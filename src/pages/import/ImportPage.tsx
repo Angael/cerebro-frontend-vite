@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Layout from '../../lib/layout/Layout';
 import UsedSpace from '../../lib/used-space/UsedSpace';
 import css from './ImportPage.module.scss';
 import UploadMedia from '../../lib/import/UploadMedia';
+import { useTagInput } from './useTagInput';
+import Textfield from '../../styled/textfield/Textfield';
 
 const ImportPage = () => {
-  const [tags, setTags] = useState('');
-  const tagsArr = tags.split(',').map((t) => t.trim().toLowerCase());
+  const [tags, setTags, tagsArr] = useTagInput();
 
   return (
     <Layout isMaxWidth>
@@ -14,16 +15,15 @@ const ImportPage = () => {
         <h1 className='h2'>Import files</h1>
         <UsedSpace />
       </div>
-      <label className={css.tagInputLabel}>
-        <p>Tags to apply</p>
-        <input
-          className='textfield'
-          value={tags}
-          onChange={(e) => setTags(e.target.value)}
-          placeholder='meme, funny, trip to spain'
-          maxLength={100}
-        />
-      </label>
+      <Textfield
+        label='Tags to apply'
+        input={{
+          value: tags,
+          onChange: (e) => setTags(e.currentTarget.value),
+          placeholder: 'meme, funny, trip to spain',
+          maxLength: 100,
+        }}
+      />
       <UploadMedia tags={tagsArr} />
     </Layout>
   );

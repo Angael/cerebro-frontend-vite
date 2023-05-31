@@ -2943,6 +2943,11 @@
     "@types/connect" "*"
     "@types/node" "*"
 
+"@types/clamp@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/clamp/-/clamp-1.0.1.tgz#571d0267f116314eba70dc8ae5680cdd654e0cf0"
+  integrity sha512-mWimIPuHSjSXP/xpabzQTXWTutHseD0VtFUiJmeArnz21wkT8G92zhadC5WUCa3prlwPexn779Uetx70CIhA5A==
+
 "@types/connect@*":
   version "3.4.35"
   resolved "https://registry.yarnpkg.com/@types/connect/-/connect-3.4.35.tgz#5fcf6ae445e4021d1fc2219a4873cc73a3bb2ad1"
@@ -3737,6 +3742,11 @@ ci-info@^3.2.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-3.8.0.tgz#81408265a5380c929f0bc665d62256628ce9ef91"
   integrity sha512-eXTggHWSooYhq49F2opQhuHWgzucfF2YgODK4e1566GQs5BIfP30B0oenwBJHfWxAs2fyPB1s7Mg949zLf61Yw==
+
+clamp@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/clamp/-/clamp-1.0.1.tgz#66a0e64011816e37196828fdc8c8c147312c8634"
+  integrity sha512-kgMuFyE78OC6Dyu3Dy7vcx4uy97EIbVxJB/B0eJ3bUNAkwdNcxYzgKltnyADiYwsR7SEqkkUPsEUT//OVS6XMA==
 
 clean-stack@^2.0.0:
   version "2.2.0"

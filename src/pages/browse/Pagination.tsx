@@ -1,63 +1,66 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import Btn from '../../styled/btn/Btn';
 import css from './Pagination.module.scss';
-import { PAGINATION_LIMIT } from '../../utils/consts';
+import clamp from 'clamp';
+import { getPagination } from './getPagination';
 
 type Props = {
-  count?: number;
   page: number;
-  setCursor: (cursor: number) => void;
+  setPage: (cursor: number) => void;
+  pageCount: number;
 };
 
-const Pagination = (props: Props) => {
-  const { count, page, setCursor } = props;
-
-  const pageNr = page + 1;
-  const pageCount = Math.ceil((count ?? 0) / PAGINATION_LIMIT);
-
+const Pagination = ({ page, setPage, pageCount }: Props) => {
   const onNext = () => {
-    setCursor(page + 1);
+    setPage(page + 1);
   };
 
-  const canGoBack = pageNr > 1;
-  const canGoForward = page < pageCount - 1;
+  const canGoBack = page > 1;
+  const canGoForward = page < pageCount;
 
   const onPrevious = () => {
-    setCursor(page - 1);
+    setPage(page - 1);
   };
 
   const goTo = (index: number) => () => {
-    setCursor(index);
+    setPage(index);
   };
 
+  useEffect(() => {
+    if (page > pageCount) {
+      setPage(clamp(page, 1, pageCount));
+    }
+  }, [page, pageCount]);
+
+  const shownButtons = getPagination(page, pageCount, 11);
+
   return (
-    <nav className={css.pagination}>
-      <Btn onClick={onPrevious} disabled={!canGoBack}>
-        Back
-      </Btn>
+    <div>
+      Pages count: {pageCount}
+      <nav className={css.paginationStack}>
+        <Btn onClick={onPrevious} disabled={!canGoBack}>
+          Back
+        </Btn>
 
-      <p style={{ whiteSpace: 'nowrap' }}>Page {pageNr}</p>
+        <div className={css.pages}>
+          {shownButtons.map((nr) => (
+            <Btn
+              className={css.mobileHidden}
+              key={nr}
+              onClick={goTo(nr)}
+              disabled={page === nr}
+            >
+              {nr}
+            </Btn>
+          ))}
+        </div>
 
-      {Array(pageCount)
-        .fill(null)
-        .map((_, pageIndex) => (
-          <Btn
-            className={css.mobileHidden}
-            key={pageIndex}
-            onClick={goTo(pageIndex)}
-            disabled={page === pageIndex}
-          >
-            {pageIndex + 1}
-          </Btn>
-        ))}
-
-      <div style={{ flex: 1 }} />
-
-      <Btn onClick={onNext} disabled={!canGoForward}>
-        Next
-      </Btn>
-    </nav>
+        <Btn onClick={onNext} disabled={!canGoForward}>
+          Next
+        </Btn>
+      </nav>
+    </div>
   );
 };
 
-export default Pagination;
+export default React.memo(Pagination);

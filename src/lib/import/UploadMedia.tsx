@@ -13,8 +13,8 @@ import {
   uploadFileToBackend,
   uploadQueue,
 } from '../../store/upload/uploadQueue';
-import { queryClient } from '../../App';
 import { ITEMS_KEY } from '../../api/itemsApi';
+import { queryClient } from '../../api/queryClient';
 
 type Props = {
   tags: string[];

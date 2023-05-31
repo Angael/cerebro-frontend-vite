@@ -2,8 +2,8 @@ import { QueryItems, FrontItem } from '@vanih/cerebro-contracts';
 import { API } from './api';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { queryClient } from '../App';
 import { useBrowseStore } from '../store/browse/browseStore';
+import { queryClient } from './queryClient';
 
 export const FETCH_ITEMS_KEY = (
   limit: number,

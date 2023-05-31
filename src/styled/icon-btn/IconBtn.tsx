@@ -13,10 +13,10 @@ type Props = { filled?: boolean; disabled?: boolean } & ComponentProps<
   typeof _Btn
 >;
 
-const IconBtn = ({ filled, ...props }: Props) => {
+const IconBtn = ({ filled, className, ...props }: Props) => {
   return (
     <_Btn
-      className={clsx(props.className, filled && css.filled)}
+      className={clsx(className, filled && css.filled)}
       tabIndex={0}
       {...props}
     />

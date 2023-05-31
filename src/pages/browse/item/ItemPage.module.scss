@@ -16,17 +16,17 @@
 }
 
 .iconBar {
-  z-index: #{util.$layer-modal + 1};
+  background: var(--c-bg-paper);
 
-  .iconCard {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
 
-    .InfoItemBtn,
-    .CloseItemBtn {
-      --iconSize: 48px;
-    }
+  .InfoItemBtn,
+  .CloseItemBtn {
+    --iconSize: 48px;
   }
 }
 

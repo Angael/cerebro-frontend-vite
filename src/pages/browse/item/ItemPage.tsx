@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import ItemView from '../../../lib/items/ItemView';
 import ItemDialog from '../../../lib/items/ItemDialog';
@@ -19,7 +19,7 @@ const ItemPage = () => {
 
   useWsadNav(itemId);
 
-  const [infoOpen, setInfoOpen] = React.useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
   const closeItem = () => navigate('/browse');
 
   const is404 = item.error?.response?.status === 404;
@@ -31,22 +31,20 @@ const ItemPage = () => {
   return (
     <ItemDialog open={!!itemId} onClose={closeItem}>
       <div className={css.iconBar}>
-        <Card className={css.iconCard}>
-          <IconBtn
-            title='Open media info'
-            className={css.InfoItemBtn}
-            onClick={() => setInfoOpen(!infoOpen)}
-          >
-            <Icon path={mdiInformationOutline} />
-          </IconBtn>
-          <IconBtn
-            title='Close modal'
-            className={css.CloseItemBtn}
-            onClick={closeItem}
-          >
-            <Icon path={mdiClose} />
-          </IconBtn>
-        </Card>
+        <IconBtn
+          title='Open media info'
+          className={css.InfoItemBtn}
+          onClick={() => setInfoOpen(!infoOpen)}
+        >
+          <Icon path={mdiInformationOutline} />
+        </IconBtn>
+        <IconBtn
+          title='Close modal'
+          className={css.CloseItemBtn}
+          onClick={closeItem}
+        >
+          <Icon path={mdiClose} />
+        </IconBtn>
       </div>
       <div className={css.itemContent}>
         {item.data && <ItemView item={item.data} />}

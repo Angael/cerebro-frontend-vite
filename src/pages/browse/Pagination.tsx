@@ -35,28 +35,31 @@ const Pagination = ({ page, setPage, pageCount }: Props) => {
   const shownButtons = getPagination(page, pageCount, 11);
 
   return (
-    <nav className={css.paginationStack}>
-      <Btn onClick={onPrevious} disabled={!canGoBack}>
-        Back
-      </Btn>
+    <div>
+      Pages count: {pageCount}
+      <nav className={css.paginationStack}>
+        <Btn onClick={onPrevious} disabled={!canGoBack}>
+          Back
+        </Btn>
 
-      <div className={css.pages}>
-        {shownButtons.map((nr) => (
-          <Btn
-            className={css.mobileHidden}
-            key={nr}
-            onClick={goTo(nr)}
-            disabled={page === nr}
-          >
-            {nr}
-          </Btn>
-        ))}
-      </div>
+        <div className={css.pages}>
+          {shownButtons.map((nr) => (
+            <Btn
+              className={css.mobileHidden}
+              key={nr}
+              onClick={goTo(nr)}
+              disabled={page === nr}
+            >
+              {nr}
+            </Btn>
+          ))}
+        </div>
 
-      <Btn onClick={onNext} disabled={!canGoForward}>
-        Next
-      </Btn>
-    </nav>
+        <Btn onClick={onNext} disabled={!canGoForward}>
+          Next
+        </Btn>
+      </nav>
+    </div>
   );
 };
 

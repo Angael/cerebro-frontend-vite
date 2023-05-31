@@ -7,13 +7,13 @@ import css from './ImportLocalPage.module.scss';
 import PreviewLocalFiles from '../../lib/local/PreviewLocalFiles';
 import Btn from '../../styled/btn/Btn';
 import { useLocalStore } from '../../lib/local/localStores';
-import { queryClient } from '../../App';
 import { deleteLocalFiles } from '../../api/local/deleteLocalFiles';
 import Card from '../../styled/card/Card';
 import { useTagInput } from '../import/useTagInput';
 import { CinemaItem } from '../../lib/cinema-viewer/CinemaViewer';
 import { getLocalSrc } from '../../lib/local/getLocalSrc';
 import Textfield from '../../styled/textfield/Textfield';
+import { queryClient } from '../../api/queryClient';
 
 const ImportLocalPage = () => {
   const [path, setPath] = useState('');

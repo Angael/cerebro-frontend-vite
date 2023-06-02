@@ -7,10 +7,11 @@ import { useWsadNav } from './useWsadNav';
 import css from './ItemPage.module.scss';
 import IconBtn from '../../../styled/icon-btn/IconBtn';
 import { Icon } from '@mdi/react';
-import { mdiClose, mdiInformationOutline } from '@mdi/js';
+import { mdiClose, mdiDelete, mdiInformationOutline } from '@mdi/js';
 import ItemDetails from '../../../lib/items/item-details/ItemDetails';
 import ItemTags from '../../../lib/items/item-details/ItemTags';
 import Card from '../../../styled/card/Card';
+import { deleteItemApi } from '../../../api/item/deleteItemApi';
 
 const ItemPage = () => {
   const navigate = useNavigate();
@@ -21,6 +22,13 @@ const ItemPage = () => {
 
   const [infoOpen, setInfoOpen] = useState(false);
   const closeItem = () => navigate('/browse');
+  const deleteItem = async () => {
+    if (item.data && confirm('Do you want to delete this item?')) {
+      deleteItemApi(item.data.id);
+
+      closeItem();
+    }
+  };
 
   const is404 = item.error?.response?.status === 404;
 
@@ -38,6 +46,15 @@ const ItemPage = () => {
         >
           <Icon path={mdiInformationOutline} />
         </IconBtn>
+        {item.data?.isMine && (
+          <IconBtn
+            title='Delete item'
+            className={css.DeleteItemBtn}
+            onClick={deleteItem}
+          >
+            <Icon path={mdiDelete} />
+          </IconBtn>
+        )}
         <IconBtn
           title='Close modal'
           className={css.CloseItemBtn}

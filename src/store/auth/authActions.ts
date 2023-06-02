@@ -6,11 +6,12 @@ import {
 } from 'firebase/auth';
 import { auth } from './firebase';
 import { API } from '../../api/api';
+import { queryClient } from '../../api/queryClient';
 
-export const logout = () => signOut(auth);
+export const logout = () => signOut(auth).then(queryClient.clear);
 
 export const logIn = async (email: string, password: string) =>
-  signInWithEmailAndPassword(auth, email, password);
+  signInWithEmailAndPassword(auth, email, password).then(queryClient.clear);
 
 export const register = (email: string, password: string) =>
   createUserWithEmailAndPassword(auth, email, password).then(

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import ProgressiveImage from 'react-progressive-graceful-image';
 
 import css from './ItemThumb.module.scss';
@@ -9,12 +9,15 @@ import { FrontItem } from '@vanih/cerebro-contracts';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import { itemUrl } from '../../../utils/routing/itemUrl';
+import Checkbox from '../../../styled/checkbox/Checkbox';
 
 interface IProps {
   item: FrontItem;
+  isSelected: boolean;
+  onSelect: (itemId: FrontItem['id']) => void;
 }
 
-const ItemThumb = ({ item }: IProps) => {
+const ItemThumb = ({ item, isSelected, onSelect }: IProps) => {
   const [err1, setErr] = useState(false);
 
   const iconSrc = item.icon || '';
@@ -26,8 +29,19 @@ const ItemThumb = ({ item }: IProps) => {
     setErr(true);
   };
 
+  const handleSelect = (e: ChangeEvent<HTMLInputElement>) => {
+    e.stopPropagation();
+    onSelect(item.id);
+  };
+
   return (
     <Link to={itemUrl(item.id)} className={clsx(css.itemBtn, gridSpanClass)}>
+      <Checkbox
+        className={css.checkMark}
+        checked={isSelected}
+        onChange={handleSelect}
+        onClick={(e) => e.stopPropagation()}
+      />
       <div className={css.thumbnailContainer}>
         {!thumbnailSrc && !iconSrc ? (
           <div

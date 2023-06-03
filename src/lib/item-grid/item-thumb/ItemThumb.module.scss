@@ -25,6 +25,12 @@
   &:focus-visible {
     opacity: 0.8;
   }
+
+  &.checkMark {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }
 
 .thumbnailContainer {

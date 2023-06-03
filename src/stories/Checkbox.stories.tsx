@@ -30,6 +30,7 @@ export const All: Story = {
         <input type='checkbox' {...args} />
         <input type='checkbox' {...args} checked />
         <input type='checkbox' {...args} disabled />
+        <input type='checkbox' {...args} disabled checked />
       </Stack>
     </>
   ),

@@ -39,22 +39,24 @@ const ItemPage = () => {
   return (
     <ItemDialog open={!!itemId} onClose={closeItem}>
       <div className={css.iconBar}>
-        <IconBtn
-          title='Open media info'
-          className={css.InfoItemBtn}
-          onClick={() => setInfoOpen(!infoOpen)}
-        >
-          <Icon path={mdiInformationOutline} />
-        </IconBtn>
-        {item.data?.isMine && (
+        <div className={css.row}>
           <IconBtn
-            title='Delete item'
-            className={css.DeleteItemBtn}
-            onClick={deleteItem}
+            title='Open media info'
+            className={css.InfoItemBtn}
+            onClick={() => setInfoOpen(!infoOpen)}
           >
-            <Icon path={mdiDelete} />
+            <Icon path={mdiInformationOutline} />
           </IconBtn>
-        )}
+          {item.data?.isMine && (
+            <IconBtn
+              title='Delete item'
+              className={css.DeleteItemBtn}
+              onClick={deleteItem}
+            >
+              <Icon path={mdiDelete} />
+            </IconBtn>
+          )}
+        </div>
         <IconBtn
           title='Close modal'
           className={css.CloseItemBtn}

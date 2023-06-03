@@ -1,0 +1,41 @@
+.checkbox {
+  all: unset;
+  display: block;
+
+  background-color: var(--c-bg-paper);
+  border: solid 2px var(--c-textSecondary); // Questionable color chosen for border
+
+  width: 16px;
+  height: 16px;
+  padding: 4px;
+
+  border-radius: 8px;
+  transition: 0.1s;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border-radius: 4px;
+  }
+
+  &:checked::after {
+    background-color: var(--c-primary);
+  }
+
+  &:disabled {
+    background-color: var(--c-disabled-bg);
+    color: var(--c-disabled-bg-text);
+    border-color: var(--c-disabled-bg);
+  }
+
+  &:hover:not(:disabled)::after {
+    background-color: var(--c-primary-hover);
+  }
+
+  &:active:not(:disabled) {
+    opacity: 0.8;
+  }
+}

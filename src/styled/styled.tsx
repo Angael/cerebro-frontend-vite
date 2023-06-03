@@ -10,6 +10,7 @@ export type StyledElementProps = { as?: ComponentType; className?: string };
 export function styled<T extends {} = ComponentPropsWithRef<'div'>>(
   defaultComponent: ComponentType,
   baseClassName: string,
+  defaultProps = {},
 ) {
   return ({
     as = defaultComponent,
@@ -17,6 +18,12 @@ export function styled<T extends {} = ComponentPropsWithRef<'div'>>(
     ...props
   }: StyledElementProps & T) => {
     const _Component = as;
-    return <_Component className={clsx(baseClassName, className)} {...props} />;
+    return (
+      <_Component
+        className={clsx(baseClassName, className)}
+        {...defaultProps}
+        {...props}
+      />
+    );
   };
 }

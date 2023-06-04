@@ -5,18 +5,20 @@
   position: sticky;
   top: 0;
 
-  backdrop-filter: blur(12px);
-  background-color: var(--c-bg-paper);
-
   z-index: util.$layer-navbar;
 
-  .navbarFlex {
-    @include util.container;
+  .navbarBg {
+    backdrop-filter: blur(12px);
+    background-color: var(--c-bg-paper);
 
-    display: flex;
-    align-items: center;
-    height: 100%;
-    gap: 12px;
-    padding: 16px;
+    .navbarFlex {
+      @include util.container;
+
+      display: flex;
+      align-items: center;
+      height: 100%;
+      gap: 12px;
+      padding: 16px;
+    }
   }
 }

@@ -15,6 +15,7 @@
 
   --c-bg: #f1f5f9;
   --c-bg-paper: #cbd5e1cc;
+  --c-border: color-mix(in srgb, var(--c-bg-paper), var(--c-text) 45%);
 
   --c-error: #dc2626;
 }
@@ -29,6 +30,7 @@
 
   --c-text: #f8fafc;
   --c-textSecondary: #94a3b8;
+  --c-border: color-mix(in srgb, var(--c-bg-paper), var(--c-text) 45%);
 
   --c-disabled-bg: #6b7280;
   --c-disabled-text: #4b5563;

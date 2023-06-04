@@ -1,0 +1,15 @@
+@use 'src/style/util';
+
+//noinspection CssOverwrittenProperties
+.selectItemBarBg {
+  background-color: var(--c-bg-paper);
+  background-color: color-mix(
+    in oklab,
+    var(--c-bg-paper) 100%,
+    var(--c-bg) 100%
+  );
+
+  .selectItemBarFlex {
+    @include util.container;
+  }
+}

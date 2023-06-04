@@ -23,9 +23,10 @@ export const useSelectItems$ = create<SelectItemsStore>((set) => ({
           selectedItems: [...s.selectedItems, id],
         };
       } else {
+        const selectedItems = s.selectedItems.filter((itemId) => itemId !== id);
         return {
-          turnedOn: true,
-          selectedItems: s.selectedItems.filter((itemId) => itemId !== id),
+          turnedOn: selectedItems.length > 0,
+          selectedItems: selectedItems,
         };
       }
     }),

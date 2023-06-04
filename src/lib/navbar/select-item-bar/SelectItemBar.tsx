@@ -13,9 +13,9 @@ const SelectItemBar = (props: Props) => {
     <div className={css.selectItemBarBg}>
       <Stack className={css.selectItemBarFlex}>
         <div>Selected items: {selectedItems.length}</div>
-        <Btn>Tag</Btn>
-        <Btn>Move to folder</Btn>
-        <Btn>Delete</Btn>
+        <Btn disabled>Tag</Btn>
+        <Btn disabled>Move to folder</Btn>
+        <Btn disabled>Delete</Btn>
         <Btn disabled>Report</Btn>
       </Stack>
     </div>

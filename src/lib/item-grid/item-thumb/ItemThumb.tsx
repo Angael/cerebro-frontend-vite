@@ -13,11 +13,12 @@ import Checkbox from '../../../styled/checkbox/Checkbox';
 
 interface IProps {
   item: FrontItem;
+  selectable: boolean;
   isSelected: boolean;
   onSelect: (itemId: FrontItem['id']) => void;
 }
 
-const ItemThumb = ({ item, isSelected, onSelect }: IProps) => {
+const ItemThumb = ({ item, selectable, isSelected, onSelect }: IProps) => {
   const [err1, setErr] = useState(false);
 
   const iconSrc = item.icon || '';
@@ -34,14 +35,30 @@ const ItemThumb = ({ item, isSelected, onSelect }: IProps) => {
     onSelect(item.id);
   };
 
+  const onShiftClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.shiftKey || e.ctrlKey || e.metaKey) {
+      e.preventDefault();
+      handleSelect(e as any);
+    }
+  };
+
   return (
-    <Link to={itemUrl(item.id)} className={clsx(css.itemBtn, gridSpanClass)}>
-      <Checkbox
-        className={css.checkMark}
-        checked={isSelected}
-        onChange={handleSelect}
-        onClick={(e) => e.stopPropagation()}
-      />
+    <Link
+      to={itemUrl(item.id)}
+      className={clsx(css.itemBtn, gridSpanClass, isSelected && css.selected)}
+      onClick={onShiftClick}
+    >
+      {selectable && (
+        <>
+          <Checkbox
+            className={css.checkMark}
+            checked={isSelected}
+            onChange={handleSelect}
+            onClick={(e) => e.stopPropagation()}
+          />
+          <div className={css.selectedOverlay} />
+        </>
+      )}
       <div className={css.thumbnailContainer}>
         {!thumbnailSrc && !iconSrc ? (
           <div

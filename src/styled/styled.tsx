@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, ElementType } from 'react';
+import React, { ComponentPropsWithRef, forwardRef } from 'react';
 import clsx from 'clsx';
 
 type ComponentType =
@@ -7,23 +7,25 @@ type ComponentType =
 
 export type StyledElementProps = { as?: ComponentType; className?: string };
 
-export function styled<T extends {} = ComponentPropsWithRef<'div'>>(
+export const styled = <T extends {} = ComponentPropsWithRef<'div'>>(
   defaultComponent: ComponentType,
   baseClassName: string,
   defaultProps = {},
-) {
-  return ({
-    as = defaultComponent,
-    className,
-    ...props
-  }: StyledElementProps & T) => {
-    const _Component = as;
-    return (
-      <_Component
-        className={clsx(baseClassName, className)}
-        {...defaultProps}
-        {...props}
-      />
-    );
-  };
-}
+) => {
+  return forwardRef(
+    (
+      { as = defaultComponent, className, ...props }: StyledElementProps & T,
+      ref,
+    ) => {
+      const _Component = as;
+      return (
+        <_Component
+          ref={ref}
+          className={clsx(baseClassName, className)}
+          {...defaultProps}
+          {...props}
+        />
+      );
+    },
+  );
+};

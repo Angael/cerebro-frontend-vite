@@ -11,9 +11,10 @@ type Props = {
   disabled?: boolean;
 } & ComponentPropsWithoutRef<typeof _Btn>;
 
-const IconBtn = ({ as = 'button', filled, className, ...props }: Props) => {
+const IconBtn = ({ as, filled, className, ...props }: Props) => {
   return (
     <_Btn
+      as={as}
       className={clsx(className, filled && css.filled)}
       tabIndex={0}
       {...props}

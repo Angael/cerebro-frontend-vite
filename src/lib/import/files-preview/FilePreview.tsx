@@ -5,7 +5,7 @@ import {
   ExtendedFile,
   UploadStatusEnum,
 } from '../../../store/upload/uploadTypes';
-import Btn from '../../../styled/btn/Btn';
+import { Btn, BtnA } from '../../../styled/btn/Btn';
 import ProgressOverlay from './ProgressOverlay';
 
 interface IProps {
@@ -51,9 +51,9 @@ const FilePreview = ({ file, onDelete }: IProps) => {
         </header>
 
         <div className={css.uploadFileActions}>
-          <Btn as='a' href={file.previewSrc} target='_blank'>
+          <BtnA href={file.previewSrc} target='_blank'>
             Open
-          </Btn>
+          </BtnA>
           <Btn color='error' onClick={() => onDelete(file.id)}>
             Delete
           </Btn>

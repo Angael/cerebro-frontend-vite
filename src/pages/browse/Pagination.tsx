@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo } from 'react';
-import Btn from '../../styled/btn/Btn';
+import React, { useEffect } from 'react';
+import { Btn } from '../../styled/btn/Btn';
 import css from './Pagination.module.scss';
 import clamp from 'clamp';
 import { getPagination } from './getPagination';

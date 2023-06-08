@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Btn from '../styled/btn/Btn';
 import { Stack } from '../styled/stack/Stack';
 import Checkbox from '../styled/checkbox/Checkbox';
 
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
   title: 'My Styled/Checkbox',
   component: Checkbox,

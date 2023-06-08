@@ -1,21 +1,14 @@
-import React, {
-  ComponentProps,
-  ComponentPropsWithRef,
-  HTMLAttributes,
-} from 'react';
+import React, { ComponentPropsWithoutRef, HTMLAttributes } from 'react';
 import css from './Textfield.module.scss';
 import { styled } from '../styled';
 
 type Props = {
   label: string;
-  input?: ComponentProps<'input'>;
+  input?: ComponentPropsWithoutRef<'input'>;
 } & HTMLAttributes<HTMLLabelElement>;
 
-const Label = styled<ComponentPropsWithRef<'label'>>(
-  'label',
-  css.textfieldLabel,
-);
-const Input = styled<ComponentProps<'input'>>('input', css.textfield);
+const Label = styled('label', css.textfieldLabel);
+const Input = styled('input', css.textfield);
 
 const Textfield = ({ label, input, ...others }: Props) => {
   return (

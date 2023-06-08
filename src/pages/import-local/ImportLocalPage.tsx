@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchLocalPath, postLocalFilesChange } from '../../api/local/localApi';
 import css from './ImportLocalPage.module.scss';
 import PreviewLocalFiles from '../../lib/local/PreviewLocalFiles';
-import Btn from '../../styled/btn/Btn';
+import { Btn } from '../../styled/btn/Btn';
 import { useLocalStore } from '../../lib/local/localStores';
 import { deleteLocalFiles } from '../../api/local/deleteLocalFiles';
 import Card from '../../styled/card/Card';

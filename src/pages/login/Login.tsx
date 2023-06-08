@@ -4,7 +4,7 @@ import { useAuthStore } from '../../store/auth/authStore';
 import LoginInputs from './LoginInputs';
 import { useNavigate } from 'react-router';
 import { logIn, logout } from '../../store/auth/authActions';
-import Btn from '../../styled/btn/Btn';
+import { Btn } from '../../styled/btn/Btn';
 import css from './LoginInputs.module.scss';
 
 const Login = () => {

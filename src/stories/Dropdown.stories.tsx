@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import DropdownExample from '../styled/dropdown/DropdownExample';
-import { Stack } from '../styled/stack/Stack';
-import Btn from '../styled/btn/Btn';
+import { Btn } from '../styled/btn/Btn';
 
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
   title: 'My Styled/Dropdown',
   component: DropdownExample,

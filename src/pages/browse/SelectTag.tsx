@@ -1,5 +1,5 @@
 import React from 'react';
-import Btn from '../../styled/btn/Btn';
+import { Btn } from '../../styled/btn/Btn';
 import { useTagsQuery } from '../../api/tags/fetchTags';
 import css from './SelectTag.module.scss';
 import Card from '../../styled/card/Card';

@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './SelectItemBar.module.scss';
 import { useSelectItems$ } from '../../../store/browse/selectItemsStore';
-import Btn from '../../../styled/btn/Btn';
+import { Btn } from '../../../styled/btn/Btn';
 import { Stack } from '../../../styled/stack/Stack';
 
 type Props = {};

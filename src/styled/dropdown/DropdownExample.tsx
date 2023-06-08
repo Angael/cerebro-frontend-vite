@@ -1,32 +1,31 @@
 import React, { ComponentProps } from 'react';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 import css from './Dropdown.module.scss';
+import {
+  DropdownContent,
+  DropdownItem,
+  DropdownPortal,
+  DropdownRoot,
+  DropdownTrigger,
+} from './Dropdown';
 
 type Props = ComponentProps<'div'> & {};
 
 const DropdownExample = ({ children }: Props) => {
   return (
-    <DropdownMenu.Root defaultOpen={true}>
-      <DropdownMenu.Trigger asChild>{children}</DropdownMenu.Trigger>
+    <DropdownRoot defaultOpen={true}>
+      <DropdownTrigger asChild>{children}</DropdownTrigger>
 
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content
-          className={css.DropdownMenuContent}
-          sideOffset={5}
-        >
-          <DropdownMenu.Item className={css.DropdownButton}>
-            New Tab
-          </DropdownMenu.Item>
-          <DropdownMenu.Item className={css.DropdownButton}>
-            New Window
-          </DropdownMenu.Item>
-          <DropdownMenu.Item className={css.DropdownButton} disabled>
+      <DropdownPortal>
+        <DropdownContent className={css.DropdownMenuContent} sideOffset={5}>
+          <DropdownItem className={css.DropdownButton}>New Tab</DropdownItem>
+          <DropdownItem className={css.DropdownButton}>New Window</DropdownItem>
+          <DropdownItem className={css.DropdownButton} disabled>
             New Private Window
-          </DropdownMenu.Item>
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
-    </DropdownMenu.Root>
+          </DropdownItem>
+        </DropdownContent>
+      </DropdownPortal>
+    </DropdownRoot>
   );
 };
 

@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Dropdown from '../styled/dropdown/Dropdown';
+import DropdownExample from '../styled/dropdown/DropdownExample';
 import { Stack } from '../styled/stack/Stack';
 import Btn from '../styled/btn/Btn';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
   title: 'My Styled/Dropdown',
-  component: Dropdown,
-} satisfies Meta<typeof Dropdown>;
+  component: DropdownExample,
+} satisfies Meta<typeof DropdownExample>;
 export default meta;
 
 type Story = StoryObj<typeof meta>;
@@ -30,9 +30,9 @@ type Story = StoryObj<typeof meta>;
 export const normal: Story = {
   render: () => (
     <div style={{ width: 300, margin: 'auto' }}>
-      <Dropdown>
+      <DropdownExample>
         <Btn>To jest dropdown</Btn>
-      </Dropdown>
+      </DropdownExample>
     </div>
   ),
 };

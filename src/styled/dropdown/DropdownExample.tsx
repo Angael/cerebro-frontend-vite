@@ -5,9 +5,9 @@ import css from './Dropdown.module.scss';
 
 type Props = ComponentProps<'div'> & {};
 
-const Dropdown = ({ children }: Props) => {
+const DropdownExample = ({ children }: Props) => {
   return (
-    <DropdownMenu.Root>
+    <DropdownMenu.Root defaultOpen={true}>
       <DropdownMenu.Trigger asChild>{children}</DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
@@ -24,15 +24,10 @@ const Dropdown = ({ children }: Props) => {
           <DropdownMenu.Item className={css.DropdownButton} disabled>
             New Private Window
           </DropdownMenu.Item>
-          <DropdownMenu.Sub>
-            <DropdownMenu.SubTrigger className={css.DropdownButton}>
-              More Tools
-            </DropdownMenu.SubTrigger>
-          </DropdownMenu.Sub>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
   );
 };
 
-export default Dropdown;
+export default DropdownExample;

@@ -1,3 +1,41 @@
-.dropdown {
-  color: red;
+@use 'src/style/util';
+@use 'src/style/shadow';
+
+.DropdownMenuContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  min-width: 160px;
+  background-color: var(--c-bg-paper);
+  padding: 5px;
+  border-radius: 12px;
+  @include shadow.small();
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+
+  .DropdownButton {
+    all: unset;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--c-primary-contrast);
+    border: var(--c-primary) 2px solid;
+    background-color: var(--c-primary);
+    padding: 4px 8px;
+    opacity: 0.8;
+    backdrop-filter: blur(12px);
+
+    &:first-of-type {
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+    }
+
+    &:last-of-type {
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+
+    @include util.button-states;
+  }
 }

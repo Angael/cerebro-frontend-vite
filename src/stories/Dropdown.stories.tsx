@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Dropdown from '../styled/dropdown/Dropdown';
 import { Stack } from '../styled/stack/Stack';
+import Btn from '../styled/btn/Btn';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
@@ -27,5 +28,11 @@ type Story = StoryObj<typeof meta>;
 // };
 
 export const normal: Story = {
-  render: () => <Dropdown>To jest dropdown</Dropdown>,
+  render: () => (
+    <div style={{ width: 300, margin: 'auto' }}>
+      <Dropdown>
+        <Btn>To jest dropdown</Btn>
+      </Dropdown>
+    </div>
+  ),
 };

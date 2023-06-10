@@ -5,7 +5,7 @@ import {
   useUploadStore,
   uploadStoreActions,
 } from '../../store/upload/uploadStore';
-import Btn from '../../styled/btn/Btn';
+import { Btn } from '../../styled/btn/Btn';
 import FilesPreview from './files-preview/FilesPreview';
 import css from './UploadMedia.module.scss';
 import FilesStats from './files-preview/FilesStats';

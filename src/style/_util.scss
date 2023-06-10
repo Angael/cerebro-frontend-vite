@@ -14,3 +14,25 @@ $containerWidth: 1000px;
   margin: auto;
   padding: 16px;
 }
+
+@mixin button-states {
+  &:hover,
+  &:focus-visible {
+    border-color: var(--c-primary-hover);
+    background-color: var(--c-primary-hover);
+  }
+
+  &:active {
+    border-color: var(--c-primary-active);
+    background-color: var(--c-primary-active);
+  }
+
+  &[disabled],
+  &[data-disabled] {
+    cursor: auto;
+    pointer-events: none;
+    color: var(--c-disabled-text);
+    background-color: var(--c-disabled-bg);
+    border-color: var(--c-disabled-bg);
+  }
+}

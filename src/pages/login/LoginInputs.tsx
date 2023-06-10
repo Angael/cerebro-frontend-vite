@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Btn from '../../styled/btn/Btn';
+import { Btn } from '../../styled/btn/Btn';
 import css from './LoginInputs.module.scss';
 import CircleLoader from '../../styled/loaders/CircleLoader';
 import Textfield from '../../styled/textfield/Textfield';

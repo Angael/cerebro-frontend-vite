@@ -1,3 +1,5 @@
+@use 'src/style/util';
+
 .btnStyle {
   all: unset;
 
@@ -17,22 +19,6 @@
   white-space: nowrap;
 
   transition: background-color 0.1s, color 0.1s, border 0.1s;
-  &:hover,
-  &:focus-visible {
-    border-color: var(--c-primary-hover);
-    background-color: var(--c-primary-hover);
-  }
 
-  &:active {
-    border-color: var(--c-primary-active);
-    background-color: var(--c-primary-active);
-  }
-
-  &[disabled] {
-    cursor: auto;
-    pointer-events: none;
-    color: var(--c-disabled-text);
-    background-color: var(--c-disabled-bg);
-    border-color: var(--c-disabled-bg);
-  }
+  @include util.button-states;
 }

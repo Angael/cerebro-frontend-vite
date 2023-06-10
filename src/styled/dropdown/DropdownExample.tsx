@@ -17,12 +17,10 @@ const DropdownExample = ({ children }: Props) => {
       <DropdownTrigger asChild>{children}</DropdownTrigger>
 
       <DropdownPortal>
-        <DropdownContent className={css.DropdownMenuContent} sideOffset={5}>
-          <DropdownItem className={css.DropdownButton}>New Tab</DropdownItem>
-          <DropdownItem className={css.DropdownButton}>New Window</DropdownItem>
-          <DropdownItem className={css.DropdownButton} disabled>
-            New Private Window
-          </DropdownItem>
+        <DropdownContent sideOffset={5}>
+          <DropdownItem>New Tab</DropdownItem>
+          <DropdownItem>New Window</DropdownItem>
+          <DropdownItem disabled>New Private Window</DropdownItem>
         </DropdownContent>
       </DropdownPortal>
     </DropdownRoot>

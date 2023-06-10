@@ -7,14 +7,19 @@
   flex-direction: column;
   gap: 4px;
 
+  overflow: auto;
+  max-height: 500px;
+
+  width: var(--radix-dropdown-menu-trigger-width);
   min-width: 160px;
+
   background-color: var(--c-bg-paper);
   padding: 5px;
   border-radius: 12px;
+
   @include shadow.small();
 
   animation: dropdownShow 0.4s animation.$ease-out-quart;
-  will-change: transform, opacity;
 
   .DropdownButton {
     all: unset;
@@ -24,16 +29,16 @@
     border: var(--c-primary) 2px solid;
     background-color: var(--c-primary);
     padding: 4px 8px;
-    backdrop-filter: blur(12px);
 
+    border-radius: 4px;
     &:first-of-type {
-      border-top-left-radius: 6px;
-      border-top-right-radius: 6px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
     }
 
     &:last-of-type {
-      border-bottom-left-radius: 6px;
-      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
     }
 
     @include util.button-states;

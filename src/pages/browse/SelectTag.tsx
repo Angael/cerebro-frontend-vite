@@ -4,6 +4,13 @@ import { useTagsQuery } from '../../api/tags/fetchTags';
 import css from './SelectTag.module.scss';
 import Card from '../../styled/card/Card';
 import { Tag } from '@vanih/cerebro-contracts';
+import {
+  DropdownContent,
+  DropdownItem,
+  DropdownPortal,
+  DropdownRoot,
+  DropdownTrigger,
+} from '../../styled/dropdown/Dropdown';
 
 type Props = {
   selectedTags: Tag[]; // Currenty support only one tag
@@ -18,18 +25,30 @@ const SelectTag = ({ selectedTags, setSelectedTags }: Props) => {
   return (
     <nav>
       <Card className={css.tagChips}>
-        <Btn onClick={() => setSelectedTags([])} disabled={!selectedTag}>
-          All
-        </Btn>
-        {tagsQuery.data?.map((tag) => (
-          <Btn
-            key={tag.id}
-            onClick={() => setSelectedTags([tag])}
-            disabled={tag.id === selectedTag?.id}
-          >
-            {tag.name}
-          </Btn>
-        ))}
+        <DropdownRoot>
+          <DropdownTrigger asChild>
+            <Btn>Tags: {selectedTag?.name ?? 'All'}</Btn>
+          </DropdownTrigger>
+          <DropdownPortal>
+            <DropdownContent>
+              <DropdownItem
+                onClick={() => setSelectedTags([])}
+                disabled={!selectedTag}
+              >
+                All
+              </DropdownItem>
+              {tagsQuery.data?.map((tag) => (
+                <DropdownItem
+                  key={tag.id}
+                  onClick={() => setSelectedTags([tag])}
+                  disabled={tag.id === selectedTag?.id}
+                >
+                  {tag.name}
+                </DropdownItem>
+              ))}
+            </DropdownContent>
+          </DropdownPortal>
+        </DropdownRoot>
       </Card>
     </nav>
   );

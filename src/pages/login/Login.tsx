@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import { logIn, logout } from '../../store/auth/authActions';
 import { Btn } from '../../styled/btn/Btn';
 import css from './LoginInputs.module.scss';
+import UsedSpace from '../../lib/used-space/UsedSpace';
 
 const Login = () => {
   const authState = useAuthStore();
@@ -25,7 +26,14 @@ const Login = () => {
     <Layout isMaxWidth>
       <main className={css.loginStack}>
         {authState.state === 'loggedIn' ? (
-          <Btn onClick={logout}>Log out</Btn>
+          <>
+            {/*welcome user*/}
+            <h1 className='h3'>Hey {authState.user?.email}</h1>
+            <p className='body2'>You are currently using:</p>
+            <UsedSpace />
+
+            <Btn onClick={logout}>Log out</Btn>
+          </>
         ) : (
           <LoginInputs
             fetching={fetching}

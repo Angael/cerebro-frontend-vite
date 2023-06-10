@@ -19,8 +19,6 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 4px;
-    margin-bottom: 8px;
   }
 
   @include breakpoints.onlyMobile {

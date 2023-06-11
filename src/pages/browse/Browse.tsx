@@ -12,6 +12,7 @@ import { Tag } from '@vanih/cerebro-contracts';
 import { useBrowseStore } from '../../store/browse/browseStore';
 import { PAGINATION_LIMIT } from '../../utils/consts';
 import { useAuthStore } from '../../store/auth/authStore';
+import TagEditor from '../../lib/tag-editor/TagEditor';
 
 const SelectTag = React.lazy(() => import('./SelectTag'));
 
@@ -56,6 +57,8 @@ const Browse = () => {
         <CircleLoader />
       )}
       <Pagination pageCount={pageCount} page={pageNr} setPage={setPage} />
+
+      <TagEditor />
     </Layout>
   );
 };

@@ -43,6 +43,18 @@
 
     @include util.button-states;
   }
+
+  // Style scrollbar
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--c-primary), transparent 50%);
+    border-radius: 8px;
+  }
 }
 
 @keyframes dropdownShow {

@@ -1,6 +1,10 @@
 import React from 'react';
 import numeral from 'numeral';
 import { ExtendedFile } from '../../../store/upload/uploadTypes';
+import css from './FilesStats.module.scss';
+import Card from '../../../styled/card/Card';
+import { Icon } from '@mdi/react';
+import { mdiChartLine, mdiHarddisk, mdiSigma, mdiSizeXl } from '@mdi/js';
 
 interface IProps {
   files: ExtendedFile[];
@@ -34,13 +38,29 @@ const FilesStats = ({ files }: IProps) => {
   }
 
   return (
-    <div>
-      <p>Sum size: {numeral(summedSize).format('0.00b')}</p>
-      <p>Average: {numeral(avgSize).format('0.00b')}</p>
-      <p>Biggest: {numeral(maxSize).format('0.00b')}</p>
-      <p>Smallest: {numeral(minSize).format('0.00b')}</p>
-      <p>{types.join(',')}</p>
-    </div>
+    <Card className={css.uploadFileStats}>
+      <div className={css.fileStat}>
+        <Icon path={mdiSigma} size={2} />
+        <p>{files.length}</p>
+        <p className='body2'>Files</p>
+      </div>
+      <div className={css.fileStat}>
+        <Icon path={mdiHarddisk} size={2} />
+        <p>{numeral(summedSize).format('0.00 b')}</p>
+        <p className='body2'>Sum</p>
+      </div>
+      <div className={css.fileStat}>
+        <Icon path={mdiChartLine} size={2} />
+        <p>{numeral(avgSize).format('0.00 b')}</p>
+        <p className='body2'>Avg</p>
+      </div>
+      <div className={css.fileStat}>
+        <Icon path={mdiSizeXl} size={2} />
+        <p>{numeral(maxSize).format('0.00 b')}</p>
+        <p className='body2'>Biggest</p>
+      </div>
+      {/*<p>{types.join(',')}</p>*/}
+    </Card>
   );
 };
 

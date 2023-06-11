@@ -3,7 +3,7 @@ import ProgressiveImage from 'react-progressive-graceful-image';
 
 import css from './ItemThumb.module.scss';
 import { getGridSpan } from './getGridSpan';
-import { mdiAlertCircleOutline, mdiClockOutline } from '@mdi/js';
+import { mdiAlertCircleOutline, mdiClockOutline, mdiEyeOff } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { FrontItem } from '@vanih/cerebro-contracts';
 import clsx from 'clsx';
@@ -58,6 +58,9 @@ const ItemThumb = ({ item, selectable, isSelected, onSelect }: IProps) => {
           />
           <div className={css.selectedOverlay} />
         </>
+      )}
+      {item.private && (
+        <Icon path={mdiEyeOff} size={1} className={css.private} />
       )}
       <div className={css.thumbnailContainer}>
         {!thumbnailSrc && !iconSrc ? (

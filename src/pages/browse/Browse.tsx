@@ -11,6 +11,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Tag } from '@vanih/cerebro-contracts';
 import { useBrowseStore } from '../../store/browse/browseStore';
 import { PAGINATION_LIMIT } from '../../utils/consts';
+import { useAuthStore } from '../../store/auth/authStore';
 
 const SelectTag = React.lazy(() => import('./SelectTag'));
 
@@ -28,11 +29,12 @@ const Browse = () => {
     set({ page: _page - 1 });
   };
 
+  const isAuthFinished = useAuthStore((s) => s.state !== 'wait');
   const itemsQuery = useQuery({
     queryKey: FETCH_ITEMS_KEY(limit, page, selectedTagIds),
     queryFn: () => fetchItems(limit, page, selectedTagIds),
     refetchInterval: 5 * 60 * 1000,
-    enabled: !outlet,
+    enabled: isAuthFinished && !outlet,
     keepPreviousData: true,
   });
 

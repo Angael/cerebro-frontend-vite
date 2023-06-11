@@ -1,5 +1,17 @@
 @use 'src/style/breakpoints';
 @use 'src/style/util';
+@use 'src/style/typography';
+
+.is404 {
+  @extend .h2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: var(--c-text);
+}
 
 .itemContent {
   grid-area: itemContent;

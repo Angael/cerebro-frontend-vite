@@ -27,12 +27,18 @@ const Login = () => {
       <main className={css.loginStack}>
         {authState.state === 'loggedIn' ? (
           <>
-            {/*welcome user*/}
-            <h1 className='h3'>Hey {authState.user?.email}</h1>
-            <p className='body2'>You are currently using:</p>
-            <UsedSpace />
+            <div>
+              <h1 className='h3'>Hey </h1>
+              <p>{authState.user?.email}</p>
+            </div>
+            <div>
+              <p className='body2'>You are currently using:</p>
+              <UsedSpace />
+            </div>
 
-            <Btn onClick={logout}>Log out</Btn>
+            <Btn onClick={logout} style={{ marginLeft: 'auto' }}>
+              Log out
+            </Btn>
           </>
         ) : (
           <LoginInputs

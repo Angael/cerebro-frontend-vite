@@ -32,10 +32,6 @@ const ItemPage = () => {
 
   const is404 = item.error?.response?.status === 404;
 
-  if (is404) {
-    return <h1 className='h1'>Item not found</h1>;
-  }
-
   return (
     <ItemDialog open={!!itemId} onClose={closeItem}>
       <div className={css.iconBar}>
@@ -66,6 +62,7 @@ const ItemPage = () => {
         </IconBtn>
       </div>
       <div className={css.itemContent}>
+        {is404 && <h1 className={css.is404}>Item not found</h1>}
         {item.data && <ItemView item={item.data} />}
         {infoOpen && (
           <Card className={css.ItemMenu}>

@@ -13,6 +13,7 @@ import { useBrowseStore } from '../../store/browse/browseStore';
 import { PAGINATION_LIMIT } from '../../utils/consts';
 import { useAuthStore } from '../../store/auth/authStore';
 import TagEditor from '../../lib/tag-editor/TagEditor';
+import ItemFolderList from '../../lib/item-folder/ItemFolderList';
 
 const SelectTag = React.lazy(() => import('./SelectTag'));
 
@@ -48,6 +49,7 @@ const Browse = () => {
       <Suspense fallback={null}>
         <SelectTag selectedTags={selectedTags} setSelectedTags={changeTags} />
       </Suspense>
+      <ItemFolderList />
       <Pagination pageCount={pageCount} page={pageNr} setPage={setPage} />
       {itemsQuery.data && <ItemGrid items={itemsQuery.data.items} />}
       {itemsQuery.isError && itemsQuery.data?.items.length === 0 && (

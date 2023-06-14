@@ -11,5 +11,7 @@
 
   .selectItemBarFlex {
     @include util.container;
+
+    overflow-x: auto;
   }
 }

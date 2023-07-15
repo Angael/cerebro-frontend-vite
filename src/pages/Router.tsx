@@ -39,7 +39,11 @@ const routes: RouteObject[] = [
   },
   {
     path: '/account',
-    element: <Account />,
+    element: (
+      <ProtectedPath>
+        <Account />
+      </ProtectedPath>
+    ),
   },
   {
     path: '/import',

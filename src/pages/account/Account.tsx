@@ -8,6 +8,7 @@ import { useAuth } from '../../store/auth/authStore';
 import Card from '../../styled/card/Card';
 import Layout from '../../lib/layout/Layout';
 import css from './Account.module.scss';
+import UpgradeAccount from './upgrade-account/UpgradeAccount';
 
 type Props = {};
 
@@ -25,10 +26,14 @@ const Account = (props: Props) => {
     <Layout isMaxWidth className={css.stack}>
       <Card>
         <div>
-          <h1 className='h3'>Hey </h1>
-          <p>{user?.email}</p>
+          <h1 className='h3'>
+            Hey <div className='body1'>{user?.email}</div>
+          </h1>
         </div>
       </Card>
+
+      <UpgradeAccount />
+
       <Card>
         <div>
           <p className='body2'>You are currently using:</p>

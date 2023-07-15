@@ -17,8 +17,26 @@ interface AuthStore {
 export const useAuthStore = create<AuthStore>((set) => ({
   user: null,
   token: null,
-  state: AUTH_STATE.wait,
+  state: 'wait',
 }));
+
+// Simple
+export const useLoggedIn = () =>
+  useAuthStore((s) => s.state === AUTH_STATE.loggedIn);
+
+// Less simple
+export const useAuth = () => {
+  const { user, token, state } = useAuthStore();
+
+  const loggedIn = state === AUTH_STATE.loggedIn;
+
+  return {
+    user,
+    token,
+    state,
+    loggedIn,
+  };
+};
 
 // API
 

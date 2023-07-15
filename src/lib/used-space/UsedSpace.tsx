@@ -13,18 +13,26 @@ const UsedSpace: FunctionComponent<Props> = ({}) => {
     ? (100 * limits.data.bytes.used) / limits.data.bytes.max
     : 0;
 
+  let backgroundColor: string | undefined;
+  if (value > 80 && value < 95) {
+    backgroundColor = 'var(--c-warning)';
+  } else if (value >= 95) {
+    backgroundColor = 'var(--c-error)';
+  }
+
   return (
     <div>
       <p>
         {limits.isFetched
           ? numeral(limits.data?.bytes.used).format('0.00 b')
           : '...'}{' '}
-        / {numeral(limits.data?.bytes.max).format('0.00 b')}
+        / {numeral(limits.data?.bytes.max).format('0.00 b')} ({value.toFixed(2)}
+        %)
       </p>
       <Progress.Root className={css.ProgressRoot} value={value}>
         <Progress.Indicator
           className={css.ProgressIndicator}
-          style={{ transform: `translateX(-${100 - value}%)` }}
+          style={{ transform: `translateX(-${100 - value}%)`, backgroundColor }}
         />
       </Progress.Root>
     </div>

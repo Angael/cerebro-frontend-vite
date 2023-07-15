@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../../lib/layout/Layout';
-import { useAuthStore } from '../../store/auth/authStore';
+import { useLoggedIn } from '../../store/auth/authStore';
 import LoginInputs from './LoginInputs';
 import { useNavigate } from 'react-router';
-import { logIn, logout } from '../../store/auth/authActions';
-import { Btn } from '../../styled/btn/Btn';
+import { logIn } from '../../store/auth/authActions';
 import css from './LoginInputs.module.scss';
-import UsedSpace from '../../lib/used-space/UsedSpace';
 
 const Login = () => {
-  const authState = useAuthStore();
+  const loggedIn = useLoggedIn();
   const navigate = useNavigate();
   const [fetching, setFetching] = useState(false);
 
@@ -22,31 +20,20 @@ const Login = () => {
       .finally(() => setFetching(false));
   };
 
+  useEffect(() => {
+    if (loggedIn) {
+      navigate('/');
+    }
+  }, [loggedIn]);
+
   return (
     <Layout isMaxWidth>
       <main className={css.loginStack}>
-        {authState.state === 'loggedIn' ? (
-          <>
-            <div>
-              <h1 className='h3'>Hey </h1>
-              <p>{authState.user?.email}</p>
-            </div>
-            <div>
-              <p className='body2'>You are currently using:</p>
-              <UsedSpace />
-            </div>
-
-            <Btn onClick={logout} style={{ marginLeft: 'auto' }}>
-              Log out
-            </Btn>
-          </>
-        ) : (
-          <LoginInputs
-            fetching={fetching}
-            onOk={onLogin}
-            isRegistration={false}
-          />
-        )}
+        <LoginInputs
+          fetching={fetching}
+          onOk={onLogin}
+          isRegistration={false}
+        />
       </main>
     </Layout>
   );

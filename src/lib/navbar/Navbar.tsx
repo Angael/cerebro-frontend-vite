@@ -4,23 +4,22 @@ import {
   mdiAccount,
   mdiCompass,
   mdiFolder,
-  mdiPlus,
-  mdiViewGrid,
   mdiLightbulbOn,
   mdiLightbulbOutline,
+  mdiPlus,
+  mdiViewGrid,
 } from '@mdi/js';
 import { NavLink } from 'react-router-dom';
 import css from './Navbar.module.scss';
 import IconBtn from '../../styled/icon-btn/IconBtn';
-import { useAuthStore } from '../../store/auth/authStore';
+import { useLoggedIn } from '../../store/auth/authStore';
 import { useDarkTheme } from '../../utils/useDarkTheme';
 import { isProd } from '../../env';
 import { useSelectItems$ } from '../../store/browse/selectItemsStore';
 import SelectItemBar from './select-item-bar/SelectItemBar';
 
 const Navbar = () => {
-  const { state } = useAuthStore();
-  const isLoggedIn = state === 'loggedIn';
+  const loggedIn = useLoggedIn();
   const [darkTheme, setDarkTheme] = useDarkTheme();
 
   const showSelectedItemsBar = useSelectItems$((s) => s.turnedOn);
@@ -36,7 +35,7 @@ const Navbar = () => {
             {/*</IconBtn>*/}
           </div>
 
-          {isLoggedIn && (
+          {loggedIn && (
             <>
               <IconBtn as={NavLink} to='/import' title='Import media'>
                 <Icon path={mdiPlus} />
@@ -65,7 +64,7 @@ const Navbar = () => {
             />
           </IconBtn>
 
-          <IconBtn as={NavLink} to='/login'>
+          <IconBtn as={NavLink} to={loggedIn ? '/account' : '/login'}>
             <Icon path={mdiAccount} size={1} />
           </IconBtn>
         </div>

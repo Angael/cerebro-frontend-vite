@@ -8,6 +8,8 @@ import ImportPage from './import/ImportPage';
 import Login from './login/Login';
 import ProtectedPath from './ProtectedPath';
 import { isProd } from '../env';
+import Account from './account/Account';
+
 const ImportLocalPage = React.lazy(
   () => import('./import-local/ImportLocalPage'),
 );
@@ -34,6 +36,10 @@ const routes: RouteObject[] = [
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path: '/account',
+    element: <Account />,
   },
   {
     path: '/import',

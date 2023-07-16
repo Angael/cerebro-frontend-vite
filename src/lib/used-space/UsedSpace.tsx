@@ -9,9 +9,16 @@ type Props = {};
 const UsedSpace: FunctionComponent<Props> = ({}) => {
   const limits = useUsedSpaceQuery();
 
-  const value = limits.data
-    ? (100 * limits.data.bytes.used) / limits.data.bytes.max
-    : 0;
+  let value: number;
+  if (limits.data?.bytes.max) {
+    value = limits.data
+      ? (100 * limits.data.bytes.used) / limits.data.bytes.max
+      : 0;
+  } else if (limits.data?.bytes.used) {
+    value = 100;
+  } else {
+    value = 0;
+  }
 
   let backgroundColor: string | undefined;
   if (value > 80 && value < 95) {

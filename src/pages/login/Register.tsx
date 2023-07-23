@@ -3,7 +3,7 @@ import Layout from '../../lib/layout/Layout';
 import { useLoggedIn } from '../../store/auth/authStore';
 import LoginInputs from './LoginInputs';
 import { useNavigate } from 'react-router';
-import { logIn } from '../../store/auth/authActions';
+import { logIn, register } from '../../store/auth/authActions';
 import css from './LoginInputs.module.scss';
 import { NavLink } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ const Login = () => {
   const onLogin = (email: string, password: string) => {
     setErr(null);
     setFetching(true);
-    logIn(email, password)
+    register(email, password)
       .then(() => navigate('/home'))
       .catch((e) => setErr(e.code))
       .finally(() => setFetching(false));
@@ -32,16 +32,16 @@ const Login = () => {
     <Layout isMaxWidth>
       <main className={css.loginStack}>
         <h1 className='h1' style={{ textAlign: 'center', marginBottom: 16 }}>
-          Login
+          Register
         </h1>
         <LoginInputs
           fetching={fetching}
           onOk={onLogin}
           err={err}
-          isRegistration={false}
+          isRegistration
         />
-        <NavLink to={'/register'} style={{ marginLeft: 'auto' }}>
-          Create account
+        <NavLink to={'/login'} style={{ marginLeft: 'auto' }}>
+          Log in
         </NavLink>
       </main>
     </Layout>

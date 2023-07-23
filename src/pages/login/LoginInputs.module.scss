@@ -16,3 +16,8 @@
   position: relative;
   align-self: flex-end;
 }
+
+.errHelper {
+  font-size: 0.8rem;
+  color: var(--c-error);
+}

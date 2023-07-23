@@ -3,14 +3,16 @@ import { Btn } from '../../styled/btn/Btn';
 import css from './LoginInputs.module.scss';
 import CircleLoader from '../../styled/loaders/CircleLoader';
 import Textfield from '../../styled/textfield/Textfield';
+import { authErrorMap } from './errorMsgMap';
 
 interface IProps {
   fetching: boolean;
   onOk: (email: string, password: string) => void;
+  err?: string | null;
   isRegistration: boolean;
 }
 
-const LoginInputs = ({ fetching, onOk, isRegistration }: IProps) => {
+const LoginInputs = ({ fetching, onOk, isRegistration, err }: IProps) => {
   // register email and passwords
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -27,10 +29,6 @@ const LoginInputs = ({ fetching, onOk, isRegistration }: IProps) => {
 
   return (
     <>
-      <h1 className='h1' style={{ textAlign: 'center', marginBottom: 16 }}>
-        Login
-      </h1>
-
       <Textfield
         label='Email'
         input={{
@@ -71,6 +69,8 @@ const LoginInputs = ({ fetching, onOk, isRegistration }: IProps) => {
           {!passwordsMatch && <p>Passwords don't match </p>}
         </>
       )}
+
+      {err && <p className={css.errHelper}>{authErrorMap.get(err) ?? err}</p>}
 
       <Btn
         className={css.loginButton}

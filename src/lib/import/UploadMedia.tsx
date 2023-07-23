@@ -81,7 +81,7 @@ const UploadMedia = ({ tags }: Props) => {
         </Btn>
       </div>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={null}>
         <FilesPreview
           files={files}
           onDelete={uploadStoreActions.removeOne}

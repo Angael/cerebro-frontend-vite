@@ -5,12 +5,15 @@ import css from './FilesStats.module.scss';
 import Card from '../../../styled/card/Card';
 import { Icon } from '@mdi/react';
 import { mdiChartLine, mdiHarddisk, mdiSigma, mdiSizeXl } from '@mdi/js';
+import { useUsedSpaceQuery } from '../../../api/usedSpaceApi';
 
 interface IProps {
   files: ExtendedFile[];
 }
 
 const FilesStats = ({ files }: IProps) => {
+  const limits = useUsedSpaceQuery();
+
   let summedSize, avgSize, minSize, maxSize;
   let types: string[] = [];
   if (!files || !files.length) {
@@ -33,6 +36,12 @@ const FilesStats = ({ files }: IProps) => {
     maxSize = Math.max(...sizes);
   }
 
+  const freeSpace = limits.data
+    ? limits.data?.bytes.max - limits.data?.bytes.used
+    : 0;
+
+  const isOverLimit = freeSpace < summedSize;
+
   if (files.length < 2) {
     return null;
   }
@@ -44,7 +53,7 @@ const FilesStats = ({ files }: IProps) => {
         <p>{files.length}</p>
         <p className='body2'>Files</p>
       </div>
-      <div className={css.fileStat}>
+      <div className={`${css.fileStat} ${isOverLimit ? css.overLimit : null}`}>
         <Icon path={mdiHarddisk} size={2} />
         <p>{numeral(summedSize).format('0.00 b')}</p>
         <p className='body2'>Sum</p>

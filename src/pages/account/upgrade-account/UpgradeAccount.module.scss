@@ -1,5 +1,12 @@
-.vstack {
+.hstack {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+}
+
+.accountButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-end;
 }

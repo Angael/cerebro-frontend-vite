@@ -19,6 +19,14 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    &.overLimit {
+      color: var(--c-error);
+
+      > p {
+        color: var(--c-error);
+      }
+    }
   }
 
   @include breakpoints.onlyMobile {

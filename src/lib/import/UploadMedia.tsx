@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { ExtendedFile, UploadStatusEnum } from '../../store/upload/uploadTypes';
 import { nanoid } from 'nanoid';
 import {
@@ -6,7 +6,6 @@ import {
   uploadStoreActions,
 } from '../../store/upload/uploadStore';
 import { Btn } from '../../styled/btn/Btn';
-import FilesPreview from './files-preview/FilesPreview';
 import css from './UploadMedia.module.scss';
 import FilesStats from './files-preview/FilesStats';
 import {
@@ -16,6 +15,8 @@ import {
 import { ITEMS_KEY } from '../../api/itemsApi';
 import { queryClient } from '../../api/queryClient';
 
+const FilesPreview = React.lazy(() => import('./files-preview/FilesPreview'));
+
 type Props = {
   tags: string[];
 };
@@ -23,22 +24,24 @@ type Props = {
 const UploadMedia = ({ tags }: Props) => {
   const { files } = useUploadStore();
 
-  const addFiles = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const addFiles = (acceptedFiles: File[]) => {
+    const files: ExtendedFile[] = acceptedFiles.map((file) => ({
+      file,
+      id: nanoid(),
+      previewSrc: URL.createObjectURL(file),
+      uploadProgress: 0,
+      uploadStatus: UploadStatusEnum.notStarted,
+    }));
+
+    uploadStoreActions.add(files);
+  };
+
+  const onInputFiles = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) {
       return;
     }
 
-    const files: ExtendedFile[] = Array.from(event.target.files).map(
-      (file) => ({
-        file,
-        id: nanoid(),
-        previewSrc: URL.createObjectURL(file),
-        uploadProgress: 0,
-        uploadStatus: UploadStatusEnum.notStarted,
-      }),
-    );
-
-    uploadStoreActions.add(files);
+    addFiles(Array.from(event.target.files));
   };
 
   const upload = () => {
@@ -68,7 +71,7 @@ const UploadMedia = ({ tags }: Props) => {
             multiple
             id='contained-button-file'
             style={{ display: 'none' }}
-            onChange={addFiles}
+            onChange={onInputFiles}
           />
           <Btn as='div'>Add files...</Btn>
         </label>
@@ -78,7 +81,13 @@ const UploadMedia = ({ tags }: Props) => {
         </Btn>
       </div>
 
-      <FilesPreview files={files} onDelete={uploadStoreActions.removeOne} />
+      <Suspense fallback={null}>
+        <FilesPreview
+          files={files}
+          onDelete={uploadStoreActions.removeOne}
+          onAddFiles={addFiles}
+        />
+      </Suspense>
 
       <FilesStats files={files} />
     </>

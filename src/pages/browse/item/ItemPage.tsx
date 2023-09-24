@@ -34,6 +34,13 @@ const ItemPage = () => {
 
   const is404 = item.error?.response?.status === 404;
 
+  const enterFullscreen = () => {
+    // Hacky, TODO change to event propagation
+    document
+      .querySelector('video')
+      ?.requestFullscreen({ navigationUI: 'hide' });
+  };
+
   return (
     <Dialog isOpen={!!itemId} setOpen={closeItem} className={css.dialog}>
       <div className={css.itemView}>
@@ -53,9 +60,8 @@ const ItemPage = () => {
 
           <IconBtn
             title='Maximize'
-            disabled
             className={css.icon}
-            onClick={console.log}
+            onClick={enterFullscreen}
           >
             <Icon path={mdiFullscreen} />
           </IconBtn>

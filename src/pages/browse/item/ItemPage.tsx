@@ -79,10 +79,10 @@ const ItemPage = () => {
         )}
 
         {item.data?.isMine && (
-          <Card>
-            <Btn className={css.deleteItemBtn} onClick={deleteItem}>
-              Delete item
-            </Btn>
+          <Card className={css.itemActions}>
+            <Btn disabled>Optimize</Btn>
+            <Btn disabled>Edit</Btn>
+            <Btn onClick={deleteItem}>Delete</Btn>
           </Card>
         )}
 

@@ -14,11 +14,18 @@ const ImageView = ({ item }: Props) => {
 
   const placeholder = item.thumbnail;
 
+  const { width, height } = item.image;
+  const style = {
+    '--width': `${width}px`,
+    '--height': `${height}px`,
+  } as React.CSSProperties;
+
   return (
     <ProgressiveImage src={item.image.src} placeholder={placeholder ?? ''}>
       {(src: string) => (
         <img
-          className={css.modalImage}
+          className={css.itemImage}
+          style={style}
           src={src}
           alt='Viewed uploaded media item'
         />

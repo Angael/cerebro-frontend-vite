@@ -6,7 +6,7 @@
   background-color: rgba(0 0 0 / 50%);
   position: fixed;
   inset: 0;
-  animation: overlayShow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: overlayShow 0.2s var(--anim-open);
   z-index: util.$layer-modal;
   backdrop-filter: blur(20px);
 

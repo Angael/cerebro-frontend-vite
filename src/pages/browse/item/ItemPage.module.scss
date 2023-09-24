@@ -2,6 +2,40 @@
 @use 'src/style/util';
 @use 'src/style/typography';
 
+.dialog {
+  $enter: 350ms;
+  animation: show $enter var(--anim-open);
+  border: none;
+  outline: none;
+  border-radius: 12px;
+
+  max-width: 1200px;
+
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  @include breakpoints.up(960px) {
+    flex-direction: row;
+  }
+
+  // todo: ?
+  background-color: rgba(0 0 0 / 70%);
+
+  &::backdrop {
+    animation: show $enter var(--anim-open);
+    background-color: rgba(0 0 0 / 70%);
+  }
+
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
 .is404 {
   @extend .h2;
 
@@ -13,53 +47,27 @@
   color: var(--c-text);
 }
 
-.itemContent {
-  grid-area: itemContent;
-  position: relative;
+.itemView {
   flex: 1;
-  overflow: hidden;
-}
-
-.ItemMenu {
-  position: absolute;
-  top: 0;
-  left: 0;
-  animation: menuShow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.iconBar {
-  background: var(--c-bg-paper);
-
   display: flex;
-  justify-content: space-between;
-  padding: 4px 12px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-
-  .row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .InfoItemBtn,
-  .CloseItemBtn,
-  .DeleteItemBtn {
-    --iconSize: 48px;
-  }
-
-  .DeleteItemBtn {
-    color: var(--c-error);
-  }
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes menuShow {
-  from {
-    transform: translateY(-50px);
-    opacity: 0;
+.itemDetailsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .icon {
+    --iconSize: 32px;
   }
-  to {
-    transform: translateY(0);
-    opacity: 1;
+
+  .itemActions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
   }
 }

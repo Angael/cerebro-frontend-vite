@@ -16,7 +16,7 @@
   "dependencies": {
     "@mdi/js": "^7.1.96",
     "@mdi/react": "^1.6.1",
-    "@radix-ui/react-dialog": "^1.0.2",
+    "@radix-ui/react-dialog": "^1.0.4",
     "@radix-ui/react-dropdown-menu": "^2.0.5",
     "@radix-ui/react-progress": "^1.0.1",
     "@tanstack/react-query": "^4.24.9",
@@ -29,6 +29,7 @@
     "p-queue": "^7.3.4",
     "primereact": "^9.2.3",
     "react": "^18.2.0",
+    "react-dialog-element": "^1.1.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-progressive-graceful-image": "^0.7.0",

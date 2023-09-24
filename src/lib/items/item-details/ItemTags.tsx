@@ -1,6 +1,7 @@
 import React from 'react';
 import { FrontItem } from '@vanih/cerebro-contracts';
 import { useItemTagsQuery } from '../../../api/item/fetchTags';
+import css from './ItemTags.module.scss';
 
 type Props = {
   item: FrontItem;
@@ -15,10 +16,9 @@ const ItemTags = ({ item }: Props) => {
 
   return (
     <section>
-      <p>Tags:</p>
-      <ul>
+      <ul className={css.tagsWrapper}>
         {tagsQuery.data?.map((tag) => (
-          <li className='body1' key={tag.id}>
+          <li className={css.tag} key={tag.id}>
             {tag.name}
           </li>
         ))}

@@ -2,6 +2,44 @@
 @use 'src/style/util';
 @use 'src/style/typography';
 
+$col-breakpoint: 960px;
+
+.dialog {
+  $enter: 350ms;
+  animation: show $enter var(--anim-open);
+  border: none;
+  outline: none;
+  margin: auto;
+  padding: 16px;
+  border-radius: 12px;
+
+  max-width: 1200px;
+  max-height: 100vh;
+
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  @include breakpoints.up($col-breakpoint) {
+    flex-direction: row;
+  }
+
+  background-color: rgba(0 0 0 / 70%);
+
+  &::backdrop {
+    animation: show $enter var(--anim-open);
+    background-color: rgba(0 0 0 / 70%);
+  }
+
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
 .is404 {
   @extend .h2;
 
@@ -13,53 +51,40 @@
   color: var(--c-text);
 }
 
-.itemContent {
-  grid-area: itemContent;
+.itemView {
   position: relative;
   flex: 1;
-  overflow: hidden;
-}
-
-.ItemMenu {
-  position: absolute;
-  top: 0;
-  left: 0;
-  animation: menuShow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.iconBar {
-  background: var(--c-bg-paper);
-
   display: flex;
-  justify-content: space-between;
-  padding: 4px 12px;
-  border-radius: 8px;
-  margin-bottom: 8px;
+  justify-content: center;
 
-  .row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .InfoItemBtn,
-  .CloseItemBtn,
-  .DeleteItemBtn {
-    --iconSize: 48px;
-  }
-
-  .DeleteItemBtn {
-    color: var(--c-error);
+  max-height: 75vh;
+  @include breakpoints.up($col-breakpoint) {
+    max-height: unset;
+    align-items: center; // This breaks mobile max-height: 70vh;
   }
 }
 
-@keyframes menuShow {
-  from {
-    transform: translateY(-50px);
-    opacity: 0;
+.itemDetailsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .icon {
+    --iconSize: 32px;
   }
-  to {
-    transform: translateY(0);
-    opacity: 1;
+
+  .itemActions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .qualitySelector {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
   }
 }

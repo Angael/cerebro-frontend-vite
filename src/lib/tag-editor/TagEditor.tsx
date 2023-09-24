@@ -24,6 +24,7 @@ const TagEditor = (props: Props) => {
     setOpen(false);
   };
 
+  // TODO: remove radix ui dialog and use your own
   return (
     <Dialog.Root open={opened}>
       <Dialog.Portal>

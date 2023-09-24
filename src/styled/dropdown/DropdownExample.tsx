@@ -13,7 +13,7 @@ type Props = ComponentProps<'div'> & {};
 
 const DropdownExample = ({ children }: Props) => {
   return (
-    <DropdownRoot defaultOpen={true}>
+    <DropdownRoot defaultOpen>
       <DropdownTrigger asChild>{children}</DropdownTrigger>
 
       <DropdownPortal>

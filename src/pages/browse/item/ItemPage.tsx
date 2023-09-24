@@ -14,6 +14,7 @@ import ItemTags from '../../../lib/items/item-details/ItemTags';
 import Card from '../../../styled/card/Card';
 import { deleteItemApi } from '../../../api/item/deleteItemApi';
 import { Btn } from '../../../styled/btn/Btn';
+import QualityDropdown from './QualityDropdown';
 
 const ItemPage = () => {
   const navigate = useNavigate();
@@ -41,11 +42,21 @@ const ItemPage = () => {
       </div>
       <div className={css.itemDetailsColumn}>
         <Card className={css.itemActions}>
-          <IconBtn title='Download' className={css.icon} onClick={console.log}>
+          <IconBtn
+            title='Download'
+            disabled
+            className={css.icon}
+            onClick={console.log}
+          >
             <Icon path={mdiDownload} />
           </IconBtn>
 
-          <IconBtn title='Maximize' className={css.icon} onClick={console.log}>
+          <IconBtn
+            title='Maximize'
+            disabled
+            className={css.icon}
+            onClick={console.log}
+          >
             <Icon path={mdiFullscreen} />
           </IconBtn>
 
@@ -53,6 +64,13 @@ const ItemPage = () => {
             <Icon path={mdiClose} />
           </IconBtn>
         </Card>
+
+        {item.data && (
+          <Card className={css.qualitySelector}>
+            Select Quality:
+            <QualityDropdown item={item.data} />
+          </Card>
+        )}
 
         {item.data?.isMine && (
           <Card>

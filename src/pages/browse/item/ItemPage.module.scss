@@ -2,23 +2,27 @@
 @use 'src/style/util';
 @use 'src/style/typography';
 
+$col-breakpoint: 960px;
+
 .dialog {
   $enter: 350ms;
   animation: show $enter var(--anim-open);
   border: none;
   outline: none;
+  margin: 0 auto;
+  padding: 16px;
   border-radius: 12px;
 
   max-width: 1200px;
+  max-height: 100vh;
 
   display: flex;
   gap: 16px;
   flex-direction: column;
-  @include breakpoints.up(960px) {
+  @include breakpoints.up($col-breakpoint) {
     flex-direction: row;
   }
 
-  // todo: ?
   background-color: rgba(0 0 0 / 70%);
 
   &::backdrop {
@@ -48,10 +52,16 @@
 }
 
 .itemView {
+  position: relative;
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+
+  max-height: 75vh;
+  @include breakpoints.up($col-breakpoint) {
+    max-height: unset;
+    align-items: center; // This breaks mobile max-height: 70vh;
+  }
 }
 
 .itemDetailsColumn {

@@ -49,10 +49,7 @@ const UploadMedia = ({ tags }: Props) => {
       );
     });
 
-    uploadQueue.onIdle().then(() => {
-      alert('queue stopped');
-      queryClient.invalidateQueries([ITEMS_KEY]);
-    });
+    uploadQueue.onIdle().then(() => queryClient.invalidateQueries([ITEMS_KEY]));
   };
 
   return (

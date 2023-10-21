@@ -2,6 +2,7 @@ import React from 'react';
 import Textfield from '../../../styled/textfield/Textfield';
 import { Btn } from '../../../styled/btn/Btn';
 import { uploadFileFromLink } from '../../../api/uploads/uploadFileFromLink';
+import css from './ImportFromLink.module.scss';
 
 type Props = {
   tags: string[];
@@ -19,17 +20,15 @@ const ImportFromLink = ({ tags }: Props) => {
     }
   };
 
-  const downloadFromLink = () => {
-    uploadFileFromLink(link, tags);
-  };
+  const downloadFromLink = () => uploadFileFromLink(link, tags);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    downloadFromLink();
+    await downloadFromLink();
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className={css.stack}>
       <Textfield
         label='Import from link'
         input={{
@@ -38,7 +37,11 @@ const ImportFromLink = ({ tags }: Props) => {
           placeholder: 'https://example.com/watcg?v=123',
         }}
       />
-      <Btn disabled={!isUrl(link)} type='submit'>
+      <Btn
+        disabled={!isUrl(link)}
+        type='submit'
+        style={{ alignSelf: 'flex-start' }}
+      >
         Download from link
       </Btn>
     </form>

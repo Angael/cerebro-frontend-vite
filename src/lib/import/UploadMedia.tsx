@@ -8,12 +8,10 @@ import {
 import { Btn } from '../../styled/btn/Btn';
 import css from './UploadMedia.module.scss';
 import FilesStats from './files-preview/FilesStats';
-import {
-  uploadFileToBackend,
-  uploadQueue,
-} from '../../store/upload/uploadQueue';
+import { uploadQueue } from '../../store/upload/uploadQueue';
 import { ITEMS_KEY } from '../../api/itemsApi';
 import { queryClient } from '../../api/queryClient';
+import { uploadFileToBackend } from '../../api/uploads/uploadFileFromLink';
 
 const FilesPreview = React.lazy(() => import('./files-preview/FilesPreview'));
 

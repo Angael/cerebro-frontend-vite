@@ -21,7 +21,7 @@ jobs:
       VITE_FIREBASE_BUCKET: ${{ secrets.VITE_FIREBASE_BUCKET }}
       VITE_FIREBASE_SENDER_ID: ${{ secrets.VITE_FIREBASE_SENDER_ID }}
       VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
-      VITE_API_URL: ${{ secrets.VITE_API_URL }}
+      VITE_BASE_API_URL: ${{ variables.VITE_BASE_API_URL }}
     steps:
     - uses: actions/checkout@v3
 

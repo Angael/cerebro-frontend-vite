@@ -25,9 +25,11 @@ export const All: Story = {
     <>
       <Stack style={{ margin: 16 }}>
         <Btn {...args} />
+        <Btn {...args} className='active' />
       </Stack>
       <Stack style={{ margin: 16 }}>
         <Btn {...args} disabled />
+        <Btn {...args} disabled className='active' />
       </Stack>
     </>
   ),

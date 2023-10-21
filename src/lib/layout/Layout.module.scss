@@ -3,4 +3,8 @@
 .Layout {
   @include util.container();
   container: pageContainer / inline-size;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }

@@ -11,14 +11,10 @@ const onUploadProgress = (file: ExtendedFile) => (e: AxiosProgressEvent) => {
 
   if (totalLength !== undefined) {
     const uploadProgress = Math.round((e.loaded * 100) / totalLength);
-    const uploadStatus =
-      uploadProgress >= 100
-        ? UploadStatusEnum.success
-        : UploadStatusEnum.started;
 
     uploadStoreActions.updateFile(file.id, {
       uploadProgress,
-      uploadStatus,
+      uploadStatus: UploadStatusEnum.started,
     });
   }
 };
@@ -43,10 +39,16 @@ export const uploadFileToBackend = ({ file, tags }: IOptions) => {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
-  }).catch((e) => {
-    uploadStoreActions.updateFile(file.id, {
-      uploadStatus: UploadStatusEnum.failed,
+  })
+    .then(() => {
+      uploadStoreActions.updateFile(file.id, {
+        uploadStatus: UploadStatusEnum.success,
+      });
+    })
+    .catch((e) => {
+      uploadStoreActions.updateFile(file.id, {
+        uploadStatus: UploadStatusEnum.failed,
+      });
+      throw e;
     });
-    throw e;
-  });
 };

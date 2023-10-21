@@ -10,4 +10,4 @@ export const FIREBASE_BUCKET = import.meta.env.VITE_FIREBASE_BUCKET as string;
 export const FIREBASE_SENDER_ID = import.meta.env
   .VITE_FIREBASE_SENDER_ID as string;
 export const FIREBASE_APP_ID = import.meta.env.VITE_FIREBASE_APP_ID as string;
-export const HOST = import.meta.env.VITE_HOST as string | undefined;
+export const API_URL = import.meta.env.VITE_API_URL as string;

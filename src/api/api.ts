@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { useAuthStore } from '../store/auth/authStore';
+import { API_URL } from '../env';
 
-export const baseURL = import.meta.env.VITE_API_URL
-  ? '/vite-proxy'
-  : 'https://api.widacki.me/';
+export const baseURL = API_URL ? '/vite-proxy' : 'https://api.widacki.me/';
 
 export const API = axios.create({
   timeout: 10000,

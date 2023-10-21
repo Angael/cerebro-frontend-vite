@@ -5,11 +5,11 @@ import css from './ImportPage.module.scss';
 import UploadMedia from '../../lib/import/UploadMedia';
 import { useTagInput } from './useTagInput';
 import Textfield from '../../styled/textfield/Textfield';
-import {useTagsQuery} from "../../api/tags/fetchTags";
+import { useTagsQuery } from '../../api/tags/fetchTags';
 
 const ImportPage = () => {
   const [tags, setTags, tagsArr] = useTagInput();
-  const tagsQuery = useTagsQuery()
+  const tagsQuery = useTagsQuery();
 
   return (
     <Layout isMaxWidth>
@@ -27,7 +27,7 @@ const ImportPage = () => {
           list: 'tags',
         }}
       />
-      <datalist id="tags">
+      <datalist id='tags'>
         {tagsQuery.data?.map((tag) => (
           <option key={tag.id} value={tag.name} />
         ))}

@@ -35,6 +35,8 @@ const ImportFromLink = ({ tags }: Props) => {
           value: link,
           onChange: (e) => setLink(e.currentTarget.value),
           placeholder: 'https://example.com/watcg?v=123',
+          type: 'url',
+          name: 'video-link',
         }}
       />
       <Btn

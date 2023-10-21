@@ -36,7 +36,7 @@ const routes: RouteObject[] = [
     element: <Login />,
   },
   {
-    path: '/import',
+    path: '/import/*',
     element: (
       <ProtectedPath>
         <ImportPage />

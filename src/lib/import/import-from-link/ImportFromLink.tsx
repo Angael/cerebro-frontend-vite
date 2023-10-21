@@ -3,6 +3,7 @@ import Textfield from '../../../styled/textfield/Textfield';
 import { Btn } from '../../../styled/btn/Btn';
 import { uploadFileFromLink } from '../../../api/uploads/uploadFileFromLink';
 import css from './ImportFromLink.module.scss';
+import { useMutation } from '@tanstack/react-query';
 
 type Props = {
   tags: string[];
@@ -10,6 +11,10 @@ type Props = {
 
 const ImportFromLink = ({ tags }: Props) => {
   const [link, setLink] = React.useState('');
+
+  const mutation = useMutation({
+    mutationFn: () => uploadFileFromLink(link, tags),
+  });
 
   const isUrl = (str: string) => {
     try {
@@ -20,11 +25,9 @@ const ImportFromLink = ({ tags }: Props) => {
     }
   };
 
-  const downloadFromLink = () => uploadFileFromLink(link, tags);
-
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await downloadFromLink();
+    mutation.mutate();
   };
 
   return (
@@ -40,12 +43,19 @@ const ImportFromLink = ({ tags }: Props) => {
         }}
       />
       <Btn
-        disabled={!isUrl(link)}
+        disabled={!isUrl(link) || mutation.isLoading}
         type='submit'
         style={{ alignSelf: 'flex-start' }}
       >
         Download from link
       </Btn>
+
+      {!mutation.isLoading && mutation.isError && (
+        <p className='error'>Error!</p>
+      )}
+      {!mutation.isLoading && mutation.isSuccess && (
+        <p className='success'>Success!</p>
+      )}
     </form>
   );
 };

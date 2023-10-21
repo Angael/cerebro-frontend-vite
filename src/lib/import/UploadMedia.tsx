@@ -11,7 +11,8 @@ import FilesStats from './files-preview/FilesStats';
 import { uploadQueue } from '../../store/upload/uploadQueue';
 import { ITEMS_KEY } from '../../api/itemsApi';
 import { queryClient } from '../../api/queryClient';
-import { uploadFileToBackend } from '../../api/uploads/uploadFileFromLink';
+
+import { uploadFileToBackend } from '../../api/uploads/uploadFileToBackend';
 
 const FilesPreview = React.lazy(() => import('./files-preview/FilesPreview'));
 
@@ -49,10 +50,7 @@ const UploadMedia = ({ tags }: Props) => {
       );
     });
 
-    uploadQueue.onIdle().then(() => {
-      alert('queue stopped');
-      queryClient.invalidateQueries([ITEMS_KEY]);
-    });
+    uploadQueue.onIdle().then(() => queryClient.invalidateQueries([ITEMS_KEY]));
   };
 
   return (

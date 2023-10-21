@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useAuthStore } from '../store/auth/authStore';
 
-export const baseURL = import.meta.env.DEV
+export const baseURL = import.meta.env.VITE_API_URL
   ? '/vite-proxy'
   : 'https://api.widacki.me/';
 

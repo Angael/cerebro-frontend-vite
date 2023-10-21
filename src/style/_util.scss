@@ -16,6 +16,11 @@ $containerWidth: 1000px;
 }
 
 @mixin button-states {
+  &:global(.active) {
+    outline: 2px solid var(--c-primary-active);
+    text-decoration: underline;
+  }
+
   &:hover,
   &:focus-visible {
     border-color: var(--c-primary-hover);

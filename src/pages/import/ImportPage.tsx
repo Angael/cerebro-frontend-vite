@@ -6,6 +6,7 @@ import UploadMedia from '../../lib/import/UploadMedia';
 import { useTagInput } from './useTagInput';
 import Textfield from '../../styled/textfield/Textfield';
 import { useTagsQuery } from '../../api/tags/fetchTags';
+import ImportFromLink from '../../lib/import/import-from-link/ImportFromLink';
 
 const ImportPage = () => {
   const [tags, setTags, tagsArr] = useTagInput();
@@ -32,6 +33,7 @@ const ImportPage = () => {
           <option key={tag.id} value={tag.name} />
         ))}
       </datalist>
+      <ImportFromLink tags={tagsArr} />
       <UploadMedia tags={tagsArr} />
     </Layout>
   );

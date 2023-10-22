@@ -1,29 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Textfield from '../../../styled/textfield/Textfield';
 import { Btn } from '../../../styled/btn/Btn';
 import { uploadFileFromLink } from '../../../api/uploads/uploadFileFromLink';
 import css from './ImportFromLink.module.scss';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { getStatsFromLink } from '../../../api/uploads/getStatsFromLink';
+import StatsFromLink from './StatsFromLink';
+
+const isUrl = (str: string) => {
+  try {
+    new URL(str);
+    return true;
+  } catch {
+    return false;
+  }
+};
 
 type Props = {
   tags: string[];
 };
 
 const ImportFromLink = ({ tags }: Props) => {
-  const [link, setLink] = React.useState('');
+  const [link, setLink] = useState('');
 
   const mutation = useMutation({
     mutationFn: () => uploadFileFromLink(link, tags),
   });
-
-  const isUrl = (str: string) => {
-    try {
-      new URL(str);
-      return true;
-    } catch {
-      return false;
-    }
-  };
+  const disabled = !isUrl(link) || mutation.isLoading;
+  const statsFromLink = useQuery({
+    queryKey: ['statsFromLink', link],
+    queryFn: () => getStatsFromLink(link),
+  });
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,7 +50,7 @@ const ImportFromLink = ({ tags }: Props) => {
         }}
       />
       <Btn
-        disabled={!isUrl(link) || mutation.isLoading}
+        disabled={disabled}
         type='submit'
         style={{ alignSelf: 'flex-start' }}
       >
@@ -56,6 +63,7 @@ const ImportFromLink = ({ tags }: Props) => {
       {!mutation.isLoading && mutation.isSuccess && (
         <p className='success'>Success!</p>
       )}
+      {statsFromLink.data && <StatsFromLink stats={statsFromLink.data} />}
     </form>
   );
 };

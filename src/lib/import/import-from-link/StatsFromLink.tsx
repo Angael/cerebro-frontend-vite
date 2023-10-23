@@ -8,22 +8,37 @@ type Props = {
 };
 
 const StatsFromLink = ({ stats }: Props) => {
-  const { title, description, duration, thumbnail, resolution, fps, ext } =
-    stats;
+  const {
+    title,
+    description,
+    duration,
+    thumbnail,
+    resolution,
+    fps,
+    ext,
+    filesize_approx,
+  } = stats;
 
   if (!isProd) {
     console.log(stats);
   }
 
   return (
-    <Card>
-      <img src={thumbnail} alt='thumbnail' />
-      <header className='h3'>Nazwa filmu: {title}</header>
-      <p className='body2'>Description: {description}</p>
-      <p className='body2'>Duration: {duration}</p>
-      <p className='body2'>Resolution: {resolution}</p>
-      <p className='body2'>FPS: {fps}</p>
-      <p className='body2'>Ext: {ext}</p>
+    <Card className={css.StatsFromLink}>
+      <img src={thumbnail} alt='thumbnail' className={css.thumbnail} />
+      <div className={css.content}>
+        <header className={'h3 ' + css.title}>{title}</header>
+        <div className='desc'>
+          {description && <p className='body2'>{description}</p>}
+          <p className='body2'>Duration: {duration}s</p>
+          <p className='body2'>Resolution: {resolution}</p>
+          <p className='body2'>FPS: {fps}</p>
+          <p className='body2'>Ext: {ext}</p>
+          <p className='body2'>
+            Filesize: {Math.round(filesize_approx / 1000000)}MB
+          </p>
+        </div>
+      </div>
     </Card>
   );
 };

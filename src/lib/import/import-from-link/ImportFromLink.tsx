@@ -63,7 +63,7 @@ const ImportFromLink = ({ tags }: Props) => {
       {!mutation.isLoading && mutation.isSuccess && (
         <p className='success'>Success!</p>
       )}
-      {statsFromLink.data && <StatsFromLink stats={statsFromLink.data} />}
+      <StatsFromLink stats={statsFromLink.data} />
     </form>
   );
 };

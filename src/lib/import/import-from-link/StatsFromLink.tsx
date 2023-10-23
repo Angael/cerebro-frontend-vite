@@ -12,7 +12,15 @@ type Props = {
 
 const StatsFromLink = ({ stats }: Props) => {
   const { title, duration, thumbnail, resolution, fps, ext, filesize_approx } =
-    stats;
+    stats ?? {
+      title: 'Title of video',
+      duration: 0,
+      thumbnail: 'https://placehold.co/600x300/EEE/31343C',
+      resolution: '0x0',
+      fps: 0,
+      ext: 'ext',
+      filesize_approx: 0,
+    };
 
   if (!isProd) {
     console.log(stats);

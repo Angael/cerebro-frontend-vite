@@ -6,6 +6,7 @@ import css from './ImportFromLink.module.scss';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { getStatsFromLink } from '../../../api/uploads/getStatsFromLink';
 import StatsFromLink from './StatsFromLink';
+import { useDebounce } from 'use-debounce';
 
 const isUrl = (str: string) => {
   try {
@@ -22,15 +23,18 @@ type Props = {
 
 const ImportFromLink = ({ tags }: Props) => {
   const [link, setLink] = useState('');
+  const [debouncedLink] = useDebounce(link, 500);
 
   const mutation = useMutation({
     mutationFn: () => uploadFileFromLink(link, tags),
   });
-  const disabled = !isUrl(link) || mutation.isLoading;
   const statsFromLink = useQuery({
-    queryKey: ['statsFromLink', link],
-    queryFn: () => getStatsFromLink(link),
+    queryKey: ['statsFromLink', debouncedLink],
+    queryFn: () => getStatsFromLink(debouncedLink),
   });
+
+  const disabled =
+    !isUrl(link) || mutation.isLoading || !statsFromLink.isFetched;
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,6 +53,8 @@ const ImportFromLink = ({ tags }: Props) => {
           name: 'video-link',
         }}
       />
+
+      <StatsFromLink stats={statsFromLink.data} />
       <Btn
         disabled={disabled}
         type='submit'
@@ -63,7 +69,6 @@ const ImportFromLink = ({ tags }: Props) => {
       {!mutation.isLoading && mutation.isSuccess && (
         <p className='success'>Success!</p>
       )}
-      <StatsFromLink stats={statsFromLink.data} />
     </form>
   );
 };

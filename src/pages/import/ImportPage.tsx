@@ -20,6 +20,10 @@ const ImportPage = () => {
         <h1 className='h2'>Import files</h1>
         <UsedSpace />
       </div>
+      <nav className={css.navBtns}>
+        <BtnNavlink to={'/import/files'}>Upload files</BtnNavlink>
+        <BtnNavlink to={'/import/file-from-link'}>Import from link</BtnNavlink>
+      </nav>
       <Textfield
         label='Tags to apply'
         input={{
@@ -35,11 +39,6 @@ const ImportPage = () => {
           <option key={tag.id} value={tag.name} />
         ))}
       </datalist>
-
-      <nav className={css.navBtns}>
-        <BtnNavlink to={'/import/files'}>Upload files</BtnNavlink>
-        <BtnNavlink to={'/import/file-from-link'}>Import from link</BtnNavlink>
-      </nav>
 
       <Routes>
         <Route path='files' element={<UploadMedia tags={tagsArr} />} />

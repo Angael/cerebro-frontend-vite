@@ -22,10 +22,6 @@ const StatsFromLink = ({ stats }: Props) => {
       filesize_approx: 0,
     };
 
-  if (!isProd) {
-    console.log(stats);
-  }
-
   const sizeStr = numeral(filesize_approx).format('0.00 b');
   const durationStr = numeral(duration).format('00:00:00');
 

@@ -6,7 +6,6 @@ import css from './ImportFromLink.module.scss';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { getStatsFromLink } from '../../../api/uploads/getStatsFromLink';
 import StatsFromLink from './StatsFromLink';
-import { useDebounce } from 'use-debounce';
 
 const isUrl = (str: string) => {
   try {
@@ -23,14 +22,14 @@ type Props = {
 
 const ImportFromLink = ({ tags }: Props) => {
   const [link, setLink] = useState('');
-  const [debouncedLink] = useDebounce(link, 500);
 
   const mutation = useMutation({
     mutationFn: () => uploadFileFromLink(link, tags),
   });
   const statsFromLink = useQuery({
-    queryKey: ['statsFromLink', debouncedLink],
-    queryFn: () => getStatsFromLink(debouncedLink),
+    queryKey: ['statsFromLink', link],
+    queryFn: () => getStatsFromLink(link),
+    retry: false,
   });
 
   const disabled =

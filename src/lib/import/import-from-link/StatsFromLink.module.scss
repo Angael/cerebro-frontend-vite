@@ -6,6 +6,8 @@
   gap: 16px;
   flex-direction: column;
 
+  transition: opacity 0.2s ease-in-out;
+
   @include breakpoints.desktop() {
     flex-direction: row;
   }

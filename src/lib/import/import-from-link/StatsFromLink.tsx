@@ -3,14 +3,13 @@ import numeral from 'numeral';
 
 import css from './StatsFromLink.module.scss';
 import Card from '../../../styled/card/Card';
-import { isProd } from '../../../env';
 
 type Props = {
-  // TODO: type
   stats: any;
+  isFetching: boolean;
 };
 
-const StatsFromLink = ({ stats }: Props) => {
+const StatsFromLink = ({ stats, isFetching }: Props) => {
   const { title, duration, thumbnail, resolution, fps, ext, filesize_approx } =
     stats ?? {
       title: 'Title of video',
@@ -26,7 +25,10 @@ const StatsFromLink = ({ stats }: Props) => {
   const durationStr = numeral(duration).format('00:00:00');
 
   return (
-    <Card className={css.StatsFromLink}>
+    <Card
+      className={css.StatsFromLink}
+      style={{ opacity: isFetching ? 0.5 : 1 }}
+    >
       <img src={thumbnail} alt='thumbnail' className={css.thumbnail} />
       <div className={css.content}>
         <header className={'h3 ' + css.title}>{title}</header>

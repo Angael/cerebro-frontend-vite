@@ -53,7 +53,10 @@ const ImportFromLink = ({ tags }: Props) => {
         }}
       />
 
-      <StatsFromLink stats={statsFromLink.data} />
+      <StatsFromLink
+        stats={statsFromLink.data}
+        isFetching={statsFromLink.isFetching}
+      />
       <Btn
         disabled={disabled}
         type='submit'

@@ -5,7 +5,7 @@ import css from './Home.module.scss';
 const Home = () => {
   return (
     <Layout isMaxWidth>
-      <h1 className='h1'>Welcome to Cerebro</h1>
+      <h1 className='h1'>Welcome to Cerebro v0.3</h1>
 
       <div className={css.HomeText}>
         <p>

@@ -1,5 +1,5 @@
 import { ExtendedFile, UploadStatusEnum } from '../../store/upload/uploadTypes';
-import { AxiosProgressEvent } from 'axios/index';
+import { AxiosProgressEvent } from 'axios';
 import { uploadStoreActions } from '../../store/upload/uploadStore';
 import { API } from '../api';
 
